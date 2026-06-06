@@ -15,7 +15,7 @@
   <img src="https://img.shields.io/badge/Vite-v6.0-646CFF?logo=vite&logoColor=white" alt="Vite" />
   <img src="https://img.shields.io/badge/TailwindCSS-v3.4-38B2AC?logo=tailwindcss&logoColor=white" alt="TailwindCSS" />
   <img src="https://img.shields.io/badge/SQLite-3-003B57?logo=sqlite&logoColor=white" alt="SQLite" />
-  <img src="https://img.shields.io/badge/AI-Gemini%20%7C%20OpenAI%20%7C%20Zhipu-FF6F61?logo=google&logoColor=white" alt="AI Stack" />
+  <img src="https://img.shields.io/badge/AI-OpenAI--Compatible%20LLM%20%7C%20Embedding-FF6F61?logo=openai&logoColor=white" alt="AI Stack" />
 </p>
 
 ---
@@ -71,7 +71,7 @@ graph TD
   end
 
   subgraph AIEngine [AI 与向量化引擎]
-    LLM["大模型服务 (Gemini / OpenAI)"]
+    LLM["OpenAI-compatible LLM (旗舰 / 快速)"]
     Embeddings["向量化服务 (Zhipu Embedding-3)"]
   end
 
@@ -105,15 +105,24 @@ flowchart TD
 | **管理后台前端** | **React 19, Vite, Tailwind CSS, Framer Motion v12** | 响应式大屏后台，包含岗位列表 CRUD、JD 批量结构化跑批、标签归一与 LLM 复查看板。 |
 | **学生端后端** | **FastAPI, Uvicorn, SQLite3, SQLAlchemy** | 负责学生端账户注册登录（JWT 验证）、学生画像管理、简历解析接口。 |
 | **管理后台后端** | **FastAPI, Uvicorn, Pandas, NumPy, Scikit-learn** | 系统核心业务。负责岗位数据的管理、高速向量匹配计算、标签字典同步、标签审计。 |
-| **AI / 大模型** | **LangChain, OpenAI SDK, Gemini API, OpenRouter** | 负责简历内容解析、JD 结构化画像抽取、人岗匹配后的自然语言报告生成。 |
+| **AI / 大模型** | **LangChain, OpenAI SDK, OpenAI-compatible Chat Completions** | 负责简历内容解析、JD 结构化画像抽取、人岗匹配后的自然语言报告生成。 |
 | **向量化引擎** | **Zhipu BigModel Embedding-3** | 提供高维度 (2048-dim) 的语义向量服务，支撑中文标签搜索与聚类。 |
 
 ### 🤖 推荐模型参考配置 (AI Reference Models)
-为了保障系统的高性能与格式化 JSON 稳定性，在生产或本地部署时，推荐配置如下大模型及向量方案：
-* **向量模型 (Embedding Model)**: **智谱 `embedding-3`** (2048维高性能向量，作为系统中标准词构建、相似性聚类以及高维语义表示的核心向量工具)。
-* **大模型 (LLM Model)**: 
-  * 核心格式化与轻量级跑批任务：**`DeepSeek-v3.2`** (注：官网目前已下架此版本，推荐采用 **`DeepSeek-v4-flash`** 替代，用于极速的 JSON 格式化输出与画像自动化跑批流水线)。
-  * 深度匹配报告与分析：**`Gemini-3.5-Flash`** 或 **`GPT-4o-mini`** (通过极速响应生成人岗推荐度评语与详细分析报告)。
+当前交付版将模型配置收敛为三组：旗舰 LLM、快速 LLM、向量模型。旗舰模型与快速模型可以使用完全不同的 `BASE_URL` 和 `API_KEY`，适合分别接入不同供应商或不同套餐。
+
+* **旗舰模型 (Flagship LLM)**：用于报告生成、图片输入转回答、复杂 JSON、简历解析、岗位画像生成、深度匹配报告与竞争力评估。推荐 `GPT-5.4`、`Claude Sonnet 4.5`、`DeepSeek V4 Pro`。
+* **快速模型 (Fast LLM)**：用于简单分类、广告/异常判定、短文本轻量翻译、布尔判断等低风险任务。推荐 `GPT-5.4-mini`、`Claude Haiku 4.5`、`DeepSeek V4 Flash`。
+* **向量模型 (Embedding Model)**：默认示例使用智谱 `embedding-3`（2048 维），用于语义搜索、标签归一和匹配链路中的语义召回。
+
+历史说明：本项目早期开发时模型生态仍以 DeepSeek V3.2 等旧版能力为主要参照；当前交付版已按新一代旗舰/快速模型分层重新整理配置。
+
+### 🧭 向量模型使用边界
+向量模型只负责“语义表示与召回”，不生成报告，也不直接决定最终分数。
+
+* **学生端中文语义搜索**：`/api/student-profile/professional-skills/search` 会把中文查询向量化，召回 Tag Center 中的英文标准标签。
+* **Tag Center 标签归一**：用于相似标签聚类、标准词对齐、缓存补齐，降低同义词和翻译碎片带来的噪声。
+* **匹配链路语义召回**：用于相似标签补齐和英文 `normalizedTag` 对齐；最终分档和分数仍由确定性规则、能力等级与权重矩阵计算。
 
 ---
 
@@ -184,15 +193,22 @@ cd ../..
 ### 2. 配置环境变量
 
 1. 复制根目录下的 `.env.example` 并重命名为 `.env`。
-2. 配置你的大模型 API 密钥（可配置 OpenAI, Gemini 或 OpenRouter 兼容的接口），配置示例如下：
+2. 配置你的模型 API 密钥。服务端 `.env` 只需要维护三组模型配置，示例如下：
    ```ini
-   # 学生端 AI 配置
-   CAREER_PLANNER_AI_LLM_BASE_URL=https://api.example.com/v1
-   CAREER_PLANNER_AI_LLM_API_KEY=your-api-key
-   CAREER_PLANNER_AI_LLM_MODEL=gemini-3-flash-preview
+   # 旗舰模型：报告、简历解析、复杂 JSON、深度匹配
+   JOB_SYSTEM_FLAGSHIP_LLM_BASE_URL=https://api.example.com/v1
+   JOB_SYSTEM_FLAGSHIP_LLM_API_KEY=your-flagship-key
+   JOB_SYSTEM_FLAGSHIP_LLM_MODEL=gpt-5.4
 
-   # 智谱向量化 API 配置 (用于标签治理和相似性匹配)
-   JOB_SYSTEM_BIGMODEL_VECTOR_API_KEY=your-zhipu-api-key
+   # 快速模型：简单分类、广告判定、轻量翻译
+   JOB_SYSTEM_FAST_LLM_BASE_URL=https://api.example.com/v1
+   JOB_SYSTEM_FAST_LLM_API_KEY=your-fast-key
+   JOB_SYSTEM_FAST_LLM_MODEL=gpt-5.4-mini
+
+   # 向量模型：语义搜索、标签归一、匹配语义召回
+   JOB_SYSTEM_EMBEDDING_BASE_URL=https://open.bigmodel.cn/api/paas/v4
+   JOB_SYSTEM_EMBEDDING_API_KEY=your-embedding-key
+   JOB_SYSTEM_EMBEDDING_MODEL=embedding-3
    ```
 3. *(对于 Career Planner 登录态)*，配置 `CAREER_PLANNER_JWT_SECRET` 为一个随机的长字符串。
 

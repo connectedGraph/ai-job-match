@@ -1,7 +1,6 @@
 import asyncio
 import hashlib
 import json
-import os
 import re
 from collections import defaultdict
 from dataclasses import dataclass
@@ -13,12 +12,9 @@ import httpx
 import numpy as np
 
 from backend_app.model_config import (
-    VECTOR_PROFILE_BIGMODEL_EMBEDDING_3,
-    VECTOR_PROFILE_GEMINI_ENGLISH,
     VECTOR_PROFILE_GLM_LEGACY,
-    VECTOR_PROFILE_OPENROUTER_GEMINI,
-    VECTOR_PROVIDER_GEMINI,
     VECTOR_PROVIDER_OPENAI,
+    load_fast_llm_config,
     load_vector_model_config,
 )
 from job_profile_schema import (
@@ -78,8 +74,6 @@ def embedding_cache_file(config=None):
 def embedding_api_url(config=None) -> str:
     resolved = config or VECTOR_MODEL_CONFIG
     base_url = resolved.base_url.rstrip("/")
-    if resolved.provider == VECTOR_PROVIDER_GEMINI:
-        return f"{base_url}/{resolved.model}:embedContent"
     return f"{base_url}/embeddings"
 
 
@@ -195,24 +189,14 @@ def embedding_row_matches_config(row: Dict[str, Any], config) -> bool:
     row_provider = clean_text(row.get("provider"))
     row_model = clean_text(row.get("model"))
     row_dimensions = row.get("dimensions")
-    profile_aliases = {clean_text(config.profile_id)}
-    provider_aliases = {clean_text(config.provider)}
-
-    if clean_text(config.profile_id) == VECTOR_PROFILE_BIGMODEL_EMBEDDING_3:
-        profile_aliases.add("VECTOR_PROFILE_BIGMODEL_EMBEDDING_3")
-    if clean_text(config.profile_id) == VECTOR_PROFILE_GEMINI_ENGLISH:
-        profile_aliases.add("VECTOR_PROFILE_GEMINI_ENGLISH")
-    if clean_text(config.profile_id) == VECTOR_PROFILE_OPENROUTER_GEMINI:
-        profile_aliases.add("VECTOR_PROFILE_OPENROUTER_GEMINI")
-    if clean_text(config.provider) == VECTOR_PROVIDER_GEMINI:
-        provider_aliases.add("gemini")
+    profile_aliases = {clean_text(config.profile_id), "bigmodel_embedding_3"}
 
     # Backward compatibility: old cache rows without profile metadata are only trusted for legacy GLM space.
     if not row_profile and not row_provider and not row_model:
         return config.profile_id == VECTOR_PROFILE_GLM_LEGACY
     if row_profile and row_profile not in profile_aliases:
         return False
-    if row_provider and row_provider not in provider_aliases:
+    if row_provider and row_provider != clean_text(config.provider):
         return False
     if row_model and row_model != config.model:
         return False
@@ -274,14 +258,6 @@ def parse_float(value: Any, fallback: float) -> float:
         return float(value)
     except (TypeError, ValueError):
         return fallback
-
-
-def first_clean_env(*names: str, default: str = "") -> str:
-    for name in names:
-        value = clean_text(os.getenv(name))
-        if value:
-            return value
-    return default
 
 
 def next_created_seq(jobs: List[Dict[str, Any]]) -> int:
@@ -551,15 +527,11 @@ async def ensure_embeddings(texts: List[str], cache: Dict[str, np.ndarray]) -> i
 
     persisted_rows: List[Dict[str, Any]] = []
     embedded_count = 0
-    cache_is_json_file = embedding_cache_file(vector_config).suffix.lower() == ".json"
     request_interval = 0.0
     if getattr(vector_config, "request_interval_seconds", 0):
         request_interval = float(vector_config.request_interval_seconds or 0.0)
     elif vector_config.requests_per_minute:
         request_interval = 60.0 / max(int(vector_config.requests_per_minute), 1)
-
-    def is_openrouter_profile(config) -> bool:
-        return clean_text(getattr(config, "profile_id", "")) == VECTOR_PROFILE_OPENROUTER_GEMINI or "openrouter.ai" in clean_text(getattr(config, "base_url", "")).lower()
 
     async with httpx.AsyncClient(timeout=180) as client:
         async def post_with_retry(
@@ -609,13 +581,6 @@ async def ensure_embeddings(texts: List[str], cache: Dict[str, np.ndarray]) -> i
                 "Authorization": f"Bearer {api_key}",
                 "Content-Type": "application/json",
             }
-            if is_openrouter_profile(vector_config):
-                site_url = clean_text(getattr(vector_config, "site_url", ""))
-                site_name = clean_text(getattr(vector_config, "site_name", ""))
-                if site_url:
-                    headers["HTTP-Referer"] = site_url
-                if site_name:
-                    headers["X-OpenRouter-Title"] = site_name
             payload = {
                 "model": vector_config.model,
                 "input": batch,
@@ -628,11 +593,6 @@ async def ensure_embeddings(texts: List[str], cache: Dict[str, np.ndarray]) -> i
             body = response.json()
             rows = body.get("data") if isinstance(body, dict) else None
             if not isinstance(rows, list):
-                if is_openrouter_profile(vector_config) and len(batch) > 1:
-                    midpoint = max(1, len(batch) // 2)
-                    await fetch_openai_batch(batch[:midpoint])
-                    await fetch_openai_batch(batch[midpoint:])
-                    return
                 error_message = ""
                 if isinstance(body, dict):
                     error_payload = body.get("error")
@@ -663,120 +623,27 @@ async def ensure_embeddings(texts: List[str], cache: Dict[str, np.ndarray]) -> i
                     }
                 )
 
-        async def fetch_gemini_batch(batch: List[str]) -> None:
-            nonlocal embedded_count
-            headers = {
-                "x-goog-api-key": api_key,
-                "Content-Type": "application/json",
-            }
-            requests_payload: List[Dict[str, Any]] = []
-            batch_texts: List[str] = []
-            for text in batch:
-                normalized_text = clean_text(text)
-                if not normalized_text:
-                    continue
-                batch_texts.append(normalized_text)
-                request_payload: Dict[str, Any] = {
-                    "model": vector_config.model,
-                    "content": {
-                        "parts": [{"text": normalized_text}],
-                    },
-                }
-                if clean_text(vector_config.task_type):
-                    request_payload["taskType"] = clean_text(vector_config.task_type)
-                if vector_config.dimensions:
-                    request_payload["outputDimensionality"] = int(vector_config.dimensions)
-                requests_payload.append(request_payload)
+        batch_size = max(int(vector_config.batch_size or 1), 1)
+        max_concurrency = max(int(getattr(vector_config, "max_concurrency", 1) or 1), 1)
+        if max_concurrency > 1:
+            semaphore = asyncio.Semaphore(max_concurrency)
 
-            if not requests_payload:
-                return
+            async def guarded_fetch_openai_batch(batch: List[str]) -> None:
+                async with semaphore:
+                    await fetch_openai_batch(batch)
 
-            response = await post_with_retry(
-                f"{embedding_api_url(vector_config).rsplit(':', 1)[0]}:batchEmbedContents",
-                headers=headers,
-                payload={"requests": requests_payload},
-            )
-            response.raise_for_status()
-            embeddings = response.json().get("embeddings", [])
-            if not isinstance(embeddings, list):
-                raise RuntimeError("Gemini batch embedding response missing embeddings")
-            if len(embeddings) != len(batch_texts):
-                raise RuntimeError("Gemini batch embedding response size mismatch")
-
-            for text, embedding_item in zip(batch_texts, embeddings):
-                values = embedding_item.get("values") if isinstance(embedding_item, dict) else None
-                if not isinstance(values, list):
-                    raise RuntimeError("Gemini batch embedding response missing embedding values")
-                cache_key = embedding_cache_key(text)
-                if cache_key in cache:
-                    continue
-                vector = normalize_vector(np.array(values, dtype=np.float32))
-                cache[cache_key] = vector
-                embedded_count += 1
-                persisted_rows.append(
-                    {
-                        "cacheKey": cache_key,
-                        "text": text,
-                        "embedding": values,
-                        "profileId": vector_config.profile_id,
-                        "provider": vector_config.provider,
-                        "model": vector_config.model,
-                        "dimensions": int(vector_config.dimensions or len(values)),
-                        "updatedAt": now_iso(),
-                    }
-                )
-
-        if vector_config.provider == VECTOR_PROVIDER_GEMINI:
-            batch_size = min(max(int(vector_config.batch_size or 1), 1), 100)
+            tasks = []
             for start in range(0, len(unique_texts), batch_size):
                 batch = unique_texts[start : start + batch_size]
-                await fetch_gemini_batch(batch)
-                if persisted_rows:
-                    append_embedding_cache_rows(persisted_rows)
-                    persisted_rows.clear()
+                tasks.append(asyncio.create_task(guarded_fetch_openai_batch(batch)))
+            for task in asyncio.as_completed(tasks):
+                await task
+        else:
+            for start in range(0, len(unique_texts), batch_size):
+                batch = unique_texts[start : start + batch_size]
+                await fetch_openai_batch(batch)
                 if request_interval > 0 and start + batch_size < len(unique_texts):
                     await asyncio.sleep(request_interval)
-        else:
-            batch_size = max(int(vector_config.batch_size or 1), 1)
-            if is_openrouter_profile(vector_config):
-                tasks: List[asyncio.Task] = []
-                for start in range(0, len(unique_texts), batch_size):
-                    batch = unique_texts[start : start + batch_size]
-                    tasks.append(asyncio.create_task(fetch_openai_batch(batch)))
-                    if request_interval > 0 and start + batch_size < len(unique_texts):
-                        await asyncio.sleep(request_interval)
-                for task in asyncio.as_completed(tasks):
-                    await task
-                    if persisted_rows:
-                        append_embedding_cache_rows(persisted_rows)
-                        persisted_rows.clear()
-            else:
-                max_concurrency = max(int(getattr(vector_config, "max_concurrency", 1) or 1), 1)
-                if max_concurrency > 1:
-                    semaphore = asyncio.Semaphore(max_concurrency)
-
-                    async def guarded_fetch_openai_batch(batch: List[str]) -> None:
-                        async with semaphore:
-                            await fetch_openai_batch(batch)
-
-                    tasks = []
-                    for start in range(0, len(unique_texts), batch_size):
-                        batch = unique_texts[start : start + batch_size]
-                        tasks.append(asyncio.create_task(guarded_fetch_openai_batch(batch)))
-                    for task in asyncio.as_completed(tasks):
-                        await task
-                        if persisted_rows and not cache_is_json_file:
-                            append_embedding_cache_rows(persisted_rows)
-                            persisted_rows.clear()
-                else:
-                    for start in range(0, len(unique_texts), batch_size):
-                        batch = unique_texts[start : start + batch_size]
-                        await fetch_openai_batch(batch)
-                        if persisted_rows and not cache_is_json_file:
-                            append_embedding_cache_rows(persisted_rows)
-                            persisted_rows.clear()
-                        if request_interval > 0 and start + batch_size < len(unique_texts):
-                            await asyncio.sleep(request_interval)
 
     append_embedding_cache_rows(persisted_rows)
     return embedded_count
@@ -1391,60 +1258,27 @@ class CareerNormalizationLLMConfig:
     timeout_seconds: int = 180
     rpm: int = 800
     max_workers: int = 30
-    source: str = "JOB_SYSTEM_NORMALIZATION_LLM"
+    source: str = "JOB_SYSTEM_FAST_LLM"
 
 
 def load_career_normalization_llm_config() -> CareerNormalizationLLMConfig:
+    fast_config = load_fast_llm_config()
     return CareerNormalizationLLMConfig(
-        base_url=clean_text(os.getenv("JOB_SYSTEM_NORMALIZATION_LLM_BASE_URL")) or "https://test.lemonapi.ai/v1/",
-        api_key=clean_text(os.getenv("JOB_SYSTEM_NORMALIZATION_LLM_API_KEY"))
-        or "",
-        model=clean_text(os.getenv("JOB_SYSTEM_NORMALIZATION_LLM_MODEL")) or "gpt-5.4",
-        cache_file=clean_text(os.getenv("JOB_SYSTEM_NORMALIZATION_LLM_CACHE_FILE")) or "normalized_cluster_llm_cache_v2.json",
-        temperature=parse_float(os.getenv("JOB_SYSTEM_NORMALIZATION_LLM_TEMPERATURE"), 0),
-        max_tokens=parse_int(os.getenv("JOB_SYSTEM_NORMALIZATION_LLM_MAX_TOKENS"), 4096),
-        timeout_seconds=parse_int(os.getenv("JOB_SYSTEM_NORMALIZATION_LLM_TIMEOUT_SECONDS"), 180),
-        rpm=parse_int(os.getenv("JOB_SYSTEM_NORMALIZATION_LLM_RPM"), 800),
-        max_workers=parse_int(os.getenv("JOB_SYSTEM_NORMALIZATION_LLM_MAX_WORKERS"), 30),
+        base_url=clean_text(fast_config.base_url),
+        api_key=clean_text(fast_config.api_key),
+        model=clean_text(fast_config.model),
+        cache_file="normalized_cluster_llm_cache_v2.json",
+        temperature=float(fast_config.temperature),
+        max_tokens=int(fast_config.max_tokens or 4096),
+        timeout_seconds=int(fast_config.timeout_seconds or 180),
+        rpm=int(fast_config.requests_per_minute or 800),
+        max_workers=int(fast_config.max_concurrency or 30),
+        source="JOB_SYSTEM_FAST_LLM",
     )
 
 
 def load_domain_translation_llm_config() -> CareerNormalizationLLMConfig:
-    """Domain Center zh naming runs in job-admin but reuses the profile AI LLM if configured."""
-    has_profile_ai_key = bool(first_clean_env("CAREER_PLANNER_AI_LLM_API_KEY"))
-    return CareerNormalizationLLMConfig(
-        base_url=first_clean_env(
-            "CAREER_PLANNER_AI_LLM_BASE_URL",
-            "JOB_SYSTEM_NORMALIZATION_LLM_BASE_URL",
-            default="https://test.lemonapi.ai/v1/",
-        ),
-        api_key=first_clean_env(
-            "CAREER_PLANNER_AI_LLM_API_KEY",
-            "JOB_SYSTEM_NORMALIZATION_LLM_API_KEY",
-            default="",
-        ),
-        model=first_clean_env(
-            "CAREER_PLANNER_AI_LLM_MODEL",
-            "JOB_SYSTEM_NORMALIZATION_LLM_MODEL",
-            default="gemini-3-flash-preview",
-        ),
-        cache_file=clean_text(os.getenv("JOB_SYSTEM_NORMALIZATION_LLM_CACHE_FILE")) or "normalized_cluster_llm_cache_v2.json",
-        temperature=parse_float(
-            first_clean_env("CAREER_PLANNER_AI_LLM_TEMPERATURE", "JOB_SYSTEM_NORMALIZATION_LLM_TEMPERATURE", default="0.2"),
-            0.2,
-        ),
-        max_tokens=parse_int(
-            first_clean_env("CAREER_PLANNER_AI_LLM_MAX_TOKENS", "JOB_SYSTEM_NORMALIZATION_LLM_MAX_TOKENS", default="4000"),
-            4000,
-        ),
-        timeout_seconds=parse_int(
-            first_clean_env("CAREER_PLANNER_AI_LLM_TIMEOUT_SECONDS", "JOB_SYSTEM_NORMALIZATION_LLM_TIMEOUT_SECONDS", default="120"),
-            120,
-        ),
-        rpm=parse_int(os.getenv("JOB_SYSTEM_NORMALIZATION_LLM_RPM"), 800),
-        max_workers=parse_int(os.getenv("JOB_SYSTEM_NORMALIZATION_LLM_MAX_WORKERS"), 30),
-        source="CAREER_PLANNER_AI_LLM" if has_profile_ai_key else "JOB_SYSTEM_NORMALIZATION_LLM",
-    )
+    return load_career_normalization_llm_config()
 
 
 def llm_chat_completions_url(base_url: str) -> str:
@@ -1733,8 +1567,6 @@ async def enrich_tag_assets_with_zh_translations(
     llm_config = load_career_normalization_llm_config()
     if not clean_text(llm_config.api_key):
         return {"status": "skipped_missing_llm_key", "translated": 0, "cacheFile": str(TAG_TRANSLATION_CACHE_FILE)}
-    if clean_text(os.getenv("JOB_SYSTEM_TAG_TRANSLATION_ENABLED", "1")).lower() in {"0", "false", "no"}:
-        return {"status": "skipped_disabled", "translated": 0, "cacheFile": str(TAG_TRANSLATION_CACHE_FILE)}
 
     rows = json.loads(tag_master_file_path(TAG_VIEW_NORMALIZED).read_text(encoding="utf-8-sig")) if tag_master_file_path(TAG_VIEW_NORMALIZED).exists() else []
     if not isinstance(rows, list):
@@ -3196,14 +3028,6 @@ async def enrich_domain_assets_with_zh_translations(
     if not clean_text(llm_config.api_key):
         return {
             "status": "skipped_missing_llm_key",
-            "translated": 0,
-            "cacheFile": str(DOMAIN_TRANSLATION_CACHE_FILE),
-            "configSource": llm_config.source,
-            "model": llm_config.model,
-        }
-    if clean_text(os.getenv("JOB_SYSTEM_DOMAIN_TRANSLATION_ENABLED", "1")).lower() in {"0", "false", "no"}:
-        return {
-            "status": "skipped_disabled",
             "translated": 0,
             "cacheFile": str(DOMAIN_TRANSLATION_CACHE_FILE),
             "configSource": llm_config.source,

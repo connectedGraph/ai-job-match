@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import os
 from datetime import datetime
 from typing import Any, Dict, List, Tuple
 
@@ -11,7 +10,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
 from .config import logger
-from .model_config import load_text_model_config
+from .model_config import load_flagship_llm_config
 
 
 INSTITUTION_LEVEL_MAP = {
@@ -175,24 +174,13 @@ def normalize_text_model_base_url(base_url: str) -> str:
 
 
 def resolve_competitiveness_llm_config() -> Dict[str, Any]:
-    base_cfg = load_text_model_config()
-    base_url = normalize_text_model_base_url(os.getenv("JOB_SYSTEM_MATCH_LLM_BASE_URL", "")) or normalize_text_model_base_url(base_cfg.base_url)
-    api_key = normalize_text(os.getenv("JOB_SYSTEM_MATCH_LLM_API_KEY")) or normalize_text(base_cfg.api_key)
-    model = normalize_text(os.getenv("JOB_SYSTEM_MATCH_LLM_MODEL")) or "gemini-3-flash-preview-search"
-    try:
-        temperature = float(os.getenv("JOB_SYSTEM_MATCH_LLM_TEMPERATURE", str(base_cfg.temperature)))
-    except (TypeError, ValueError):
-        temperature = float(base_cfg.temperature)
-    try:
-        max_tokens = int(os.getenv("JOB_SYSTEM_MATCH_LLM_MAX_TOKENS", "1200"))
-    except (TypeError, ValueError):
-        max_tokens = 1200
+    base_cfg = load_flagship_llm_config()
     return {
-        "base_url": base_url,
-        "api_key": api_key,
-        "model": model,
-        "temperature": temperature,
-        "max_tokens": max(512, max_tokens),
+        "base_url": normalize_text_model_base_url(base_cfg.base_url),
+        "api_key": normalize_text(base_cfg.api_key),
+        "model": normalize_text(base_cfg.model),
+        "temperature": float(base_cfg.temperature),
+        "max_tokens": max(512, int(base_cfg.max_tokens or 1200)),
     }
 
 

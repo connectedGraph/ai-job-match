@@ -1,6 +1,5 @@
 import asyncio
 import json
-import os
 import time
 from typing import Any, Dict, Optional
 
@@ -39,15 +38,15 @@ from .match_config import (
     evaluate_tier,
     get_similarity_thresholds,
 )
-from .model_config import load_text_model_config
+from .model_config import load_flagship_llm_config
 from .schemas import DebugScoreRequest, InternshipRecommendationRequest, MatchHarvestRequest, MatchRequest
 from .tag_center_service import resolve_tag_center
 from .utils import clean_text, extract_item_name
 
 
-TEXT_MODEL_CONFIG = load_text_model_config()
+FLAGSHIP_LLM_CONFIG = load_flagship_llm_config()
 MATCH_LLM_TIMEOUT_SECONDS_DEFAULT = 8
-MATCH_LLM_MAX_TOKENS_DEFAULT = 900
+MATCH_LLM_MAX_TOKENS_DEFAULT = 4000
 MATCH_LLM_LIST_LIMIT = 3
 RECOMMENDATION_TAG_CATEGORIES = ("techStack", "techCapabilities", "devTools")
 INTEREST_MIN_RECOMMENDATION_TAG_HITS = 2
@@ -418,53 +417,14 @@ def normalize_text_model_base_url(base_url: str) -> str:
 
 
 def match_llm_timeout_seconds() -> int:
-    try:
-        return max(5, int(os.getenv("JOB_SYSTEM_MATCH_LLM_TIMEOUT_SECONDS", MATCH_LLM_TIMEOUT_SECONDS_DEFAULT)))
-    except (TypeError, ValueError):
-        return MATCH_LLM_TIMEOUT_SECONDS_DEFAULT
+    return max(5, int(FLAGSHIP_LLM_CONFIG.timeout_seconds or MATCH_LLM_TIMEOUT_SECONDS_DEFAULT))
 
 
 def match_llm_max_tokens() -> int:
-    try:
-        return max(256, int(os.getenv("JOB_SYSTEM_MATCH_LLM_MAX_TOKENS", MATCH_LLM_MAX_TOKENS_DEFAULT)))
-    except (TypeError, ValueError):
-        return MATCH_LLM_MAX_TOKENS_DEFAULT
-
-
-def env_float(name: str, fallback: float) -> float:
-    try:
-        return float(os.getenv(name, fallback))
-    except (TypeError, ValueError):
-        return fallback
-
-
-def resolve_match_env_config() -> Optional[Dict[str, Any]]:
-    base_url = normalize_text_model_base_url(os.getenv("JOB_SYSTEM_MATCH_LLM_BASE_URL", ""))
-    model = clean_text(os.getenv("JOB_SYSTEM_MATCH_LLM_MODEL"))
-    if not base_url and not model:
-        return None
-
-    api_key = clean_text(os.getenv("JOB_SYSTEM_MATCH_LLM_API_KEY")) or clean_text(TEXT_MODEL_CONFIG.api_key)
-    if not base_url:
-        base_url = normalize_text_model_base_url(TEXT_MODEL_CONFIG.base_url)
-    if not model:
-        model = clean_text(TEXT_MODEL_CONFIG.model)
-
-    return {
-        "source": "match_env",
-        "base_url": base_url,
-        "api_key": api_key,
-        "model": model,
-        "temperature": env_float("JOB_SYSTEM_MATCH_LLM_TEMPERATURE", float(TEXT_MODEL_CONFIG.temperature)),
-        "max_tokens": match_llm_max_tokens(),
-    }
+    return max(256, int(FLAGSHIP_LLM_CONFIG.max_tokens or MATCH_LLM_MAX_TOKENS_DEFAULT))
 
 
 def resolve_match_text_model_config(request_config: Any) -> Dict[str, Any]:
-    match_env_config = resolve_match_env_config()
-    if match_env_config is not None:
-        return match_env_config
-
     if request_config is not None and bool(getattr(request_config, "enabled", True)):
         base_url = normalize_text_model_base_url(getattr(request_config, "baseUrl", ""))
         api_key = clean_text(getattr(request_config, "apiKey", ""))
@@ -475,20 +435,20 @@ def resolve_match_text_model_config(request_config: Any) -> Dict[str, Any]:
                 "base_url": base_url,
                 "api_key": api_key,
                 "model": model,
-                "temperature": float(getattr(request_config, "temperature", TEXT_MODEL_CONFIG.temperature) or TEXT_MODEL_CONFIG.temperature),
+                "temperature": float(getattr(request_config, "temperature", FLAGSHIP_LLM_CONFIG.temperature) or FLAGSHIP_LLM_CONFIG.temperature),
                 "max_tokens": min(
-                    int(getattr(request_config, "maxTokens", TEXT_MODEL_CONFIG.max_tokens) or TEXT_MODEL_CONFIG.max_tokens),
+                    int(getattr(request_config, "maxTokens", FLAGSHIP_LLM_CONFIG.max_tokens) or FLAGSHIP_LLM_CONFIG.max_tokens),
                     match_llm_max_tokens(),
                 ),
             }
 
     return {
-        "source": "server_env",
-        "base_url": normalize_text_model_base_url(TEXT_MODEL_CONFIG.base_url),
-        "api_key": clean_text(TEXT_MODEL_CONFIG.api_key),
-        "model": clean_text(TEXT_MODEL_CONFIG.model),
-        "temperature": float(TEXT_MODEL_CONFIG.temperature),
-        "max_tokens": min(int(TEXT_MODEL_CONFIG.max_tokens), match_llm_max_tokens()),
+        "source": "flagship_llm",
+        "base_url": normalize_text_model_base_url(FLAGSHIP_LLM_CONFIG.base_url),
+        "api_key": clean_text(FLAGSHIP_LLM_CONFIG.api_key),
+        "model": clean_text(FLAGSHIP_LLM_CONFIG.model),
+        "temperature": float(FLAGSHIP_LLM_CONFIG.temperature),
+        "max_tokens": match_llm_max_tokens(),
     }
 
 

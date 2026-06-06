@@ -1,6 +1,5 @@
 import json
 import hashlib
-import os
 import random
 import sys
 from dataclasses import dataclass
@@ -133,15 +132,6 @@ def now_iso() -> str:
     return datetime.now().isoformat(timespec="seconds")
 
 
-def normalize_openai_base_url(base_url: str) -> str:
-    value = clean_text(base_url).rstrip("/")
-    if not value:
-        return ""
-    if value.endswith("/v1"):
-        return value
-    return f"{value}/v1"
-
-
 @dataclass(frozen=True)
 class SkillSearchEmbeddingConfig:
     base_url: str
@@ -158,15 +148,15 @@ class SkillSearchEmbeddingConfig:
 
 
 def load_skill_search_embedding_config() -> SkillSearchEmbeddingConfig:
-    cache_path = clean_text(os.getenv("CAREER_PLANNER_SKILL_SEARCH_EMBEDDING_CACHE_FILE"))
+    shared_config = load_shared_vector_config() if load_shared_vector_config else None
     return SkillSearchEmbeddingConfig(
-        base_url=normalize_openai_base_url(os.getenv("CAREER_PLANNER_SKILL_SEARCH_EMBEDDING_BASE_URL", "")),
-        api_key=clean_text(os.getenv("CAREER_PLANNER_SKILL_SEARCH_EMBEDDING_API_KEY", "")),
-        model=clean_text(os.getenv("CAREER_PLANNER_SKILL_SEARCH_EMBEDDING_MODEL", "")),
-        dimensions=parse_int(os.getenv("CAREER_PLANNER_SKILL_SEARCH_EMBEDDING_DIMENSIONS"), 0),
-        batch_size=max(1, parse_int(os.getenv("CAREER_PLANNER_SKILL_SEARCH_EMBEDDING_BATCH_SIZE"), 64)),
-        timeout_seconds=max(5, parse_int(os.getenv("CAREER_PLANNER_SKILL_SEARCH_EMBEDDING_TIMEOUT_SECONDS"), 30)),
-        cache_file=Path(cache_path).expanduser() if cache_path else CAREER_PLANNER_DATA_DIR / "skill_search_embedding_cache.jsonl",
+        base_url=clean_text(getattr(shared_config, "base_url", "")).rstrip("/"),
+        api_key=clean_text(getattr(shared_config, "api_key", "")),
+        model=clean_text(getattr(shared_config, "model", "")),
+        dimensions=int(getattr(shared_config, "dimensions", 0) or 0),
+        batch_size=max(1, int(getattr(shared_config, "batch_size", 64) or 64)),
+        timeout_seconds=max(5, int(getattr(shared_config, "timeout_seconds", 30) or 30)),
+        cache_file=CAREER_PLANNER_DATA_DIR / "skill_search_embedding_cache.jsonl",
     )
 
 
@@ -233,12 +223,7 @@ def append_skill_search_embedding_cache_rows(config: SkillSearchEmbeddingConfig,
             handle.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
-def should_use_shared_vector_fallback(config: SkillSearchEmbeddingConfig) -> bool:
-    if config.enabled:
-        return False
-    flag = clean_text(os.getenv("CAREER_PLANNER_SKILL_SEARCH_EMBEDDING_USE_JOB_SYSTEM_VECTOR", "1")).lower()
-    if flag in {"0", "false", "no"}:
-        return False
+def should_use_shared_embedding(config: SkillSearchEmbeddingConfig) -> bool:
     return bool(load_shared_vector_config and shared_embedding_cache_key and load_shared_embedding_cache)
 
 
@@ -504,7 +489,7 @@ async def ensure_shared_query_embeddings(texts: List[str]) -> Tuple[Dict[str, np
     return cache, {
         "status": "ok" if unresolved == 0 else (last_missing_status or "missing_vector"),
         "embedded": embedded,
-        "provider": "job-system-vector",
+        "provider": "job-system-embedding",
         "profileId": clean_text(getattr(shared_config, "profile_id", "")),
         "baseUrlConfigured": bool(clean_text(getattr(shared_config, "base_url", ""))),
         "apiKeyConfigured": bool(clean_text(getattr(shared_config, "api_key", ""))),
@@ -515,7 +500,7 @@ async def ensure_shared_query_embeddings(texts: List[str]) -> Tuple[Dict[str, np
         "dbCacheHits": db_hits,
         "apiHits": api_hits,
         "unresolved": unresolved,
-        "fallbackToJobSystemVector": True,
+        "usesSharedJobSystemEmbedding": True,
     }
 
 
@@ -580,17 +565,17 @@ async def fetch_skill_search_embeddings(
 
 
 def load_search_embedding_cache(config: SkillSearchEmbeddingConfig) -> Tuple[Dict[str, np.ndarray], Dict[str, Any]]:
-    if should_use_shared_vector_fallback(config):
+    if should_use_shared_embedding(config):
         shared_config = load_shared_vector_config()
         return load_cached_shared_embedding_cache(), {
             "status": "cache_only",
-            "provider": "job-system-vector",
+            "provider": "job-system-embedding",
             "profileId": clean_text(getattr(shared_config, "profile_id", "")),
             "baseUrlConfigured": bool(clean_text(getattr(shared_config, "base_url", ""))),
             "apiKeyConfigured": bool(clean_text(getattr(shared_config, "api_key", ""))),
             "model": clean_text(getattr(shared_config, "model", "")),
             "cacheFile": str(getattr(shared_config, "cache_file", "")),
-            "fallbackToJobSystemVector": True,
+            "usesSharedJobSystemEmbedding": True,
         }
     return load_skill_search_embedding_cache(config), {
         "status": "cache_only",
@@ -599,19 +584,19 @@ def load_search_embedding_cache(config: SkillSearchEmbeddingConfig) -> Tuple[Dic
         "apiKeyConfigured": bool(config.api_key),
         "model": config.model,
         "cacheFile": str(config.cache_file),
-        "fallbackToJobSystemVector": False,
+        "usesSharedJobSystemEmbedding": False,
     }
 
 
 def search_embedding_cache_key(config: SkillSearchEmbeddingConfig, text: str) -> str:
-    if should_use_shared_vector_fallback(config):
+    if should_use_shared_embedding(config):
         return shared_embedding_cache_key(text)
     return skill_search_embedding_cache_key(config, text)
 
 
 def skill_search_index_file(config: SkillSearchEmbeddingConfig, tag_type: str) -> Path:
     safe_type = clean_text(tag_type) or "techCapabilities"
-    if should_use_shared_vector_fallback(config):
+    if should_use_shared_embedding(config):
         return TAG_CENTER_DIR / f"skill_search_index_{safe_type}_v2.json"
     payload = {
         "baseUrl": config.base_url,
@@ -737,7 +722,7 @@ async def ensure_skill_search_embeddings(
     texts: List[str],
 ) -> Tuple[Dict[str, np.ndarray], Dict[str, Any]]:
     config = load_skill_search_embedding_config()
-    if should_use_shared_vector_fallback(config):
+    if should_use_shared_embedding(config):
         return await ensure_shared_query_embeddings(texts)
 
     cache = load_skill_search_embedding_cache(config)
@@ -763,6 +748,7 @@ async def ensure_skill_search_embeddings(
             "model": config.model,
             "cacheFile": str(config.cache_file),
             "missingBeforeFetch": len(missing),
+            "usesSharedJobSystemEmbedding": False,
         }
     )
     return cache, meta

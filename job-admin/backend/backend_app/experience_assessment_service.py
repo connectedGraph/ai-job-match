@@ -8,7 +8,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
 from .config import logger
-from .model_config import load_text_model_config
+from .model_config import load_flagship_llm_config
 
 
 EXPERIENCE_WEIGHTS = {
@@ -60,7 +60,7 @@ def calculate_diminishing_returns(scores: List[float]) -> float:
 
 
 def _build_text_llm(temperature: float = 0.0) -> ChatOpenAI:
-    base_cfg = load_text_model_config()
+    base_cfg = load_flagship_llm_config()
     return ChatOpenAI(
         model=base_cfg.model,
         api_key=base_cfg.api_key,

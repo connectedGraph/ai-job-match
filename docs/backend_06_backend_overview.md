@@ -19,7 +19,7 @@
 - 定义运行时路径
 - 提供日志配置
 - 暴露岗位库文件路径、tag 路径、builder 路径
-- 处理 `OPENAI_API_KEY` 的兼容镜像
+- 暴露固定维度和后端通用配置
 
 ## 3. `project_paths.py`
 
@@ -100,9 +100,9 @@
 职责：
 
 - 读取文本模型配置
-- 读取 embedding profile
+- 读取统一 embedding 配置
 - 维护模型主机、模型名、key、限速、并发等配置
-- 提供 profile 切换能力
+- 区分旗舰 LLM、快速 LLM、向量模型三类任务配置
 
 ## 12. `tag_sync.py`
 

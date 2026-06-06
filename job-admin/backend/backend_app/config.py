@@ -1,5 +1,4 @@
 import logging
-import os
 from project_paths import (
     FRONTEND_DIR,
     JOB_LIBRARY_FILE,
@@ -18,11 +17,6 @@ FIXED_DIMENSIONS = {
     "softQuality": ["沟通表达", "团队协作", "责任心", "执行力", "职业意识"],
     "growthPotential": ["学习能力", "创新能力", "抗压能力", "迁移能力", "目标清晰度"],
 }
-
-if not os.environ.get("OPENAI_API_KEY"):
-    text_api_key = os.environ.get("JOB_SYSTEM_TEXT_API_KEY", "")
-    if text_api_key:
-        os.environ["OPENAI_API_KEY"] = text_api_key
 
 logging.basicConfig(
     level=logging.INFO,

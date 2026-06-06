@@ -1,6 +1,5 @@
 import asyncio
 import json
-import os
 import re
 from datetime import date, datetime
 from typing import Any, Dict, List, Optional
@@ -12,12 +11,12 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
 from .config import logger
-from .model_config import load_text_model_config
+from .model_config import load_fast_llm_config
 from .schemas import MatchCheckRequest
 from .utils import clean_text
 
 
-TEXT_MODEL_CONFIG = load_text_model_config()
+FAST_LLM_CONFIG = load_fast_llm_config()
 MATCH_CHECK_LLM_TIMEOUT_SECONDS_DEFAULT = 18
 MATCH_CHECK_LLM_MAX_TOKENS_DEFAULT = 1800
 
@@ -246,73 +245,26 @@ def normalize_text_model_base_url(base_url: str) -> str:
 
 
 def match_check_llm_timeout_seconds() -> int:
-    try:
-        return max(
-            8,
-            int(
-                os.getenv(
-                    "JOB_SYSTEM_MATCH_CHECK_LLM_TIMEOUT_SECONDS",
-                    MATCH_CHECK_LLM_TIMEOUT_SECONDS_DEFAULT,
-                )
-            ),
-        )
-    except (TypeError, ValueError):
-        return MATCH_CHECK_LLM_TIMEOUT_SECONDS_DEFAULT
+    return max(8, int(FAST_LLM_CONFIG.timeout_seconds or MATCH_CHECK_LLM_TIMEOUT_SECONDS_DEFAULT))
 
 
 def match_check_llm_max_tokens() -> int:
-    try:
-        return max(
-            512,
-            int(
-                os.getenv(
-                    "JOB_SYSTEM_MATCH_CHECK_LLM_MAX_TOKENS",
-                    MATCH_CHECK_LLM_MAX_TOKENS_DEFAULT,
-                )
-            ),
-        )
-    except (TypeError, ValueError):
-        return MATCH_CHECK_LLM_MAX_TOKENS_DEFAULT
-
-
-def env_float(name: str, fallback: float) -> float:
-    try:
-        return float(os.getenv(name, fallback))
-    except (TypeError, ValueError):
-        return fallback
+    return max(512, min(int(FAST_LLM_CONFIG.max_tokens or MATCH_CHECK_LLM_MAX_TOKENS_DEFAULT), MATCH_CHECK_LLM_MAX_TOKENS_DEFAULT))
 
 
 def resolve_match_check_text_model_config(request_config: Any) -> Dict[str, Any]:
-    env_base_url = normalize_text_model_base_url(os.getenv("JOB_SYSTEM_MATCH_CHECK_LLM_BASE_URL", ""))
-    env_api_key = clean_text(os.getenv("JOB_SYSTEM_MATCH_CHECK_LLM_API_KEY"))
-    env_model = clean_text(os.getenv("JOB_SYSTEM_MATCH_CHECK_LLM_MODEL"))
     request_enabled = bool(getattr(request_config, "enabled", True)) if request_config is not None else True
-
-    if env_base_url or env_api_key or env_model:
-        return {
-            "source": "match_check_env",
-            "base_url": env_base_url or normalize_text_model_base_url(TEXT_MODEL_CONFIG.base_url),
-            "api_key": env_api_key or clean_text(TEXT_MODEL_CONFIG.api_key),
-            "model": env_model or "gpt-5.4-mini",
-            "fallback_model": clean_text(os.getenv("JOB_SYSTEM_TEXT_MODEL")) or clean_text(TEXT_MODEL_CONFIG.model),
-            "temperature": env_float(
-                "JOB_SYSTEM_MATCH_CHECK_LLM_TEMPERATURE",
-                0.0,
-            ),
-            "max_tokens": match_check_llm_max_tokens(),
-        }
 
     if request_config is not None and request_enabled:
         base_url = normalize_text_model_base_url(getattr(request_config, "baseUrl", ""))
         api_key = clean_text(getattr(request_config, "apiKey", ""))
-        model = clean_text(getattr(request_config, "model", "")) or "gpt-5.4-mini"
+        model = clean_text(getattr(request_config, "model", "")) or clean_text(FAST_LLM_CONFIG.model)
         if base_url and api_key:
             return {
                 "source": "request_config",
                 "base_url": base_url,
                 "api_key": api_key,
                 "model": model,
-                "fallback_model": clean_text(os.getenv("JOB_SYSTEM_TEXT_MODEL")) or clean_text(TEXT_MODEL_CONFIG.model),
                 "temperature": float(getattr(request_config, "temperature", 0.0) or 0.0),
                 "max_tokens": min(
                     int(getattr(request_config, "maxTokens", match_check_llm_max_tokens()) or match_check_llm_max_tokens()),
@@ -321,13 +273,12 @@ def resolve_match_check_text_model_config(request_config: Any) -> Dict[str, Any]
             }
 
     return {
-        "source": "server_env",
-        "base_url": normalize_text_model_base_url(TEXT_MODEL_CONFIG.base_url),
-        "api_key": clean_text(TEXT_MODEL_CONFIG.api_key),
-        "model": "gpt-5.4-mini",
-        "fallback_model": clean_text(os.getenv("JOB_SYSTEM_TEXT_MODEL")) or clean_text(TEXT_MODEL_CONFIG.model),
-        "temperature": 0.0,
-        "max_tokens": min(int(TEXT_MODEL_CONFIG.max_tokens), match_check_llm_max_tokens()),
+        "source": "fast_llm",
+        "base_url": normalize_text_model_base_url(FAST_LLM_CONFIG.base_url),
+        "api_key": clean_text(FAST_LLM_CONFIG.api_key),
+        "model": clean_text(FAST_LLM_CONFIG.model),
+        "temperature": float(FAST_LLM_CONFIG.temperature),
+        "max_tokens": match_check_llm_max_tokens(),
     }
 
 
@@ -783,7 +734,6 @@ async def call_match_check_llm(
         return sanitize_llm_json(raw)
 
     primary_model = clean_text(llm_config.get("model"))
-    fallback_model = clean_text(llm_config.get("fallback_model"))
 
     try:
         result = await invoke_model(primary_model)
@@ -793,33 +743,6 @@ async def call_match_check_llm(
         raise HTTPException(status_code=504, detail="Match check LLM timed out") from exc
     except Exception as exc:
         error_text = clean_text(str(exc))[:240]
-        if (
-            "model not found" in error_text.lower()
-            and fallback_model
-            and fallback_model != primary_model
-        ):
-            logger.warning(
-                "[MatchCheck] fallback model activated primary=%s fallback=%s error=%s",
-                primary_model,
-                fallback_model,
-                error_text,
-            )
-            try:
-                result = await invoke_model(fallback_model)
-                llm_config["model"] = fallback_model
-                return result
-            except asyncio.TimeoutError as timeout_exc:
-                raise HTTPException(status_code=504, detail="Match check LLM timed out") from timeout_exc
-            except Exception as fallback_exc:
-                error_text = clean_text(str(fallback_exc))[:240]
-                logger.error(
-                    "[MatchCheck] fallback model failed source=%s model=%s error=%s",
-                    llm_config.get("source"),
-                    fallback_model,
-                    error_text,
-                )
-                raise HTTPException(status_code=502, detail=f"Match check LLM failed: {error_text}") from fallback_exc
-
         logger.error(
             "[MatchCheck] LLM failed source=%s model=%s error=%s",
             llm_config.get("source"),

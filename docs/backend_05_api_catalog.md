@@ -497,24 +497,24 @@ Invoke-RestMethod -Method Post `
   ],
   "embedding": {
     "status": "ok",
-    "provider": "job-system-vector",
+    "provider": "job-system-embedding",
     "baseUrlConfigured": true,
     "apiKeyConfigured": true,
     "model": "embedding-3",
-    "cacheFile": "C:\\Users\\18086\\Desktop\\job_system\\dataset\\career_planner\\skill_search_query_embedding_cache_bigmodel_embedding_3.jsonl",
+    "cacheFile": "C:\\Users\\18086\\Desktop\\job_system\\dataset\\career_planner\\skill_search_query_embedding_cache_job_system_embedding.jsonl",
     "sourceCacheFile": "C:\\Users\\18086\\Desktop\\job_system\\dataset\\db\\tag_center\\embedding_cache.json",
     "missingBeforeFetch": 0,
     "dbCacheHits": 0,
     "apiHits": 0,
     "unresolved": 0,
-    "fallbackToJobSystemVector": true
+    "usesSharedJobSystemEmbedding": true
   }
 }
 ```
 
 中文搜索按 `rankScore` 排序：先计算中文 query 和同类标准词中文显示名的 embedding cosine，默认过滤 `< 0.70` 的候选；字面精确 / 前缀 / 包含命中会作为兜底加权。`scoreSource` 标明分数来自 `embedding` 还是 `lexical`。相同分数下按 `jobCount` 热度降序。
 
-候选池是当前同类标准词全集，例如 `techCapabilities` 当前约 2k 条。候选向量不在搜索请求里批量调用 embedding API；默认从 `dataset/db/tag_center/embedding_cache.json` 读取，构建 `skill_search_index_*_v2.json/.npy` 本地索引。搜索时只需要 query 向量：优先读 Career Planner 轻量 query cache，其次按 key 从 `dataset/db/tag_center` 大缓存流式读取，仍缺失时才调用 JOB_SYSTEM vector API。
+候选池是当前同类标准词全集，例如 `techCapabilities` 当前约 2k 条。候选向量不在搜索请求里批量调用 embedding API；默认从 `dataset/db/tag_center/embedding_cache.json` 读取，构建 `skill_search_index_*_v2.json/.npy` 本地索引。搜索时只需要 query 向量：优先读 Career Planner 轻量 query cache，其次按 key 从 `dataset/db/tag_center` 大缓存流式读取，仍缺失时才调用 `JOB_SYSTEM_EMBEDDING_*` 配置的向量 API。
 
 学生端选中标准词时，新数据只写 `name / tagId / normalizedTag`，并保留 `level/type/domain` 这类画像元信息。`skill / skillZh / displayName` 只作为历史数据兼容读取，不再作为新写入字段。后端匹配时优先使用英文 `normalizedTag`；如果只有中文明文，也会先通过 Tag Center 反解成英文 `normalizedTag` 再进入人岗匹配 embedding。
 
@@ -668,9 +668,14 @@ Invoke-RestMethod -Method Post `
 
 环境变量：
 
-- `JOB_SYSTEM_NORMALIZATION_LLM_API_KEY`：Tag Center 翻译存在时才会调用 LLM
-- `JOB_SYSTEM_TAG_TRANSLATION_ENABLED=0`：关闭自动翻译
-- `JOB_SYSTEM_DOMAIN_TRANSLATION_ENABLED=0`：关闭 Domain Center 自动翻译
+- `JOB_SYSTEM_FAST_LLM_BASE_URL`
+- `JOB_SYSTEM_FAST_LLM_API_KEY`
+- `JOB_SYSTEM_FAST_LLM_MODEL`
+- `JOB_SYSTEM_FAST_LLM_TEMPERATURE`
+- `JOB_SYSTEM_FAST_LLM_MAX_TOKENS`
+- `JOB_SYSTEM_FAST_LLM_TIMEOUT_SECONDS`
+
+Tag Center 翻译存在且 `JOB_SYSTEM_FAST_LLM_API_KEY` 已配置时才会调用 LLM；如果没有配置 key，中文显示名补齐会跳过，前端显示层回退为英文标准词。
 
 Domain Center 会在同一轮归一资产重建中从 `dataset/career.json` 的 `techCapabilities[].domain` 生成：
 
@@ -678,16 +683,7 @@ Domain Center 会在同一轮归一资产重建中从 `dataset/career.json` 的 
 - `dataset/db/domain_center/domain_tag_stats.json`
 - `dataset/db/domain_center/domain_translation_cache.json`
 
-Domain Center 英文 domain 到中文 `name` 的翻译同样在 job-admin 后台执行，但优先读取 `CAREER_PLANNER_AI_LLM_*`：
-
-- `CAREER_PLANNER_AI_LLM_BASE_URL`
-- `CAREER_PLANNER_AI_LLM_API_KEY`
-- `CAREER_PLANNER_AI_LLM_MODEL`
-- `CAREER_PLANNER_AI_LLM_TEMPERATURE`
-- `CAREER_PLANNER_AI_LLM_MAX_TOKENS`
-- `CAREER_PLANNER_AI_LLM_TIMEOUT_SECONDS`
-
-推荐 `CAREER_PLANNER_AI_LLM_MODEL=gemini-3-flash-preview`。如果 `CAREER_PLANNER_AI_LLM_API_KEY` 为空，才兜底用 `JOB_SYSTEM_NORMALIZATION_LLM_*`；如果两组 key 都为空，`name` fallback 为英文 domain。
+Domain Center 英文 domain 到中文 `name` 的翻译同样在 job-admin 后台执行，并复用 `JOB_SYSTEM_FAST_LLM_*`。如果快速模型未配置 key，`name` 回退为英文 domain。
 
 `dataset/career.json` 是主岗位库；`dataset/db/tag_center/*` 与 `dataset/db/domain_center/*` 都是可从 `dataset/career.json` 重建的派生资产。
 
