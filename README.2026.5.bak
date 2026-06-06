@@ -1,0 +1,97 @@
+# 项目入口
+
+`job_system` 是一个包含学生端和岗位后台的完整项目。仓库根目录提供了统一启动脚本，推荐从这里进入。
+
+## 目录说明
+
+- `career-planner/`：学生端应用
+- `job-admin/`：岗位后台应用
+- `dataset/`：岗位库主数据、向量缓存、运行日志和临时状态
+- `dataset/career.json`：岗位库主数据
+- `requirements.txt`：Python 依赖
+- `start_all.py`：一键启动全部服务
+
+## 环境准备
+
+1. 安装 Python 依赖：
+
+```powershell
+pip install -r requirements.txt
+```
+
+2. 如果本地还没有前端依赖，再分别安装前端包：
+
+```powershell
+cd career-planner\frontend
+npm install
+```
+
+```powershell
+cd job-admin\frontend
+npm install
+```
+
+3. 建议确认根目录 `.env` 已按项目需要配置好。
+
+## 推荐启动方式
+
+在仓库根目录运行：
+
+```powershell
+python .\start_all.py
+```
+
+只检查目录和端口，不真正启动服务：
+
+```powershell
+python .\start_all.py --check
+```
+
+默认会启动 4 个服务：
+
+- 学生端前端：`http://localhost:3000`
+- 学生端后端：`http://localhost:8001`
+- 岗位后台后端：`http://localhost:8000`
+- 岗位后台前端：`http://localhost:5173`
+
+## 重要提醒：请等待 `8000` 后端真正初始化完成
+
+`8000` 后端通常是最后一个“真正可用”的服务。  
+即使其它前端或后端端口已经先亮起来，也不要立刻开始操作，建议先等它完成初始化。
+
+首次启动时，`8000` 后端会初始化 `dataset/career.json` 的岗位数据，并重建 `dataset/runtime_data/` 下的运行时索引。这个过程通常需要大约 `10s`，在数据量较大或磁盘较慢时会更久一些。
+
+建议看到控制台里类似 `Runtime state initialized...` 的日志后，再刷新页面或调用接口。  
+如果你发现页面已经打开，但岗位数据还没出来，通常就是还在等这一段初始化。
+
+## 单独启动
+
+如果只想启动某一部分，也可以分别运行：
+
+### 学生端
+
+```powershell
+python .\career-planner\start.py
+```
+
+### 岗位后台后端
+
+```powershell
+python .\job-admin\backend\app.py
+```
+
+### 参考文档
+
+- [岗位后台快速启动](docs/backend_07_quick_start.md)
+- [学生端说明](career-planner/README.md)
+
+## 常用访问地址
+
+- 岗位后台主页：`http://127.0.0.1:8000/`
+- 岗位后台 Swagger：`http://127.0.0.1:8000/docs`
+- 岗位后台 ReDoc：`http://127.0.0.1:8000/redoc`
+
+## 小提示
+
+- 这套系统的岗位数据文件是 `dataset/career.json`，不是 `career-planner/` 或 `job-admin/` 里的同名文件。
+- 如果你更新了岗位库数据，建议重启相关后端，让运行时索引重新加载。

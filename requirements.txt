@@ -1,0 +1,26 @@
+# --- 核心 Web 框架与服务器 ---
+fastapi
+uvicorn
+python-multipart
+jinja2
+
+# --- 数据库与认证 ---
+sqlalchemy
+python-dotenv
+passlib[bcrypt]
+pyjwt
+
+# --- 大模型 (LLM) 与 LangChain 栈 ---
+langchain
+langchain-openai
+langchain-core
+openai
+
+# --- 数据处理与机器学习 ---
+numpy
+pandas
+scikit-learn
+
+# --- 基础工具与配置 ---
+httpx
+pydantic-settings

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>岗位后台系统 - Dashboard</title>
+  
+  <!-- 引入外部统一的主题 CSS -->
+  <link rel="stylesheet" href="/assets/admin.css" />
+
+  <!-- 💡 仪表盘专属补充样式 & 主题脚本 -->
+  <style>
+    /* 路由卡片网格系统 */
+    .route-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      padding: 0 28px 24px;
+      animation: fadeUp var(--slow) var(--ease) 100ms both;
+    }
+
+    .route-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 24px;
+      transition: transform var(--fast), border-color var(--fast), box-shadow var(--fast);
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 交互悬浮特效 */
+    .route-card[href]:hover {
+      transform: translateY(-4px);
+      border-color: var(--teal-border);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+      background: var(--surface-2);
+    }
+    [data-theme="dark"] .route-card[href]:hover {
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    }
+
+    .route-card__pill {
+      align-self: flex-start;
+      font-family: var(--ff-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--teal-dim);
+      color: var(--teal);
+      border: 1px solid var(--teal-border);
+      margin-bottom: 16px;
+    }
+
+    .route-card h3 {
+      font-family: var(--ff-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--tx-1);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .route-card p {
+      font-size: 12.5px;
+      color: var(--tx-2);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .route-card__hint {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--border-2);
+      font-family: var(--ff-mono);
+      font-size: 10.5px;
+      color: var(--tx-4);
+      line-height: 1.4;
+    }
+
+    /* 未激活的卡片样式 (无 href 属性) */
+    .route-card:not([href]) {
+      opacity: 0.6;
+      border-style: dashed;
+    }
+    .route-card:not([href]) .route-card__pill {
+      background: var(--surface-3);
+      color: var(--tx-3);
+      border-color: var(--border-2);
+    }
+
+    /* 终端日志样式复用 */
+    .terminal-box {
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      border-radius: var(--r-sm);
+      padding: 14px 16px;
+      font-family: var(--ff-mono);
+      font-size: 12px;
+      color: var(--teal);
+      line-height: 1.6;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+      white-space: pre-wrap;
+    }
+    
+    .button-row-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+  </style>
+
+  <script>
+    const ThemeManager = {
+      init() {
+        const savedTheme = localStorage.getItem('ujs_theme');
+        const defaultTheme = savedTheme ? savedTheme : 'dark';
+        document.documentElement.setAttribute('data-theme', defaultTheme);
+      },
+      toggle() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('ujs_theme', newTheme);
+        this.updateIcon(newTheme);
+      },
+      updateIcon(theme) {
+        const iconEl = document.getElementById('themeToggleIcon');
+        if (!iconEl) return;
+        if (theme === 'dark') {
+          iconEl.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
+        } else {
+          iconEl.innerHTML = `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`;
+        }
+      }
+    };
+    ThemeManager.init();
+  </script>
+</head>
+
+<body data-page="dashboard">
+  <div class="shell">
+    
+    <!-- 左侧边栏 -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand__logo">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        </div>
+        <div class="sidebar-brand__text">
+          <span class="sidebar-brand__sys">Unified System</span>
+          <span class="sidebar-brand__name">Job Platform</span>
+        </div>
+        <div class="sidebar-brand__dot"></div>
+      </div>
+
+      <div class="sidebar-nav">
+        <span class="sidebar-nav__label">Main Menu</span>
+        
+        <!-- 当前页面为 Active -->
+        <a class="nav-item nav-item--active" href="/">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Dashboard</span>
+            <span class="nav-item__sub">系统总览</span>
+          </div>
+        </a>
+
+        <a class="nav-item" href="/jobs.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Job Matrix</span>
+            <span class="nav-item__sub">岗位增删改查</span>
+          </div>
+        </a>
+
+        <a class="nav-item" href="/ingest.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Ingestion</span>
+            <span class="nav-item__sub">上传与构建</span>
+          </div>
+        </a>
+        
+        <a class="nav-item" href="/tags.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Tags Center</span>
+            <span class="nav-item__sub">统计与归一结果</span>
+          </div>
+        </a>
+
+        <a class="nav-item" href="/runs.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Run Logs</span>
+            <span class="nav-item__sub">批次与运行记录</span>
+          </div>
+        </a>
+
+        <a class="nav-item" href="/settings.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Settings</span>
+            <span class="nav-item__sub">模型与并发配置</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <span>v2.4.0-rc</span>
+        <span>STATUS: ONLINE</span>
+      </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main">
+      
+      <!-- 顶栏 -->
+      <div class="topbar">
+        <div class="topbar__left">
+          <span class="topbar__crumb">Unified System</span>
+          <span class="topbar__sep">/</span>
+          <span class="topbar__crumb topbar__crumb--active">Dashboard</span>
+        </div>
+        <div class="topbar__right">
+          <button class="btn btn--ghost btn--sm" id="themeToggleBtn" title="切换日/夜间模式">
+            <svg id="themeToggleIcon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"></svg>
+            Theme
+          </button>
+        </div>
+      </div>
+
+      <!-- 页面标题 -->
+      <div class="page-title">
+        <div>
+          <h1 class="page-title__h">Dashboard 系统总览</h1>
+          <p class="page-title__sub">系统入口拆分完成，功能按页面切换。不再把岗位库、上传、Tag、运行和配置堆在同一张首页上。首页只负责总览和跳转。</p>
+        </div>
+      </div>
+
+      <!-- 数据统计条 -->
+      <div class="stat-strip">
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--blue"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">Total Jobs</span>
+            <span class="stat-card__val" id="metricJobs">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--teal"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">Normal Tags</span>
+            <span class="stat-card__val" id="metricTags">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--amber"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">High Freq Tech</span>
+            <span class="stat-card__val" id="metricHighTags">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--violet"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">Run Batches</span>
+            <span class="stat-card__val" id="metricRuns">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 网格路由卡片区 -->
+      <div class="route-grid">
+        <a class="route-card" href="/jobs.html">
+          <div class="route-card__pill">Matrix</div>
+          <h3>岗位库</h3>
+          <p>岗位浏览、搜索、单岗位详情与增删改查入口。</p>
+          <div class="route-card__hint">当前主数据直接写回 `dataset/career.json`。</div>
+        </a>
+        <a class="route-card" href="/ingest.html">
+          <div class="route-card__pill">Ingest</div>
+          <h3>上传构建</h3>
+          <p>导入原始岗位文件，走标准化和画像构建任务。</p>
+          <div class="route-card__hint">后续这里会接上传后自动入库与自动归一。</div>
+        </a>
+        <a class="route-card" href="/tags.html">
+          <div class="route-card__pill">Tags</div>
+          <h3>Tag 中心</h3>
+          <p>查看 Tag 频次、高频候选和后续归一入口。</p>
+          <div class="route-card__hint">`>1%` 高频 Tag 是后续自动归一目标集合。</div>
+        </a>
+        <a class="route-card" href="/runs.html">
+          <div class="route-card__pill">Runs</div>
+          <h3>运行记录</h3>
+          <p>查看上传批次、失败明细、日志和导出文件。</p>
+          <div class="route-card__hint">运行产物保存在 `dataset/runtime_data/`。</div>
+        </a>
+        <a class="route-card" href="/settings.html">
+          <div class="route-card__pill">Config</div>
+          <h3>配置池</h3>
+          <p>本地保存 OpenAI 兼容配置与并发策略。</p>
+          <div class="route-card__hint">上传构建会直接复用这里的已启用配置。</div>
+        </a>
+        <div class="route-card"> <!-- 无 href 属性，代表 Disabled -->
+          <div class="route-card__pill">Roadmap</div>
+          <h3>下一步重点</h3>
+          <p>上传后自动入岗位库，以及 Tag 主表与高频归一候选写入。</p>
+          <div class="route-card__hint">这一层下一轮继续实现。</div>
+        </div>
+      </div>
+
+      <!-- 底部附加信息区 -->
+      <div class="workspace" style="padding-top: 0;">
+        <div class="col" style="flex: 1.5;">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head">
+                <div>
+                  <h3 class="card-section__title">System Constraints / 当前系统口径</h3>
+                  <p class="card-section__desc">这几个规则已经固定下来，后续实现直接围绕它展开。</p>
+                </div>
+              </div>
+              <div class="terminal-box">1. 岗位库支持增删改查
+2. 上传构建是后台的一个功能页，不是独立系统
+3. 上传后要自动画像化
+4. Tag 归一只对历史高频 canonical tag 做候选匹配
+5. 如果是第一次上传，没有历史 tag，则不归一
+6. 归一只回填 `normalizedTag` 与 `freq`，不再写回旧版归一化痕迹字段</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col" style="flex: 1;">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head">
+                <div>
+                  <h3 class="card-section__title">Local Entry / 本地入口</h3>
+                  <p class="card-section__desc">保留已有匹配和调试页，但后台管理已经切换为多页面结构。</p>
+                </div>
+              </div>
+              <div class="button-row-wrap">
+                <a class="btn btn--accent" href="/jobs.html">进入岗位库</a>
+                <a class="btn" href="/ingest.html">进入上传构建</a>
+              </div>
+              <div class="button-row-wrap">
+                <a class="btn btn--ghost" href="/match.html">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  匹配页
+                </a>
+                <a class="btn btn--ghost" href="/debug.html">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><path d="M10 2v7.31"></path><path d="M14 9.3V1.99"></path><path d="M8.5 2h7"></path><path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path><path d="M5.5 16.5h13"></path></svg>
+                  调试页
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="/assets/admin-common.js"></script>
+  <script src="/assets/pages/dashboard.js"></script>
+
+  <!-- 主题切换绑定逻辑 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ThemeManager.updateIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+          ThemeManager.toggle();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

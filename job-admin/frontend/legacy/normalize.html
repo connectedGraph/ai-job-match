@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>归一与标签复查 - Unified Job System</title>
+  
+  <!-- 引入外部统一的主题 CSS -->
+  <link rel="stylesheet" href="/assets/admin.css" />
+
+  <!-- 💡 终端输出盒、词带及进度条自定义补丁 -->
+  <style>
+    /* 终端样式框 */
+    .terminal-box {
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      border-radius: var(--r-sm);
+      padding: 14px 16px;
+      font-family: var(--ff-mono);
+      font-size: 11.5px;
+      color: var(--tx-2);
+      line-height: 1.6;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+      overflow-x: hidden;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+    
+    .terminal-box:empty::before {
+      content: '// 正在等待数据载入...';
+      color: var(--tx-4);
+      font-style: italic;
+    }
+
+    /* 针对词带面板的自适应折行优化 */
+    .word-rail-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: flex-start;
+      align-content: flex-start;
+    }
+
+    /* =========================================================
+       🔥 新增：进度条与复查词片 (Review Chips) 的专属终端样式
+       ========================================================= */
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--surface-3);
+      border: 1px solid var(--border-2);
+      overflow: hidden;
+      margin-top: 12px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: var(--teal);
+      box-shadow: 0 0 10px var(--teal-glow);
+      transition: width var(--mid) var(--ease);
+    }
+
+    .review-chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-content: flex-start;
+    }
+
+    .review-chip {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 160px;
+      max-width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border-2);
+      background: var(--surface-2);
+      color: var(--tx-2);
+      font-size: 11px;
+      line-height: 1.5;
+      transition: transform var(--fast), box-shadow var(--fast);
+    }
+    
+    .review-chip:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .review-chip strong {
+      color: var(--tx-1);
+      font-size: 12.5px;
+      font-family: var(--ff-mono);
+      word-break: break-word;
+    }
+
+    .review-chip--replaced {
+      border-color: var(--teal-border);
+      background: var(--teal-dim);
+    }
+
+    .review-chip--unchanged {
+      border-color: var(--blue-border);
+      background: var(--blue-dim);
+    }
+
+    .review-chip--failed {
+      border-color: var(--red-border);
+      background: var(--red-dim);
+    }
+
+    .review-log-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .review-log-entry {
+      border: 1px solid var(--border-2);
+      border-radius: var(--r-sm);
+      background: var(--surface-2);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .review-log-entry--success {
+      border-color: var(--teal-border);
+      background: var(--teal-dim);
+    }
+
+    .review-log-entry--warn {
+      border-color: var(--amber-border);
+      background: var(--amber-dim);
+    }
+
+    .review-log-entry--error {
+      border-color: var(--red-border);
+      background: var(--red-dim);
+    }
+
+    .review-log-entry--info {
+      border-color: var(--blue-border);
+      background: var(--blue-dim);
+    }
+
+    .review-log-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .review-log-stage {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid currentColor;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+    }
+
+    .review-log-time {
+      color: var(--tx-3);
+      font-size: 11px;
+    }
+
+    .review-log-message {
+      color: var(--tx-1);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .review-log-payload {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .review-log-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-2);
+      color: var(--tx-2);
+      font-size: 10px;
+      line-height: 1.4;
+      max-width: 100%;
+    }
+
+    .review-log-chip strong {
+      color: var(--tx-1);
+      font-weight: 700;
+    }
+
+    .review-log-empty {
+      color: var(--tx-4);
+      font-style: italic;
+    }
+  </style>
+
+  <!-- 主题初始化 -->
+  <script>
+    const ThemeManager = {
+      init() {
+        const savedTheme = localStorage.getItem('ujs_theme');
+        const defaultTheme = savedTheme ? savedTheme : 'dark';
+        document.documentElement.setAttribute('data-theme', defaultTheme);
+      },
+      toggle() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('ujs_theme', newTheme);
+        this.updateIcon(newTheme);
+      },
+      updateIcon(theme) {
+        const iconEl = document.getElementById('themeToggleIcon');
+        if (!iconEl) return;
+        if (theme === 'dark') {
+          iconEl.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
+        } else {
+          iconEl.innerHTML = `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`;
+        }
+      }
+    };
+    ThemeManager.init();
+  </script>
+</head>
+
+<body data-page="normalize">
+  <div class="shell">
+    
+    <!-- 左侧边栏 -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand__logo">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        </div>
+        <div class="sidebar-brand__text">
+          <span class="sidebar-brand__sys">Unified System</span>
+          <span class="sidebar-brand__name">Job Platform</span>
+        </div>
+        <div class="sidebar-brand__dot"></div>
+      </div>
+
+      <div class="sidebar-nav">
+        <span class="sidebar-nav__label">Main Menu</span>
+        
+        <a class="nav-item" href="/">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Dashboard</span>
+            <span class="nav-item__sub">系统总览</span>
+          </div>
+        </a>
+
+        <a class="nav-item" href="/tags.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Tags Center</span>
+            <span class="nav-item__sub">标签池与检索</span>
+          </div>
+        </a>
+
+        <!-- 当前页面为 Active -->
+        <a class="nav-item nav-item--active" href="/normalize.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Normalization</span>
+            <span class="nav-item__sub">归一与复查</span>
+          </div>
+        </a>
+
+        <a class="nav-item" href="/runs.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Run Logs</span>
+            <span class="nav-item__sub">批次与运行</span>
+          </div>
+        </a>
+
+        <a class="nav-item" href="/settings.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Settings</span>
+            <span class="nav-item__sub">模型配置</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <span>v2.4.0-rc</span>
+        <span>STATUS: ONLINE</span>
+      </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main">
+      
+      <!-- 顶栏 -->
+      <div class="topbar">
+        <div class="topbar__left">
+          <span class="topbar__crumb">Unified System</span>
+          <span class="topbar__sep">/</span>
+          <a href="/tags.html" class="topbar__crumb" style="text-decoration: underline; text-underline-offset: 2px;">Tags Center</a>
+          <span class="topbar__sep">/</span>
+          <span class="topbar__crumb topbar__crumb--active">Normalization</span>
+        </div>
+        <div class="topbar__right">
+          <button class="btn btn--ghost btn--sm" id="themeToggleBtn" title="切换日/夜间模式">
+            <svg id="themeToggleIcon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"></svg>
+            Theme
+          </button>
+        </div>
+      </div>
+
+      <!-- 页面标题 -->
+      <div class="page-title">
+        <div>
+          <h1 class="page-title__h">全库归一与标签复查</h1>
+          <p class="page-title__sub">上半区是全库归一任务，下半区是“中文标签复查”。<br/>复查流程会逐个词调用模型核查，并把需要替换的标签改成纯英文。</p>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <!-- 显眼的返回按钮 -->
+          <a href="/tags.html" class="btn btn--ghost">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            返回 Tag 中心
+          </a>
+          <button class="btn btn--ghost" id="refreshNormalizeBtn">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            刷新归一状态
+          </button>
+          <button class="btn btn--accent" id="startNormalizeBtn">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            启动全库归一
+          </button>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           PART 1: 归一任务中心 (Normalization)
+           ========================================== -->
+
+      <!-- 归一：数据统计条 -->
+      <div class="stat-strip">
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--blue"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">Cache Rows</span>
+            <span class="stat-card__val" id="metricCacheRows">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--teal"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">Cache Size</span>
+            <span class="stat-card__val" id="metricCacheSize">0 B</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--amber"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">Normalization Runs</span>
+            <span class="stat-card__val" id="metricNormalizeRuns">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--violet"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">Current Progress</span>
+            <span class="stat-card__val" id="metricNormalizePercent">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 归一：工作区 1 (缓存与任务) -->
+      <div class="workspace" style="padding-bottom: 16px;">
+        <div class="col">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title">向量缓存 / Vector Cache</h3>
+                  <p class="card-section__desc">当前 embedding profile 的缓存状态、命中行数、尺寸和更新时间。</p>
+                </div>
+              </div>
+              <div id="cacheStatusBox" class="terminal-box" style="min-height: 180px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title">归一任务详情 / Task Detail</h3>
+                  <p class="card-section__desc">显示当前选中归一任务的进度、阶段、命中结果和结构化统计。</p>
+                </div>
+              </div>
+              <div id="normalizeRunDetail" class="terminal-box" style="min-height: 180px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 归一：工作区 2 词带分析面板 (三等分布局) -->
+      <div class="workspace" style="grid-template-columns: repeat(3, 1fr); padding-bottom: 16px;">
+        <div class="col">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title" style="color: var(--teal);">Accepted</h3>
+                  <p class="card-section__desc">命中已有 canonical 的标签。</p>
+                </div>
+              </div>
+              <div id="acceptedWordRail" class="terminal-box word-rail-box" style="height: 220px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title" style="color: var(--blue);">New / Retained</h3>
+                  <p class="card-section__desc">未被强制归一、保留为新候选的标签。</p>
+                </div>
+              </div>
+              <div id="newWordRail" class="terminal-box word-rail-box" style="height: 220px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title" style="color: var(--amber);">Suggestions</h3>
+                  <p class="card-section__desc">只展示建议候选和分数，不自动二次归一。</p>
+                </div>
+              </div>
+              <div id="suggestWordRail" class="terminal-box word-rail-box" style="height: 220px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 归一：工作区 3 历史记录与日志 -->
+      <div class="workspace" style="padding-bottom: 32px;">
+        <div class="col" style="flex: 0.8;">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title">归一历史 / History</h3>
+                  <p class="card-section__desc">点击卡片查看详情；运行中会自动轮询。</p>
+                </div>
+              </div>
+              <div id="normalizeRunCards" class="job-list" style="max-height: 380px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col" style="flex: 1.2;">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title">归一日志 / Normalization Logs</h3>
+                  <p class="card-section__desc">记录归一过程中的阶段事件、缓存状态和结果摘要。</p>
+                </div>
+              </div>
+              <div id="normalizeLogBox" class="terminal-box" style="height: 380px;">// 暂无归一日志...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ==========================================
+           PART 2: 标签复查中心 (Tag Review)
+           ========================================== -->
+
+      <div class="workspace" style="padding-bottom: 16px;">
+        <!-- 标签复查配置与主面板 (占满整行) -->
+        <div class="col">
+          <div class="card" style="border-color: var(--blue-border); box-shadow: 0 4px 24px rgba(37,99,235,0.05);">
+            <div class="card-section">
+              <!-- 复查标题及操作区 -->
+              <div class="card-section__head" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
+                <div style="flex: 1; min-width: 300px;">
+                  <h3 class="card-section__title" style="color: var(--blue); font-size: 16px;">标签复查 / Tag Review Pipeline</h3>
+                  <p class="card-section__desc">
+                    复查当前所有 <code>techStack / techCapabilities / devTools</code> 标签。
+                    <code>techStack</code> 走更严格的删除口径，<code>techCapabilities</code> 允许一拆二。
+                    <br/>
+                    <span style="font-family: var(--ff-mono); font-size: 10px; opacity: 0.8;">Input uses the current tag plus up to 3 random raw extracted text samples. Full Review checks all candidates. Unreviewed Only skips tags that already have review history. If the current tag contains Chinese, the final kept tag must be English-only.</span>
+                  </p>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end;">
+                  <button class="btn btn--ghost" id="refreshTagReviewBtn">刷新复查状态</button>
+                  <button class="btn btn--blue" id="startTagReviewBtn">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    启动标签复查
+                  </button>
+                  <button class="btn btn--ghost" id="pauseTagReviewBtn" disabled>Pause</button>
+                  <button class="btn btn--ghost" id="resumeTagReviewBtn" disabled>Resume</button>
+                  <button class="btn btn--ghost" id="restartTagReviewBtn" disabled>Restart</button>
+                </div>
+              </div>
+
+              <!-- 参数配置区 -->
+              <span class="field-group-label" style="color: var(--blue);">Pipeline Configuration</span>
+              <div class="field-grid field-grid--3">
+                <div class="field-wrap field-wrap--span2">
+                  <span class="field-label">调度模型 Model Config</span>
+                  <select id="tagReviewConfigSelect"></select>
+                </div>
+                <div class="field-wrap">
+                  <span class="field-label">最大重试 Max Attempts</span>
+                  <input id="tagReviewMaxAttempts" type="number" min="1" max="5" value="3" />
+                </div>
+              </div>
+              <div class="field-grid field-grid--3" style="margin-top: 12px;">
+                <div class="field-wrap">
+                  <span class="field-label">Review Mode</span>
+                  <select id="tagReviewModeSelect">
+                    <option value="all">Full Review</option>
+                    <option value="unreviewed_only">Unreviewed Only</option>
+                  </select>
+                </div>
+                <div class="field-wrap field-wrap--span2">
+                  <span class="field-label">Run Controls</span>
+                  <div class="card-section__hint" style="height: 100%; margin-top: 0;">
+                    Full Review rechecks every candidate. Unreviewed Only skips tags that already have review history.
+                    Pause keeps a checkpoint. Resume continues from that checkpoint. Restart creates a fresh run from the selected run's saved request.
+                  </div>
+                </div>
+              </div>
+
+              <!-- 规则提示框 -->
+              <div class="card-section__hint" style="margin-top: 16px; border-top: 1px dashed var(--blue-border); padding-top: 12px; display: flex; align-items: flex-start; gap: 8px;">
+                <svg fill="none" stroke="var(--blue)" stroke-width="2" viewBox="0 0 24 24" width="16" height="16" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <div style="color: var(--tx-2); font-size: 12px; line-height: 1.6;">
+                  若无需替换，模型应返回<strong>空串</strong>；若需替换，返回 <code>[English Replacement]</code>；若内容无效或无意义可返回 <code>[DELETE]</code> 强制删除该标签；若明显为多项能力并列，可返回 <code>[A][B]</code> 拆分为两个括号项。
+                </div>
+              </div>
+
+              <!-- 复查数据统计条 -->
+              <div class="mini-stat-bar" style="margin-top: 24px; background: var(--bg);">
+                <div class="mini-stat-tile">
+                  <span>Review Candidates</span>
+                  <strong id="metricReviewCandidates">0</strong>
+                </div>
+                <div class="mini-stat-tile">
+                  <span>Tech Stack</span>
+                  <strong id="metricReviewTechStack">0</strong>
+                </div>
+                <div class="mini-stat-tile">
+                  <span>Tech Capabilities</span>
+                  <strong id="metricReviewTechCapabilities">0</strong>
+                </div>
+                <div class="mini-stat-tile">
+                  <span>Dev Tools</span>
+                  <strong id="metricReviewDevTools">0</strong>
+                </div>
+                <div class="mini-stat-tile">
+                  <span style="color: var(--teal);">Changed (Current Run)</span>
+                  <strong id="metricReviewReplaced" style="color: var(--teal);">0</strong>
+                </div>
+              </div>
+
+              <div id="tagReviewSummaryBox" class="terminal-box" style="min-height: 180px; margin-top: 16px;">// loading tag review summary...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 复查：工作区 1 任务详情与日志 -->
+      <div class="workspace" style="padding-bottom: 16px;">
+        <div class="col">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title">复查任务详情 / Review Task</h3>
+                  <p class="card-section__desc">显示当前选中复查任务的进度、配置摘要、替换数量和写回结果。</p>
+                </div>
+              </div>
+              <div id="tagReviewRunDetail" class="terminal-box" style="min-height: 220px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title">复查日志 / Review Logs</h3>
+                  <p class="card-section__desc">输出请求重试、替换决策、失败记录和最终写回信息。</p>
+                </div>
+              </div>
+              <div id="tagReviewLogBox" class="terminal-box" style="height: 220px;">// no tag review logs yet...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 复查：工作区 2 决策词带面板 (三等分布局) -->
+      <div class="workspace" style="grid-template-columns: repeat(3, 1fr); padding-bottom: 16px;">
+        <div class="col">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title" style="color: var(--teal);">Replaced (已替换/删拆)</h3>
+                  <p class="card-section__desc">被判定需要改成英文并已回写的标签。</p>
+                </div>
+              </div>
+              <div id="reviewReplacedRail" class="terminal-box review-chip-list" style="height: 220px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title" style="color: var(--blue);">Unchanged (维持原状)</h3>
+                  <p class="card-section__desc">模型确认不需要替换的标签样本。</p>
+                </div>
+              </div>
+              <div id="reviewUnchangedRail" class="terminal-box review-chip-list" style="height: 220px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title" style="color: var(--red);">Failed (重试失败)</h3>
+                  <p class="card-section__desc">超出重试次数或输出格式不合法的标签。</p>
+                </div>
+              </div>
+              <div id="reviewFailedRail" class="terminal-box review-chip-list" style="height: 220px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 复查：工作区 3 历史记录与结果摘要 -->
+      <div class="workspace">
+        <div class="col" style="flex: 0.8;">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title">复查历史 / Review History</h3>
+                  <p class="card-section__desc">点击历史卡片切换查看对应任务的详情、日志和结果摘要。</p>
+                </div>
+              </div>
+              <div id="tagReviewRunCards" class="job-list" style="max-height: 400px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col" style="flex: 1.2;">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title">复查结果摘要 / Review Result</h3>
+                  <p class="card-section__desc">展示当前任务的结构化结果，包括候选统计、token 用量和写回数量。</p>
+                </div>
+              </div>
+              <div id="tagReviewResultBox" class="terminal-box" style="height: 400px;">// no tag review result yet...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="/assets/admin-common.js"></script>
+  <script src="/assets/pages/normalize.js?v=20260406_2358"></script>
+
+  <!-- 主题切换绑定逻辑 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof ThemeManager !== 'undefined') {
+        ThemeManager.updateIcon(document.documentElement.getAttribute("data-theme") || "dark");
+        const themeToggleBtn = document.getElementById("themeToggleBtn");
+        if (themeToggleBtn) {
+          themeToggleBtn.addEventListener("click", () => ThemeManager.toggle());
+        }
+      }
+    });
+  </script>
+</body>
+</html>

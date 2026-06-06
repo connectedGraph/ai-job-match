@@ -1,0 +1,353 @@
+{
+  "student_id": "STU_889900",
+  "direction": "解决方案架构师 / 售前工程师",
+  "domains": [],
+  "techStack": [
+    {
+      "name": "React",
+      "level": 3
+    },
+    {
+      "name": "MySQL",
+      "level": 2
+    },
+    {
+      "tagId": "TS_6CF563BA3D04",
+      "name": "Vue",
+      "normalizedTag": "Vue",
+      "level": 2
+    },
+    {
+      "name": "LLM",
+      "tagId": "",
+      "normalizedTag": "",
+      "level": 4
+    }
+  ],
+  "techCapability": [
+    {
+      "tagId": "TC_36A42B7BCCEA",
+      "name": "TCP/IP协议",
+      "skill": "TCP/IP",
+      "skillZh": "TCP/IP协议",
+      "displayName": "TCP/IP协议",
+      "normalizedTag": "TCP/IP",
+      "level": 2,
+      "source": "tag-center",
+      "type": "principle"
+    },
+    {
+      "tagId": "TC_BF9A8AD18410",
+      "name": "自然语言处理",
+      "normalizedTag": "NLP",
+      "level": 2,
+      "type": "principle",
+      "domain": "机器学习"
+    },
+    {
+      "tagId": "TC_8C253FA7C58F",
+      "name": "Web性能与安全",
+      "normalizedTag": "Web Security",
+      "level": 2,
+      "type": "principle",
+      "domain": "Web 开发"
+    },
+    {
+      "tagId": "TC_626676380EF5",
+      "name": "生成模型",
+      "normalizedTag": "Generative AI",
+      "level": 2,
+      "type": "principle",
+      "domain": "机器学习"
+    },
+    {
+      "tagId": "TC_C0012D79BDC1",
+      "name": "模型开发",
+      "normalizedTag": "Model Training",
+      "level": 2,
+      "type": "engineering",
+      "domain": "机器学习"
+    },
+    {
+      "tagId": "TC_FA6C632B568C",
+      "name": "算法与工程框架",
+      "normalizedTag": "Algorithm Frameworks",
+      "level": 2,
+      "type": "engineering",
+      "domain": "机器学习"
+    },
+    {
+      "tagId": "TC_7CFC331D918D",
+      "name": "DOM操作",
+      "normalizedTag": "DOM",
+      "level": 2,
+      "type": "engineering",
+      "domain": "Web 开发"
+    },
+    {
+      "tagId": "TC_1875C2EC2346",
+      "name": "前端性能",
+      "normalizedTag": "Frontend Performance Optimization",
+      "level": 2,
+      "type": "engineering"
+    }
+  ],
+  "techCapabilities": [
+    {
+      "tagId": "TC_36A42B7BCCEA",
+      "name": "TCP/IP协议",
+      "skill": "TCP/IP",
+      "skillZh": "TCP/IP协议",
+      "displayName": "TCP/IP协议",
+      "normalizedTag": "TCP/IP",
+      "level": 2,
+      "source": "tag-center",
+      "type": "principle"
+    },
+    {
+      "tagId": "TC_BF9A8AD18410",
+      "name": "自然语言处理",
+      "normalizedTag": "NLP",
+      "level": 2,
+      "type": "principle",
+      "domain": "机器学习"
+    },
+    {
+      "tagId": "TC_8C253FA7C58F",
+      "name": "Web性能与安全",
+      "normalizedTag": "Web Security",
+      "level": 2,
+      "type": "principle",
+      "domain": "Web 开发"
+    },
+    {
+      "tagId": "TC_626676380EF5",
+      "name": "生成模型",
+      "normalizedTag": "Generative AI",
+      "level": 2,
+      "type": "principle",
+      "domain": "机器学习"
+    },
+    {
+      "tagId": "TC_C0012D79BDC1",
+      "name": "模型开发",
+      "normalizedTag": "Model Training",
+      "level": 2,
+      "type": "engineering",
+      "domain": "机器学习"
+    },
+    {
+      "tagId": "TC_FA6C632B568C",
+      "name": "算法与工程框架",
+      "normalizedTag": "Algorithm Frameworks",
+      "level": 2,
+      "type": "engineering",
+      "domain": "机器学习"
+    },
+    {
+      "tagId": "TC_7CFC331D918D",
+      "name": "DOM操作",
+      "normalizedTag": "DOM",
+      "level": 2,
+      "type": "engineering",
+      "domain": "Web 开发"
+    },
+    {
+      "tagId": "TC_1875C2EC2346",
+      "name": "前端性能",
+      "normalizedTag": "Frontend Performance Optimization",
+      "level": 2,
+      "type": "engineering"
+    }
+  ],
+  "devTools": [
+    {
+      "name": "Git",
+      "level": 4
+    }
+  ],
+  "basicInfo": {
+    "name": "张三",
+    "schoolName": "浙江大学",
+    "schoolMajor": "软件工程",
+    "educationLevel": "本科",
+    "graduationYear": 2026,
+    "graduationMonth": 6,
+    "graduationProvince": "浙江",
+    "certificates": [
+      {
+        "name": "英语四级",
+        "level": "四级",
+        "note": "",
+        "date": "",
+        "tags": []
+      }
+    ]
+  },
+  "summary": "前端基础扎实，学习意愿强，具备持续成长潜力。热爱开源技术，具备良好的团队协作能力。",
+  "explicitMetrics": {
+    "graduationCity": "广州市",
+    "schoolTags": [
+      "985",
+      "211",
+      "双一流"
+    ]
+  },
+  "preference": {
+    "preferredCities": [
+      "北京",
+      "上海",
+      "广州"
+    ],
+    "expectedSalaryMin": 15,
+    "expectedSalaryMax": 20,
+    "willingToTravel": false,
+    "willingToRelocate": true,
+    "jobTarget": "fulltime",
+    "expectedEmploymentDate": "2026-07",
+    "currentPlan": "job",
+    "currentPlanNote": ""
+  },
+  "learningTime": {
+    "mode": "simple",
+    "weekdayHours": 2,
+    "weekendHours": 4,
+    "dailyHours": {
+      "mon": 2,
+      "tue": 2,
+      "wed": 2,
+      "thu": 2,
+      "fri": 2,
+      "sat": 4,
+      "sun": 4
+    }
+  },
+  "experiences": {
+    "internship": [
+      {
+        "companyName": "某科技公司",
+        "positionName": "前端实习生",
+        "jobDesc": "负责活动页面开发、组件封装与联调测试（3个月）。主导了公司核心产品营销页面的重构，使用 React + Tailwind 提升了页面加载速度。",
+        "startDate": "2023-07",
+        "endDate": "2023-09",
+        "tags": [
+          "前端",
+          "全职"
+        ],
+        "experience_id": "INT_001"
+      }
+    ],
+    "projects": [
+      {
+        "projectName": "电商前台重构",
+        "roleName": "前端开发",
+        "jobDesc": "重构首页、列表页与结算流程，将首屏加载时间从 3s 降低至 1.2s。",
+        "startDate": "2023-03",
+        "endDate": "2023-06",
+        "tags": [
+          "团队项目",
+          "前端"
+        ],
+        "experience_id": "PRJ_001"
+      },
+      {
+        "projectName": "个人博客",
+        "roleName": "独立开发",
+        "jobDesc": "基于 Next.js 搭建，实现 SEO 优化，后端采用 Node.js + MongoDB。",
+        "startDate": "2022-10",
+        "endDate": "2023-01",
+        "tags": [
+          "个人项目"
+        ],
+        "experience_id": "PRJ_002"
+      }
+    ],
+    "competition": [
+      {
+        "competitionName": "蓝桥杯",
+        "award": "省级二等奖",
+        "roleName": "个人参赛",
+        "date": "2023-04",
+        "startDate": "",
+        "endDate": "",
+        "tags": [
+          "省级",
+          "个人赛"
+        ],
+        "experience_id": "CMP_001"
+      }
+    ],
+    "research": [
+      {
+        "labName": "智能系统实验室",
+        "direction": "推荐系统",
+        "roleName": "参与者",
+        "startDate": "2022-09",
+        "endDate": "2023-06",
+        "tags": [
+          "推荐系统"
+        ],
+        "experience_id": "RES_001"
+      }
+    ],
+    "campus": [
+      {
+        "orgName": "软件工程2101班",
+        "position": "班长",
+        "duty": "组织班级活动，协调师生沟通，多次获评优秀班干部。",
+        "startDate": "2021-09",
+        "endDate": "2023-06",
+        "tags": [
+          "班委",
+          "院级"
+        ],
+        "experience_id": "CAM_001"
+      }
+    ],
+    "learning": [
+      {
+        "type": "self_study",
+        "skill": "Python",
+        "semester": "大二上",
+        "notes": "学习基础语法、函数、面向对象及常用标准库",
+        "startDate": "2022-09",
+        "endDate": "2022-12",
+        "tags": [
+          "教材自学"
+        ],
+        "experience_id": "LRN_001"
+      },
+      {
+        "type": "self_study_with_project",
+        "skill": "Vue3",
+        "semester": "",
+        "notes": "通过官方文档学习 Composition API",
+        "startDate": "2023-01",
+        "endDate": "",
+        "tags": [
+          "官方文档"
+        ],
+        "experience_id": "LRN_002"
+      }
+    ]
+  },
+  "profile": {},
+  "orientated": true,
+  "techDomains": [
+    {
+      "name": "计算机科学",
+      "tagId": "DM_79EB61951733",
+      "normalizedTag": "Computer Science"
+    },
+    {
+      "name": "机器学习",
+      "tagId": "DM_F9A40A7891AE",
+      "normalizedTag": "Machine Learning"
+    },
+    {
+      "name": "Web 开发",
+      "tagId": "DM_40F446E81C37",
+      "normalizedTag": "Web Development"
+    }
+  ]
+}

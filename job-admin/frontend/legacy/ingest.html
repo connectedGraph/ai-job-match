@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>上传构建 - Unified Job System</title>
+  
+  <!-- 引入外部统一的主题 CSS -->
+  <link rel="stylesheet" href="/assets/admin.css" />
+
+  <!-- 💡 仪表盘专属补充样式 & 主题脚本 -->
+  <style>
+    /* 针对文件上传和内嵌操作的终端化样式调整 */
+    .file-upload-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: var(--surface-2);
+      border: 1px dashed var(--border-3);
+      border-radius: var(--r-sm);
+      transition: border-color var(--fast), background var(--fast);
+    }
+    .file-upload-wrapper:hover {
+      border-color: var(--teal-border);
+      background: var(--teal-dim);
+    }
+    
+    .file-name-text {
+      font-family: var(--ff-mono);
+      font-size: 11.5px;
+      color: var(--tx-2);
+      max-width: 240px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .modern-checkbox {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 12.5px;
+      color: var(--tx-1);
+      user-select: none;
+      padding: 8px 12px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      transition: all var(--fast);
+    }
+    .modern-checkbox:hover {
+      border-color: var(--teal-border);
+      background: var(--surface-3);
+    }
+    .modern-checkbox input[type="checkbox"] {
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+      margin: 0;
+      padding: 0;
+      accent-color: var(--teal);
+    }
+
+    /* 终端日志样式复用 */
+    .terminal-box {
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      border-radius: var(--r-sm);
+      padding: 14px 16px;
+      font-family: var(--ff-mono);
+      font-size: 11.5px;
+      color: var(--teal);
+      line-height: 1.6;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+      overflow-x: auto;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+  </style>
+
+  <script>
+    const ThemeManager = {
+      init() {
+        const savedTheme = localStorage.getItem('ujs_theme');
+        const defaultTheme = savedTheme ? savedTheme : 'dark';
+        document.documentElement.setAttribute('data-theme', defaultTheme);
+      },
+      toggle() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('ujs_theme', newTheme);
+        this.updateIcon(newTheme);
+      },
+      updateIcon(theme) {
+        const iconEl = document.getElementById('themeToggleIcon');
+        if (!iconEl) return;
+        if (theme === 'dark') {
+          iconEl.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
+        } else {
+          iconEl.innerHTML = `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`;
+        }
+      }
+    };
+    ThemeManager.init();
+  </script>
+</head>
+
+<body data-page="ingest">
+  <div class="shell">
+    
+    <!-- 左侧边栏 -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand__logo">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        </div>
+        <div class="sidebar-brand__text">
+          <span class="sidebar-brand__sys">Unified System</span>
+          <span class="sidebar-brand__name">Job Platform</span>
+        </div>
+        <div class="sidebar-brand__dot"></div>
+      </div>
+
+      <div class="sidebar-nav">
+        <span class="sidebar-nav__label">Main Menu</span>
+        
+        <a class="nav-item" href="/">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Dashboard</span>
+            <span class="nav-item__sub">系统总览</span>
+          </div>
+        </a>
+
+        <a class="nav-item" href="/jobs.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Job Matrix</span>
+            <span class="nav-item__sub">岗位增删改查</span>
+          </div>
+        </a>
+
+        <!-- 当前页面为 Active -->
+        <a class="nav-item nav-item--active" href="/ingest.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Ingestion</span>
+            <span class="nav-item__sub">上传与构建</span>
+          </div>
+        </a>
+        
+        <a class="nav-item" href="/tags.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Tags Center</span>
+            <span class="nav-item__sub">统计与归一结果</span>
+          </div>
+        </a>
+
+        <a class="nav-item" href="/runs.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Run Logs</span>
+            <span class="nav-item__sub">批次与运行记录</span>
+          </div>
+        </a>
+
+        <a class="nav-item" href="/settings.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Settings</span>
+            <span class="nav-item__sub">模型与并发配置</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <span>v2.4.0-rc</span>
+        <span>STATUS: ONLINE</span>
+      </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main">
+      
+      <!-- 顶栏 -->
+      <div class="topbar">
+        <div class="topbar__left">
+          <span class="topbar__crumb">Unified System</span>
+          <span class="topbar__sep">/</span>
+          <span class="topbar__crumb topbar__crumb--active">Ingestion</span>
+        </div>
+        <div class="topbar__right">
+          <button class="btn btn--ghost btn--sm" id="themeToggleBtn" title="切换日/夜间模式">
+            <svg id="themeToggleIcon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"></svg>
+            Theme
+          </button>
+        </div>
+      </div>
+
+      <!-- 页面标题 -->
+      <div class="page-title">
+        <div>
+          <h1 class="page-title__h">Ingestion 上传构建</h1>
+          <p class="page-title__sub">导入原始岗位并发起画像构建。支持 JSON, JSONL, CSV, XLS, XLSX。完成后自动入岗位库，并对普通技术 Tag 执行自动归一。</p>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a class="btn btn--ghost" href="/settings.html">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            去配置池
+          </a>
+          <a class="btn btn--ghost" href="/runs.html">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            看运行记录
+          </a>
+        </div>
+      </div>
+
+      <!-- 数据统计条 -->
+      <div class="stat-strip">
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--blue"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">待处理岗位</span>
+            <span class="stat-card__val" id="metricJobs">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--teal"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">解析出字段</span>
+            <span class="stat-card__val" id="metricTags">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--amber"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">可用配置节点</span>
+            <span class="stat-card__val" id="metricHighTags">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--violet"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">预估耗时 (分)</span>
+            <span class="stat-card__val" id="metricRuns">-</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 工作区 (左右分栏) -->
+      <div class="workspace">
+        
+        <!-- 左侧栏：上传与配置 -->
+        <div class="col" style="flex: 1.2;">
+          
+          <!-- 上传操作区 -->
+          <div class="card">
+            <div class="card-section">
+              <span class="field-group-label">File Input & Config</span>
+              
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+                <!-- 优雅的文件上传器 -->
+                <div class="file-upload-wrapper" style="flex: 1;">
+                  <input id="uploadInput" type="file" accept=".json,.jsonl,.csv,.xls,.xlsx" style="display: none;" onchange="document.getElementById('fileName').textContent = this.files[0] ? this.files[0].name : '等待选择文件...'" />
+                  <label for="uploadInput" class="btn btn--ghost btn--sm">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="13" height="13"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                    浏览文件
+                  </label>
+                  <span id="fileName" class="file-name-text">等待选择文件...</span>
+                </div>
+                
+                <button class="btn btn--blue" id="uploadBtn">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+                  解析载入
+                </button>
+              </div>
+
+              <div class="card-divider" style="margin-bottom: 20px;"></div>
+              
+              <div class="field-grid field-grid--2">
+                <div class="field-wrap field-wrap--span2">
+                  <span class="field-label">输入模式 Input Mode</span>
+                  <select id="inputModeSelect">
+                    <option value="raw_source">原始岗位源数据（全流程 preprocess + extract）</option>
+                    <option value="structured_job_json_extract">标准岗位 JSON（跳过 preprocess，直接 extract）</option>
+                    <option value="structured_job_json_fill_missing">标准岗位 JSON（仅补缺失画像字段）</option>
+                    <option value="structured_job_json_direct_stage4">标准岗位 JSON（跳过 step3，直接 stage4）</option>
+                  </select>
+                </div>
+                
+                <div class="field-wrap input-with-icon">
+                  <span class="field-label">失败重试 Retry Limit</span>
+                  <svg class="input-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><polyline points="23 20 23 14 17 14"></polyline><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path></svg>
+                  <input id="retryLimitInput" type="number" min="1" max="5" value="2" placeholder="重试次数" />
+                </div>
+                
+                <div class="field-wrap" style="justify-content: flex-end; padding-bottom: 4px;">
+                  <label class="modern-checkbox">
+                    <input id="autoApplyToggle" type="checkbox" /> 
+                    <span>构建后自动写入主库</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="card-section__hint" style="margin-top: 16px; border-top: 1px dashed var(--border-2); padding-top: 12px; display: flex; align-items: flex-start; gap: 6px;">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14" style="flex-shrink:0; margin-top:2px; color:var(--tx-3);"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <span>JSON 必须是 object 列表；表格会按表头转 object。多配置会按照并发数自动分配任务。</span>
+              </div>
+            </div>
+            
+            <div class="card-section card-section--actions">
+              <button class="btn btn--ghost" id="preflightBtn">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                预检池 (Preflight)
+              </button>
+              <button class="btn btn--accent" id="startRunBtn" style="margin-left: auto;">
+                <svg fill="currentColor" stroke="none" viewBox="0 0 24 24" width="14" height="14"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                开始构建 (Start Build)
+              </button>
+            </div>
+          </div>
+
+          <!-- 上传预览区 -->
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <h3 class="card-section__title">解析预览 / Upload Preview</h3>
+              </div>
+              <div id="uploadSummary" class="terminal-box" style="height: 200px;">// 暂无上传记录，请先选择文件并点击“解析载入”。</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧栏：任务与日志 -->
+        <div class="col" style="flex: 1;">
+          
+          <!-- 任务预检池 -->
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title">任务分配 / Assignment Check</h3>
+                  <p class="card-section__desc">按启用的 API 并发数做加权轮询预检。</p>
+                </div>
+              </div>
+              
+              <div id="assignmentPreview" style="min-height: 40px; display: flex; align-items: center; justify-content: center; font-family: var(--ff-mono); font-size: 11.5px; color: var(--tx-3); background: var(--surface-3); border-radius: var(--r-sm); border: 1px dashed var(--border-2); margin-bottom: 12px;">
+                [ 等待执行预检... ]
+              </div>
+              
+              <div id="preflightSummary" class="terminal-box" style="height: 120px;">// 尚未执行配置预检</div>
+            </div>
+          </div>
+
+          <!-- 实时日志输出 -->
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 12px;">
+                <div>
+                  <h3 class="card-section__title">终端日志 / Builder Console</h3>
+                  <p class="card-section__desc">实时展示当前构建任务进度输出。</p>
+                </div>
+              </div>
+              
+              <div id="builderActionBar" style="margin-bottom: 12px; font-family: var(--ff-mono); font-size: 10.5px; color: var(--tx-4);">
+                > No active batches detected.
+              </div>
+              
+              <div id="builderLogBox" class="terminal-box" style="height: 260px;">[System] Engine Ready.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/assets/admin-common.js"></script>
+  <script src="/assets/pages/ingest.js?v=20260404_1715"></script>
+
+  <!-- 主题切换绑定逻辑 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ThemeManager.updateIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+          ThemeManager.toggle();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

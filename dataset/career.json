@@ -1,0 +1,774 @@
+[
+  {
+    "id": "JOB_run_20260403_235248_df2d80e8_00001",
+    "title": "后台开发工程师（社交基础架构）",
+    "companyName": "微信事业群 (WXG)",
+    "direction": "后端开发",
+    "industry": "社交/互联网",
+    "metadata": {
+      "jobType": "社招全职",
+      "salaryRange": null,
+      "departmentAtmosphere": null
+    },
+    "jdSplit": {
+      "jobDescriptions": [
+        "负责微信核心通信协议的优化与海量存储系统的维护",
+        "支撑高并发下的极致体验",
+        "负责社交业务逻辑的后台开发与系统架构设计",
+        "优化分布式缓存与数据库性能，应对千亿级数据挑战",
+        "参与容灾演练，确保社交服务在极端情况下的高可用性"
+      ],
+      "jobRequirements": [
+        "具备扎实的C++/Go开发功底",
+        "精通TCP/IP协议及高性能网络编程",
+        "深刻理解分布式事务与共识算法"
+      ],
+      "bonusPoints": [
+        "有大规模分布式系统设计经验",
+        "熟悉存储引擎底层原理"
+      ],
+      "notes": [
+        "岗位方向：高并发、海量服务、分布式",
+        "所属部门：微信事业群 (WXG)",
+        "岗位ID：JOB_run_20260403_235248_df2d80e8_00001",
+        "内部代码：TX-BK-001"
+      ]
+    },
+    "basicRequirements": {
+      "education_min": null,
+      "major": [],
+      "graduationYearRange": null,
+      "certifications": [],
+      "experiences": []
+    },
+    "techStack": [
+      {
+        "type": "branch",
+        "groupName": "后端开发语言",
+        "options": [
+          {
+            "name": "C++",
+            "rawExtractedText": "C++",
+            "normalizedTag": "C++",
+            "levelRequired": 2,
+            "note": ""
+          },
+          {
+            "name": "Go",
+            "rawExtractedText": "Go",
+            "normalizedTag": "Go",
+            "levelRequired": 2,
+            "note": ""
+          }
+        ],
+        "levelRequired": 3,
+        "sum": 1,
+        "note": "具备扎实的C++/Go开发功底"
+      }
+    ],
+    "techCapabilities": [
+      {
+        "rawExtractedText": "TCP/IP协议",
+        "normalizedTag": "TCP/IP",
+        "type": "principle",
+        "domain": "Networking",
+        "skill": "TCP/IP Protocol",
+        "skillZh": "TCP/IP协议",
+        "levelRequired": 4
+      },
+      {
+        "rawExtractedText": "高性能网络编程",
+        "normalizedTag": "High-Performance Networking",
+        "type": "engineering",
+        "domain": "Backend Development",
+        "skill": "高性能网络",
+        "skillZh": "高性能网络编程",
+        "levelRequired": 4
+      },
+      {
+        "rawExtractedText": "分布式事务",
+        "normalizedTag": "Distributed Transactions",
+        "type": "principle",
+        "domain": "Distributed Systems",
+        "skill": "分布式事务",
+        "skillZh": "分布式事务",
+        "levelRequired": 4
+      },
+      {
+        "rawExtractedText": "共识算法",
+        "normalizedTag": "Consensus Algorithms",
+        "type": "principle",
+        "domain": "Distributed Systems",
+        "skill": "共识算法",
+        "skillZh": "共识算法",
+        "levelRequired": 4
+      }
+    ],
+    "devTools": [],
+    "softQuality": [
+      {
+        "name": "沟通表达",
+        "levelRequired": 2
+      },
+      {
+        "name": "团队协作",
+        "levelRequired": 3
+      },
+      {
+        "name": "责任心",
+        "levelRequired": 4
+      },
+      {
+        "name": "执行力",
+        "levelRequired": 3
+      },
+      {
+        "name": "职业意识",
+        "levelRequired": 3
+      }
+    ],
+    "growthPotential": [
+      {
+        "name": "学习能力",
+        "levelRequired": 4
+      },
+      {
+        "name": "创新能力",
+        "levelRequired": 3
+      },
+      {
+        "name": "抗压能力",
+        "levelRequired": 4
+      },
+      {
+        "name": "迁移能力",
+        "levelRequired": 3
+      },
+      {
+        "name": "目标清晰度",
+        "levelRequired": 3
+      }
+    ],
+    "systemMeta": {
+      "createdAt": "2026-04-03T23:58:29",
+      "updatedAt": "2026-04-03T23:58:36",
+      "createdSeq": 0,
+      "source": "builder_import",
+      "lastRunId": "run_20260403_235248_df2d80e8",
+      "lastImportedAt": "2026-04-03T23:58:36",
+      "normalizedOnImport": false,
+      "lastOperation": "updated"
+    }
+  },
+  {
+    "id": "JOB_run_20260403_235248_df2d80e8_00002",
+    "title": "后台开发工程师（全球游戏架构）",
+    "companyName": "互动娱乐事业群 (IEG)",
+    "direction": "游戏开发",
+    "industry": "游戏",
+    "metadata": {
+      "jobType": "社招全职",
+      "salaryRange": null,
+      "departmentAtmosphere": null
+    },
+    "jdSplit": {
+      "jobDescriptions": [
+        "构建低延迟的游戏服架构",
+        "支撑千万级玩家同服在线竞技",
+        "负责游戏逻辑服的开发与调优",
+        "负责网关服的开发与调优",
+        "设计全球化部署方案",
+        "解决跨地域同步与时延问题",
+        "通过自动化工具监控游戏运行状态",
+        "快速定位现网抖动"
+      ],
+      "jobRequirements": [
+        "熟练掌握C++或C#",
+        "熟悉Linux内核及系统调用优化",
+        "具备扎实的算法与数据结构功底"
+      ],
+      "bonusPoints": [
+        "热爱游戏",
+        "有Protobuf/gRPC实践经验"
+      ],
+      "notes": [
+        "部门：互动娱乐事业群 (IEG)",
+        "岗位方向：游戏后端、低延迟、实时同步"
+      ]
+    },
+    "basicRequirements": {
+      "education_min": null,
+      "major": [],
+      "graduationYearRange": null,
+      "certifications": [],
+      "experiences": []
+    },
+    "techStack": [
+      {
+        "name": "Linux Kernel",
+        "rawExtractedText": "Linux Kernel",
+        "normalizedTag": "Linux Kernel",
+        "levelRequired": 2,
+        "note": "熟悉Linux内核及系统调用优化"
+      },
+      {
+        "type": "branch",
+        "groupName": "编程语言",
+        "options": [
+          {
+            "name": "C++",
+            "rawExtractedText": "C++",
+            "normalizedTag": "C++",
+            "levelRequired": 2,
+            "note": ""
+          },
+          {
+            "name": "C#",
+            "rawExtractedText": "C#",
+            "normalizedTag": "C#",
+            "levelRequired": 2,
+            "note": ""
+          }
+        ],
+        "levelRequired": 3,
+        "sum": 1,
+        "note": "熟练掌握C++或C#"
+      }
+    ],
+    "techCapabilities": [
+      {
+        "rawExtractedText": "熟悉Linux内核及系统调用优化",
+        "normalizedTag": "Kernel Development and Optimization",
+        "type": "principle",
+        "domain": "Operating Systems",
+        "skill": "Linux内核及系统调用优化",
+        "skillZh": "Linux内核及系统调用优化",
+        "levelRequired": 2
+      },
+      {
+        "rawExtractedText": "具备扎实的算法与数据结构功底",
+        "normalizedTag": "Algorithms",
+        "type": "principle",
+        "domain": "Computer Science",
+        "skill": "Algorithms",
+        "skillZh": "算法与数据结构",
+        "levelRequired": 3
+      },
+      {
+        "rawExtractedText": "具备扎实的算法与数据结构功底",
+        "normalizedTag": "Data Structures and Algorithms",
+        "type": "principle",
+        "domain": "Computer Science",
+        "skill": "Data Structures and Algorithms",
+        "skillZh": "算法与数据结构",
+        "levelRequired": 3
+      }
+    ],
+    "devTools": [],
+    "softQuality": [
+      {
+        "name": "沟通表达",
+        "levelRequired": 2
+      },
+      {
+        "name": "团队协作",
+        "levelRequired": 3
+      },
+      {
+        "name": "责任心",
+        "levelRequired": 4
+      },
+      {
+        "name": "执行力",
+        "levelRequired": 3
+      },
+      {
+        "name": "职业意识",
+        "levelRequired": 2
+      }
+    ],
+    "growthPotential": [
+      {
+        "name": "学习能力",
+        "levelRequired": 4
+      },
+      {
+        "name": "创新能力",
+        "levelRequired": 3
+      },
+      {
+        "name": "抗压能力",
+        "levelRequired": 4
+      },
+      {
+        "name": "迁移能力",
+        "levelRequired": 2
+      },
+      {
+        "name": "目标清晰度",
+        "levelRequired": 3
+      }
+    ],
+    "systemMeta": {
+      "createdAt": "2026-04-03T23:58:29",
+      "updatedAt": "2026-04-03T23:58:36",
+      "createdSeq": 1,
+      "source": "builder_import",
+      "lastRunId": "run_20260403_235248_df2d80e8",
+      "lastImportedAt": "2026-04-03T23:58:36",
+      "normalizedOnImport": false,
+      "lastOperation": "updated"
+    }
+  },
+  {
+    "id": "JOB_run_20260403_235248_df2d80e8_00003",
+    "title": "后台开发工程师（云原生基础产品）",
+    "companyName": "腾讯",
+    "direction": "运维 / DevOps / SRE",
+    "industry": "云计算/互联网",
+    "metadata": {
+      "jobType": "社招全职",
+      "salaryRange": null,
+      "departmentAtmosphere": null
+    },
+    "jdSplit": {
+      "jobDescriptions": [
+        "负责K8s容器编排、Serverless等云原生底座的建设",
+        "参与云原生中间件的研发与维护",
+        "推动微服务治理架构升级，提升系统伸缩效率",
+        "优化多租户资源隔离方案，保障平台安全性"
+      ],
+      "jobRequirements": [
+        "精通Go语言开发",
+        "熟悉Docker/Kubernetes核心原理",
+        "了解常见Linux网络虚拟化技术"
+      ],
+      "bonusPoints": [
+        "开源社区贡献者优先",
+        "熟悉Istio/Service Mesh"
+      ],
+      "notes": [
+        "部门：云与智慧产业事业群 (CSIG)",
+        "岗位方向：Cloud Native、Kubernetes、容器化",
+        "岗位ID：JOB_run_20260403_235248_df2d80e8_00003",
+        "补充标识：TX-BK-003"
+      ]
+    },
+    "basicRequirements": {
+      "education_min": null,
+      "major": [],
+      "graduationYearRange": null,
+      "certifications": [],
+      "experiences": []
+    },
+    "techStack": [
+      {
+        "name": "Linux Administration",
+        "rawExtractedText": "Linux Network Virtualization",
+        "normalizedTag": "Linux Administration",
+        "levelRequired": 2,
+        "note": "Linux网络虚拟化技术"
+      },
+      {
+        "name": "Go",
+        "rawExtractedText": "Go",
+        "normalizedTag": "Go",
+        "levelRequired": 4,
+        "note": "精通Go语言开发"
+      }
+    ],
+    "techCapabilities": [
+      {
+        "rawExtractedText": "Docker/Kubernetes核心原理",
+        "normalizedTag": "Container Ecosystem Principles",
+        "type": "principle",
+        "domain": "Cloud Native",
+        "skill": "容器生态原理",
+        "skillZh": "容器编排原理",
+        "levelRequired": 2
+      }
+    ],
+    "devTools": [
+      {
+        "rawExtractedText": "Docker",
+        "normalizedTag": "Docker",
+        "skill": "Docker",
+        "skillZh": "Docker",
+        "levelRequired": 2
+      },
+      {
+        "rawExtractedText": "Kubernetes",
+        "normalizedTag": "Kubernetes",
+        "skill": "Kubernetes",
+        "skillZh": "Kubernetes",
+        "levelRequired": 2
+      }
+    ],
+    "softQuality": [
+      {
+        "name": "沟通表达",
+        "levelRequired": 3
+      },
+      {
+        "name": "团队协作",
+        "levelRequired": 3
+      },
+      {
+        "name": "责任心",
+        "levelRequired": 3
+      },
+      {
+        "name": "执行力",
+        "levelRequired": 3
+      },
+      {
+        "name": "职业意识",
+        "levelRequired": 2
+      }
+    ],
+    "growthPotential": [
+      {
+        "name": "学习能力",
+        "levelRequired": 4
+      },
+      {
+        "name": "创新能力",
+        "levelRequired": 3
+      },
+      {
+        "name": "抗压能力",
+        "levelRequired": 3
+      },
+      {
+        "name": "迁移能力",
+        "levelRequired": 3
+      },
+      {
+        "name": "目标清晰度",
+        "levelRequired": 2
+      }
+    ],
+    "systemMeta": {
+      "createdAt": "2026-04-03T23:58:29",
+      "updatedAt": "2026-04-03T23:58:36",
+      "createdSeq": 2,
+      "source": "builder_import",
+      "lastRunId": "run_20260403_235248_df2d80e8",
+      "lastImportedAt": "2026-04-03T23:58:36",
+      "normalizedOnImport": false,
+      "lastOperation": "updated"
+    }
+  },
+  {
+    "id": "JOB_run_20260403_235248_df2d80e8_00004",
+    "title": "后台开发工程师（金融支付平台）",
+    "companyName": "",
+    "direction": "后端开发",
+    "industry": "金融科技/互联网",
+    "metadata": {
+      "jobType": "社招全职",
+      "salaryRange": null,
+      "departmentAtmosphere": null
+    },
+    "jdSplit": {
+      "jobDescriptions": [
+        "构建金融级可靠的支付链路",
+        "守护每一分钱的安全流转",
+        "实现支付网关",
+        "实现对账系统",
+        "实现清结算逻辑",
+        "设计高并发下的秒杀隔离策略",
+        "设计限流熔断策略",
+        "配合风控团队进行反欺诈系统的后端开发"
+      ],
+      "jobRequirements": [
+        "Java基础扎实",
+        "Go基础扎实",
+        "精通MySQL存储优化",
+        "精通MySQL索引设计",
+        "熟悉分布式锁",
+        "熟悉消息队列"
+      ],
+      "bonusPoints": [
+        "有金融支付开发背景",
+        "有电商开发背景",
+        "熟悉高可用架构理论"
+      ],
+      "notes": [
+        "岗位方向：金融科技、资金安全、高可用",
+        "所属部门：企业发展事业群 (CDG)"
+      ]
+    },
+    "basicRequirements": {
+      "education_min": null,
+      "major": [],
+      "graduationYearRange": null,
+      "certifications": [],
+      "experiences": []
+    },
+    "techStack": [
+      {
+        "name": "Java",
+        "rawExtractedText": "Java",
+        "normalizedTag": "Java",
+        "levelRequired": 3,
+        "note": "Java基础扎实"
+      },
+      {
+        "name": "Go",
+        "rawExtractedText": "Go",
+        "normalizedTag": "Go",
+        "levelRequired": 3,
+        "note": "Go基础扎实"
+      },
+      {
+        "name": "MySQL",
+        "rawExtractedText": "MySQL",
+        "normalizedTag": "MySQL",
+        "levelRequired": 4,
+        "note": "精通MySQL存储优化与索引设计"
+      }
+    ],
+    "techCapabilities": [
+      {
+        "rawExtractedText": "MySQL存储优化",
+        "normalizedTag": "Database Performance Tuning",
+        "type": "engineering",
+        "domain": "Database",
+        "skill": "数据库维护与调优",
+        "skillZh": "数据库存储优化",
+        "levelRequired": 4
+      },
+      {
+        "rawExtractedText": "MySQL索引设计",
+        "normalizedTag": "Database Design",
+        "type": "engineering",
+        "domain": "Database",
+        "skill": "数据库架构设计",
+        "skillZh": "数据库索引设计",
+        "levelRequired": 4
+      },
+      {
+        "rawExtractedText": "分布式锁",
+        "normalizedTag": "Distributed Transactions",
+        "type": "scene",
+        "domain": "Distributed Systems",
+        "skill": "分布式锁",
+        "skillZh": "分布式锁",
+        "levelRequired": 2
+      },
+      {
+        "rawExtractedText": "消息队列",
+        "normalizedTag": "Message Queuing",
+        "type": "engineering",
+        "domain": "Middleware",
+        "skill": "Message Queuing",
+        "skillZh": "消息队列",
+        "levelRequired": 2
+      }
+    ],
+    "devTools": [],
+    "softQuality": [
+      {
+        "name": "沟通表达",
+        "levelRequired": 3
+      },
+      {
+        "name": "团队协作",
+        "levelRequired": 3
+      },
+      {
+        "name": "责任心",
+        "levelRequired": 4
+      },
+      {
+        "name": "执行力",
+        "levelRequired": 3
+      },
+      {
+        "name": "职业意识",
+        "levelRequired": 3
+      }
+    ],
+    "growthPotential": [
+      {
+        "name": "学习能力",
+        "levelRequired": 3
+      },
+      {
+        "name": "创新能力",
+        "levelRequired": 3
+      },
+      {
+        "name": "抗压能力",
+        "levelRequired": 3
+      },
+      {
+        "name": "迁移能力",
+        "levelRequired": 2
+      },
+      {
+        "name": "目标清晰度",
+        "levelRequired": 2
+      }
+    ],
+    "systemMeta": {
+      "createdAt": "2026-04-03T23:58:29",
+      "updatedAt": "2026-04-03T23:58:36",
+      "createdSeq": 3,
+      "source": "builder_import",
+      "lastRunId": "run_20260403_235248_df2d80e8",
+      "lastImportedAt": "2026-04-03T23:58:36",
+      "normalizedOnImport": false,
+      "lastOperation": "updated"
+    }
+  },
+  {
+    "id": "JOB_run_20260403_235248_df2d80e8_00005",
+    "title": "后台开发工程师（AI平台与大数据）",
+    "companyName": "腾讯技术工程事业群 (TEG)",
+    "direction": "后端开发",
+    "industry": "人工智能/互联网",
+    "metadata": {
+      "jobType": "社招全职",
+      "salaryRange": null,
+      "departmentAtmosphere": null
+    },
+    "jdSplit": {
+      "jobDescriptions": [
+        "负责机器学习平台的后端支撑",
+        "为AI模型提供算力调度与数据通道",
+        "开发高性能模型推理服务框架",
+        "构建海量特征数据的预处理与分发流水线",
+        "优化GPU/NPU资源调度算法，提升算力利用率"
+      ],
+      "jobRequirements": [
+        "熟练运用Python",
+        "熟练运用C++",
+        "熟悉Hadoop、Spark、Flink等大数据组件",
+        "了解Linux多线程编程"
+      ],
+      "bonusPoints": [
+        "熟悉TensorFlow底层逻辑",
+        "熟悉PyTorch底层逻辑",
+        "有异构计算开发经验"
+      ],
+      "notes": [
+        "所属部门：腾讯技术工程事业群 (TEG)",
+        "岗位方向：AI平台、算力调度、大数据",
+        "岗位ID：JOB_run_20260403_235248_df2d80e8_00005",
+        "TX-BK-005"
+      ]
+    },
+    "basicRequirements": {
+      "education_min": null,
+      "major": [],
+      "graduationYearRange": null,
+      "certifications": [],
+      "experiences": []
+    },
+    "techStack": [
+      {
+        "name": "Python",
+        "rawExtractedText": "Python",
+        "normalizedTag": "Python",
+        "levelRequired": 3,
+        "note": "熟练运用Python"
+      },
+      {
+        "name": "C++",
+        "rawExtractedText": "C++",
+        "normalizedTag": "C++",
+        "levelRequired": 3,
+        "note": "熟练运用C++"
+      },
+      {
+        "name": "Hadoop",
+        "rawExtractedText": "Hadoop",
+        "normalizedTag": "Hadoop",
+        "levelRequired": 2,
+        "note": "熟悉Hadoop大数据组件"
+      },
+      {
+        "name": "Spark",
+        "rawExtractedText": "Spark",
+        "normalizedTag": "Spark",
+        "levelRequired": 2,
+        "note": "熟悉Spark大数据组件"
+      },
+      {
+        "name": "Flink",
+        "rawExtractedText": "Flink",
+        "normalizedTag": "Flink",
+        "levelRequired": 2,
+        "note": "熟悉Flink大数据组件"
+      }
+    ],
+    "techCapabilities": [
+      {
+        "rawExtractedText": "Linux多线程编程",
+        "normalizedTag": "Network Programming",
+        "type": "engineering",
+        "domain": "System Programming",
+        "skill": "网络和多线程编程",
+        "skillZh": "Linux多线程编程",
+        "levelRequired": 1
+      }
+    ],
+    "devTools": [],
+    "softQuality": [
+      {
+        "name": "沟通表达",
+        "levelRequired": 2
+      },
+      {
+        "name": "团队协作",
+        "levelRequired": 3
+      },
+      {
+        "name": "责任心",
+        "levelRequired": 3
+      },
+      {
+        "name": "执行力",
+        "levelRequired": 3
+      },
+      {
+        "name": "职业意识",
+        "levelRequired": 2
+      }
+    ],
+    "growthPotential": [
+      {
+        "name": "学习能力",
+        "levelRequired": 4
+      },
+      {
+        "name": "创新能力",
+        "levelRequired": 3
+      },
+      {
+        "name": "抗压能力",
+        "levelRequired": 3
+      },
+      {
+        "name": "迁移能力",
+        "levelRequired": 3
+      },
+      {
+        "name": "目标清晰度",
+        "levelRequired": 2
+      }
+    ],
+    "systemMeta": {
+      "createdAt": "2026-04-03T23:58:29",
+      "updatedAt": "2026-04-03T23:58:36",
+      "createdSeq": 4,
+      "source": "builder_import",
+      "lastRunId": "run_20260403_235248_df2d80e8",
+      "lastImportedAt": "2026-04-03T23:58:36",
+      "normalizedOnImport": false,
+      "lastOperation": "updated"
+    }
+  }
+]

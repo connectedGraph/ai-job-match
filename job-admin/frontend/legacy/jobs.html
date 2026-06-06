@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>岗位库 - Unified Job System</title>
+  
+  <!-- 引入外部 CSS -->
+  <link rel="stylesheet" href="/assets/admin.css" />
+
+  <!-- 💡 主题初始化脚本 (建议放在 head 避免页面闪烁) -->
+  <script>
+    // 封装的本地存储主题管理器
+    const ThemeManager = {
+      init() {
+        // 读取 LocalStorage 或系统偏好，默认 fallback 为 dark
+        const savedTheme = localStorage.getItem('ujs_theme');
+        const defaultTheme = savedTheme ? savedTheme : 'dark';
+        document.documentElement.setAttribute('data-theme', defaultTheme);
+      },
+      toggle() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('ujs_theme', newTheme);
+        this.updateIcon(newTheme);
+      },
+      updateIcon(theme) {
+        const iconEl = document.getElementById('themeToggleIcon');
+        if (!iconEl) return;
+        if (theme === 'dark') {
+          // 月亮图标
+          iconEl.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
+        } else {
+          // 太阳图标
+          iconEl.innerHTML = `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`;
+        }
+      }
+    };
+    
+    // 页面加载前立即初始化主题
+    ThemeManager.init();
+  </script>
+</head>
+
+<body>
+  <!-- 采用了全新的 shell 布局结构以匹配 admin.css -->
+  <div class="shell">
+    
+    <!-- 左侧边栏 -->
+     <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand__logo">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        </div>
+        <div class="sidebar-brand__text">
+          <span class="sidebar-brand__sys">Unified System</span>
+          <span class="sidebar-brand__name">Job Platform</span>
+        </div>
+        <div class="sidebar-brand__dot"></div>
+      </div>
+
+      <div class="sidebar-nav">
+        <span class="sidebar-nav__label">Main Menu</span>
+        
+        <a class="nav-item" href="/">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Dashboard</span>
+            <span class="nav-item__sub">系统总览</span>
+          </div>
+        </a>
+
+        <a class="nav-item nav-item--active" href="/jobs.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Job Matrix</span>
+            <span class="nav-item__sub">岗位增删改查</span>
+          </div>
+        </a>
+
+        <a class="nav-item" href="/ingest.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Ingestion</span>
+            <span class="nav-item__sub">上传与构建</span>
+          </div>
+        </a>
+        
+        <a class="nav-item" href="/tags.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Tags Center</span>
+            <span class="nav-item__sub">统计与归一结果</span>
+          </div>
+        </a>
+
+        <!-- 当前页面为 Active -->
+        <a class="nav-item" href="/runs.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Run Logs</span>
+            <span class="nav-item__sub">批次与运行记录</span>
+          </div>
+        </a>
+
+        <a class="nav-item" href="/settings.html">
+          <div class="nav-item__icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
+          <div class="nav-item__body">
+            <span class="nav-item__title">Settings</span>
+            <span class="nav-item__sub">模型与并发配置</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <span>v2.4.0-rc</span>
+        <span>STATUS: ONLINE</span>
+      </div>
+    </aside>
+    <!-- 主内容区 -->
+    <main class="main">
+      
+      <!-- 顶栏 (含主题切换开关) -->
+      <div class="topbar">
+        <div class="topbar__left">
+          <span class="topbar__crumb">Unified System</span>
+          <span class="topbar__sep">/</span>
+          <span class="topbar__crumb topbar__crumb--active">Job Matrix</span>
+        </div>
+        <div class="topbar__right">
+          <!-- 主题切换按钮 -->
+          <button class="btn btn--ghost btn--sm" id="themeToggleBtn" title="切换日/夜间模式">
+            <svg id="themeToggleIcon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14">
+              <!-- 图标由 JS 动态注入 -->
+            </svg>
+            Theme
+          </button>
+        </div>
+      </div>
+
+    <!-- 页面标题 -->
+      <div class="page-title">
+        <div>
+          <h1 class="page-title__h">Job Matrix</h1>
+          <p class="page-title__sub">岗位主表、搜索、编辑和最近新增都在这里。左侧看列表，右侧直接维护岗位 JSON 与画像结构。</p>
+        </div>
+        <!-- 用一个 flex 容器把两个按钮并排放在一起 -->
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn--ghost" id="reloadJobsBtn">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            刷新列表
+          </button>
+          <button class="btn btn--accent" id="newJobBtn">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            新建岗位
+          </button>
+        </div>
+      </div>
+
+      <!-- 数据统计条 -->
+      <div class="stat-strip">
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--blue"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">Total Jobs</span>
+            <span class="stat-card__val" id="metricJobs">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--teal"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">Normal Tags</span>
+            <span class="stat-card__val" id="metricTags">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--amber"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">High Freq Tech</span>
+            <span class="stat-card__val" id="metricHighTags">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon stat-card__icon--violet"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
+          <div class="stat-card__body">
+            <span class="stat-card__label">Run Batches</span>
+            <span class="stat-card__val" id="metricRuns">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 工作区 (左右分栏) -->
+      <div class="workspace">
+        
+        <!-- 左侧栏：搜索与列表 -->
+        <div class="col">
+          <div class="card">
+            <div class="card-section">
+              <span class="field-group-label">Data Query</span>
+              
+              <div class="field-grid">
+                <div class="field-wrap input-with-icon">
+                  <svg class="input-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  <input id="jobBasicKeyword" placeholder="搜索 Job ID、岗位名、公司名" />
+                </div>
+                
+                <div class="field-wrap input-with-icon">
+                  <svg class="input-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  <input id="jobJdKeyword" placeholder="搜索 jdSplit 全部字段" />
+                </div>
+                
+                <div class="field-grid field-grid--2">
+                  <div class="field-wrap">
+                    <select id="jobDirection">
+                      <option value="">全部方向 (All)</option>
+                      <option value="frontend">前端开发</option>
+                      <option value="backend">后端开发</option>
+                    </select>
+                  </div>
+                  <div class="field-wrap">
+                    <select id="jobIndustry">
+                      <option value="">全部行业 (All)</option>
+                      <option value="internet">互联网</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field-grid field-grid--2" style="margin-top: 4px;">
+                  <div class="field-wrap">
+                    <select id="jobSort">
+                      <option value="default">Sort: Default</option>
+                      <option value="recent">Sort: Recent</option>
+                    </select>
+                  </div>
+                  <div class="field-wrap">
+                    <button class="btn btn--full btn--blue" id="jobSearchBtn">
+                      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="13" height="13"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                      Deep Search
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-divider" style="margin: 20px 0 16px;"></div>
+
+              <span class="field-group-label">Result List</span>
+              <div class="job-list" id="jobList">
+                <div class="job-item job-item--selected">
+                  <div class="job-item__main">
+                    <div class="job-item__title">高级前端架构师</div>
+                    <div class="job-item__meta">
+                      <span class="job-item__company">字节跳动</span>
+                      <span class="job-item__dir">Frontend</span>
+                    </div>
+                  </div>
+                  <div class="job-item__id">JOB-9921</div>
+                </div>
+                <div class="job-item">
+                  <div class="job-item__main">
+                    <div class="job-item__title">Java 资深研发专家</div>
+                    <div class="job-item__meta">
+                      <span class="job-item__company">蚂蚁集团</span>
+                      <span class="job-item__dir">Backend</span>
+                    </div>
+                  </div>
+                  <div class="job-item__id">JOB-9922</div>
+                </div>
+                <div class="job-item">
+                  <div class="job-item__main">
+                    <div class="job-item__title">AI大模型算法研究员</div>
+                    <div class="job-item__meta">
+                      <span class="job-item__company">腾讯科技</span>
+                      <span class="job-item__dir">Algorithm</span>
+                    </div>
+                  </div>
+                  <div class="job-item__id">JOB-9923</div>
+                </div>
+              </div>
+              
+              <div class="list-footer">
+                <button class="btn btn--ghost btn--full" id="loadMoreJobsBtn">Load More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧栏：编辑器与详情 -->
+        <div class="col">
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head">
+                <div>
+                  <h3 class="card-section__title">Inspector & Editor</h3>
+                  <p class="card-section__desc">上方基础字段用于快速修改，下方完整 JSON 适合直接编辑岗位画像和原始结构。</p>
+                </div>
+                <span class="job-id-badge" id="editorJobId">ID: JOB-9921</span>
+              </div>
+
+              <div class="field-grid field-grid--2">
+                <div class="field-wrap">
+                  <span class="field-label">Title</span>
+                  <input id="editorTitle" placeholder="岗位名称" value="高级前端架构师" />
+                </div>
+                <div class="field-wrap">
+                  <span class="field-label">Company</span>
+                  <input id="editorCompany" placeholder="公司名称" value="字节跳动" />
+                </div>
+                <div class="field-wrap">
+                  <span class="field-label">Direction</span>
+                  <input id="editorDirection" placeholder="岗位方向" value="Frontend" />
+                </div>
+                <div class="field-wrap">
+                  <span class="field-label">Industry</span>
+                  <input id="editorIndustry" placeholder="所属行业" value="Internet" />
+                </div>
+              </div>
+
+              <div class="field-grid field-grid--3" style="margin-top: 12px;">
+                <div class="field-wrap">
+                  <span class="field-label">Job ID</span>
+                  <input id="editorJobIdInput" placeholder="Job ID" value="JOB-9921" readonly style="opacity: 0.6;" />
+                </div>
+                <div class="field-wrap">
+                  <span class="field-label">Type</span>
+                  <input id="editorJobType" placeholder="岗位类型" value="Full-time" />
+                </div>
+                <div class="field-wrap">
+                  <span class="field-label">Salary (K)</span>
+                  <input id="editorSalary" placeholder="如 30,50" value="40,65" />
+                </div>
+              </div>
+
+              <div class="field-wrap" style="margin-top: 16px;">
+                <span class="field-label">Raw JSON Object</span>
+                <textarea id="jobJsonEditor" spellcheck="false">{
+  "jobId": "JOB-9921",
+  "title": "高级前端架构师",
+  "company": "字节跳动",
+  "location": "北京",
+  "salaryRange": [40, 65],
+  "tags": ["React", "TypeScript", "Node.js", "微前端架构", "性能优化"],
+  "jdSplit": {
+    "requirements": "1. 熟练掌握 React 及其生态...\n2. 深入理解前端工程化，有大型基建经验...",
+    "responsibilities": "负责核心业务线架构设计与开发，带领团队攻坚技术难点..."
+  },
+  "metadata": {
+    "createdAt": "2026-04-04T10:00:00Z",
+    "updatedAt": "2026-04-04T11:05:00Z"
+  }
+}</textarea>
+              </div>
+            </div>
+            
+            <div class="card-section card-section--actions">
+              <button class="btn btn--accent" id="saveJobBtn">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                Save Record
+              </button>
+              <button class="btn" id="formatJobBtn">Format JSON</button>
+              <button class="btn btn--danger" id="deleteJobBtn" style="margin-left: auto;">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                Delete
+              </button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-section">
+              <div class="card-section__head" style="margin-bottom: 10px;">
+                <h3 class="card-section__title">Tag Cloud Preview</h3>
+                <div class="tag-legend">
+                  <span class="tag-legend__item tag-legend__item--teal">Skill</span>
+                  <span class="tag-legend__item tag-legend__item--blue">Soft</span>
+                </div>
+              </div>
+              <div class="tag-cloud" id="jobTagPreview">
+                 <span class="tag tag--skill">React</span>
+                 <span class="tag tag--skill">TypeScript</span>
+                 <span class="tag tag--skill">微前端架构</span>
+                 <span class="tag tag--skill">Node.js</span>
+                 <span class="tag tag--blue">技术攻坚</span>
+                 <span class="tag tag--blue">团队管理</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-section">
+              <h3 class="card-section__title" style="margin-bottom: 12px;">Recent Audits</h3>
+              <div class="recent-list" id="recentJobsList">
+                <div class="recent-item">
+                  <span class="recent-item__rank">01</span>
+                  <span class="recent-item__name">UI设计师 - 腾讯</span>
+                  <span class="recent-item__time">11:02 AM</span>
+                </div>
+                <div class="recent-item">
+                  <span class="recent-item__rank">02</span>
+                  <span class="recent-item__name">Go开发工程师 - 美团</span>
+                  <span class="recent-item__time">10:45 AM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- 将绑定的 JS 放在尾部 -->
+  <script src="/assets/admin-common.js"></script>
+  <script src="/assets/pages/jobs.js?v=20260404_0215"></script>
+
+  <!-- 💡 页面内部组件绑定逻辑 (供参考) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 初始化图标状态
+      ThemeManager.updateIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+      
+      // 绑定点击事件
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+          ThemeManager.toggle();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

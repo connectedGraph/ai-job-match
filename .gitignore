@@ -1,0 +1,72 @@
+# ==========================================
+# 智能人岗匹配与数据治理系统 (job_system) Git 忽略规则
+# ==========================================
+
+# --- 敏感信息与本地配置 ---
+.env
+.env.local
+.env.*.local
+*.env
+
+# --- 缓存、临时数据与大文件 (重要：保护仓库体积) ---
+# 忽略由 start_all.py 或后端在启动时动态生成的运行时索引数据
+dataset/runtime_data/
+dataset/logs/
+*.log
+
+# 忽略大型向量/嵌入模型缓存（例如 206MB+ 的 embedding_cache.json）
+dataset/db/tag_center/embedding_cache.json
+dataset/db/tag_center/skill_search_index_*.json
+dataset/db/tag_center/skill_search_index_*.npy
+dataset/db/tag_center/skill_search_index_*.npz
+
+# 忽略跑批/审计历史运行记录
+dataset/db/tag_center/normalization_runs/
+dataset/db/tag_center/tag_review_runs/
+
+# --- 学生端 SQLite 数据库 ---
+# 学生端本地注册/登录及画像缓存的 SQLite 数据库
+career-planner/data/
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# --- 编译/构建产物与依赖包 ---
+node_modules/
+jspm_packages/
+.npm
+.eslintcache
+dist/
+dist-ssr/
+out/
+build/
+.next/
+.nuxt/
+
+# --- Python 编译文件与虚拟环境 ---
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# 虚拟环境目录
+.venv/
+venv/
+ENV/
+env/
+venv.bak/
+.env.bak/
+
+# --- IDE 与编辑器缓存 ---
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+desktop.ini

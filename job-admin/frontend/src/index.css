@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root, [data-theme="dark"] {
+  --bg:           #07090f;
+  --bg-grid:      rgba(29,233,182,0.018);
+  --surface:      #0f131e;
+  --surface-2:    #141929;
+  --surface-3:    #1a2035;
+  --border:       rgba(255,255,255,0.06);
+  --border-2:     rgba(255,255,255,0.10);
+  --border-3:     rgba(255,255,255,0.15);
+
+  --teal:         #1de9b6;
+  --teal-dim:     rgba(29,233,182,0.08);
+  --teal-glow:    rgba(29,233,182,0.20);
+  --teal-border:  rgba(29,233,182,0.22);
+
+  --blue:         #60a5fa;
+  --blue-dim:     rgba(96,165,250,0.08);
+  --blue-border:  rgba(96,165,250,0.22);
+
+  --amber:        #fbbf24;
+  --amber-dim:    rgba(251,191,36,0.08);
+  --amber-border: rgba(251,191,36,0.22);
+
+  --violet:       #a78bfa;
+  --violet-dim:   rgba(167,139,250,0.08);
+
+  --red:          #f87171;
+  --red-dim:      rgba(248,113,113,0.09);
+  --red-border:   rgba(248,113,113,0.25);
+
+  --violet-border: rgba(167,139,250,0.22);
+
+  --tx-1:         #e2e8f0;
+  --tx-2:         #94a3b8;
+  --tx-3:         #475569;
+  --tx-4:         #2d3a50;
+  --tx-inv:       #07090f;
+
+  /* Semantic status colors — dark */
+  --status-pass:         #34d399;
+  --status-pass-bg:      rgba(52,211,153,0.10);
+  --status-pass-border:  rgba(52,211,153,0.20);
+
+  --status-warn:         #fbbf24;
+  --status-warn-bg:      rgba(251,191,36,0.10);
+  --status-warn-border:  rgba(251,191,36,0.20);
+
+  --status-danger:       #fb7185;
+  --status-danger-bg:    rgba(251,113,133,0.10);
+  --status-danger-border:rgba(251,113,133,0.20);
+
+  --status-info:         #38bdf8;
+  --status-info-bg:      rgba(56,189,248,0.10);
+  --status-info-border:  rgba(56,189,248,0.20);
+
+  --status-harvest:      #f59e0b;
+  --status-harvest-bg:   rgba(245,158,11,0.10);
+  --status-harvest-border:rgba(245,158,11,0.20);
+
+  --text-on-surface:     #e2e8f0;
+  --progress-track:      rgba(255,255,255,0.06);
+}
+
+[data-theme="light"] {
+  --bg:           #f8fafc;
+  --bg-grid:      rgba(15,23,42,0.03);
+  --surface:      #ffffff;
+  --surface-2:    #f1f5f9;
+  --surface-3:    #e2e8f0;
+  --border:       rgba(15,23,42,0.08);
+  --border-2:     rgba(15,23,42,0.12);
+  --border-3:     rgba(15,23,42,0.18);
+
+  --teal:         #0d9488;
+  --teal-dim:     rgba(13,148,136,0.08);
+  --teal-glow:    rgba(13,148,136,0.15);
+  --teal-border:  rgba(13,148,136,0.22);
+
+  --blue:         #2563eb;
+  --blue-dim:     rgba(37,99,235,0.08);
+  --blue-border:  rgba(37,99,235,0.22);
+
+  --amber:        #d97706;
+  --amber-dim:    rgba(217,119,6,0.08);
+  --amber-border: rgba(217,119,6,0.22);
+
+  --violet:       #7c3aed;
+  --violet-dim:   rgba(124,58,237,0.08);
+
+  --red:          #dc2626;
+  --red-dim:      rgba(220,38,38,0.08);
+  --red-border:   rgba(220,38,38,0.25);
+
+  --violet-border: rgba(124,58,237,0.22);
+
+  --tx-1:         #0f172a;
+  --tx-2:         #475569;
+  --tx-3:         #64748b;
+  --tx-4:         #94a3b8;
+  --tx-inv:       #ffffff;
+
+  /* Semantic status colors — light */
+  --status-pass:         #059669;
+  --status-pass-bg:      rgba(5,150,105,0.08);
+  --status-pass-border:  rgba(5,150,105,0.20);
+
+  --status-warn:         #d97706;
+  --status-warn-bg:      rgba(217,119,6,0.08);
+  --status-warn-border:  rgba(217,119,6,0.20);
+
+  --status-danger:       #e11d48;
+  --status-danger-bg:    rgba(225,29,72,0.08);
+  --status-danger-border:rgba(225,29,72,0.20);
+
+  --status-info:         #0284c7;
+  --status-info-bg:      rgba(2,132,199,0.08);
+  --status-info-border:  rgba(2,132,199,0.20);
+
+  --status-harvest:      #b45309;
+  --status-harvest-bg:   rgba(180,83,9,0.08);
+  --status-harvest-border:rgba(180,83,9,0.20);
+
+  --text-on-surface:     #1e293b;
+  --progress-track:      rgba(15,23,42,0.06);
+}
+
+body {
+  @apply bg-bg text-tx-1 font-body;
+  background-image:
+    linear-gradient(var(--bg-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+  background-size: 36px 36px;
+  min-height: 100vh;
+}
+
+/* Custom transitions that Tailwind might not easily handle as classes */
+.transition-slow { transition: all 380ms cubic-bezier(0.16, 1, 0.3, 1); }
+.transition-mid { transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1); }
+.transition-fast { transition: all 110ms cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-tx-4 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-tx-3; }
+
+@layer components {
+  .terminal-box {
+    @apply bg-surface-2 border border-border-2 rounded-sm p-4 font-mono text-xs text-teal leading-relaxed shadow-inner whitespace-pre-wrap;
+  }
+}
