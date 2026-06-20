@@ -41,20 +41,21 @@ The core approach: decompose both student and job profiles into structured tags 
 
 ## Screenshots
 
-> Screenshots pending. Will be added after capturing key pages from the running application.
+| Login | Profile Editor |
+|:---:|:---:|
+| ![Login](docs/screenshots/01-login.png) | ![Profile](docs/screenshots/02-profile.png) |
 
-<!--
-<p align="center">
-  <img src="docs/screenshots/career-planner-profile.png" width="45%" />
-  &nbsp;&nbsp;
-  <img src="docs/screenshots/career-planner-matching.png" width="45%" />
-</p>
-<p align="center">
-  <img src="docs/screenshots/job-admin-dashboard.png" width="45%" />
-  &nbsp;&nbsp;
-  <img src="docs/screenshots/job-admin-tag-center.png" width="45%" />
-</p>
--->
+| Job Exploration | Match Detail |
+|:---:|:---:|
+| ![Explore](docs/screenshots/03-matching-explore.png) | ![Detail](docs/screenshots/04-match-detail.png) |
+
+| Job Basket | Harvest Analysis |
+|:---:|:---:|
+| ![Basket](docs/screenshots/05-basket.png) | ![Harvest](docs/screenshots/06-harvest.png) |
+
+| Action Plan | Career Report |
+|:---:|:---:|
+| ![Action](docs/screenshots/07-action-plan.png) | ![Report](docs/screenshots/08-report.png) |
 
 ---
 
@@ -163,6 +164,18 @@ Once running:
 - Job Admin API docs: http://localhost:8000/docs
 
 > On first startup, the Job Admin backend needs ~10 seconds to build vector indices. Wait for `Runtime state initialized` in the console before using the UI.
+
+### Demo Account
+
+A pre-configured student account with a populated profile is available:
+
+| Username | Password |
+|---|---|
+| admin | 123456 |
+
+### About Sample Data
+
+The bundled `dataset/career.json` contains ~100 job profile samples (covering 21 tech directions) for demonstration purposes only. These are synthetically generated and do not represent real job postings. To use real data, upload JDs through the Job Admin console to auto-generate structured profiles.
 
 ---
 

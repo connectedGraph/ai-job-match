@@ -41,20 +41,21 @@
 
 ## 截图预览
 
-> 截图待补充。启动服务后将关键页面截图放到 `docs/screenshots/` 目录下。
+| 登录页 | 画像编辑 |
+|:---:|:---:|
+| ![登录](docs/screenshots/01-login.png) | ![画像](docs/screenshots/02-profile.png) |
 
-<!--
-<p align="center">
-  <img src="docs/screenshots/career-planner-profile.png" width="45%" />
-  &nbsp;&nbsp;
-  <img src="docs/screenshots/career-planner-matching.png" width="45%" />
-</p>
-<p align="center">
-  <img src="docs/screenshots/job-admin-dashboard.png" width="45%" />
-  &nbsp;&nbsp;
-  <img src="docs/screenshots/job-admin-tag-center.png" width="45%" />
-</p>
--->
+| 岗位探索 | 匹配详情 |
+|:---:|:---:|
+| ![探索](docs/screenshots/03-matching-explore.png) | ![详情](docs/screenshots/04-match-detail.png) |
+
+| 采摘篮 | 收割分析 |
+|:---:|:---:|
+| ![篮子](docs/screenshots/05-basket.png) | ![收割](docs/screenshots/06-harvest.png) |
+
+| 行动计划 | 职业报告 |
+|:---:|:---:|
+| ![行动](docs/screenshots/07-action-plan.png) | ![报告](docs/screenshots/08-report.png) |
 
 ---
 
@@ -163,6 +164,18 @@ python start_all.py
 - 管理后台 API 文档：http://localhost:8000/docs
 
 > 首次启动时管理后台需要约 10 秒初始化向量索引，等控制台输出 `Runtime state initialized` 后再操作。
+
+### 示例账号
+
+学生端内置了一个预填充画像的演示账号：
+
+| 用户名 | 密码 |
+|---|---|
+| admin | 123456 |
+
+### 关于示例数据
+
+仓库自带的 `dataset/career.json` 包含约 100 条岗位画像样本数据（覆盖 21 个技术方向），仅供演示和功能验证。这些数据由模拟生成，不代表真实岗位信息。如需接入实际岗位数据，通过管理后台上传 JD 即可自动生成结构化画像。
 
 ---
 

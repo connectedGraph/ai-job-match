@@ -24,6 +24,11 @@ dataset/db/tag_center/skill_search_index_*.npz
 dataset/db/tag_center/normalization_runs/
 dataset/db/tag_center/tag_review_runs/
 
+# 忽略从岗位库生成的大文件（运行时自动重建）
+dataset/db/tag_center/job_tag_relations*.jsonl
+dataset/db/tag_center/tag_master_source.json
+dataset/career_planner/skill_search_query_embedding_cache*.jsonl
+
 # --- 学生端 SQLite 数据库 ---
 # 学生端本地注册/登录及画像缓存的 SQLite 数据库
 career-planner/data/
@@ -31,6 +36,8 @@ career-planner/data/
 *.db-journal
 *.sqlite
 *.sqlite3
+# 但保留示例数据库
+!dataset/career_planner/career_planner.sqlite3
 
 # --- 编译/构建产物与依赖包 ---
 node_modules/
