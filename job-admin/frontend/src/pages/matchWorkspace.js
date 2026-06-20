@@ -571,7 +571,7 @@ export function normalizeMatchJobs(matchData = {}, previousJobs = {}) {
     lanes['featured_target'] = [];
     lanes['featured_reach'] = [];
   } else if (matchData?.topJobs) {
-    // 最旧格式：topJobs.safety/target/reach
+    // 兼容字段：topJobs 同样按 safety/target/reach 三桶返回
     lanes['featured_safety'] = normalizeJobList(matchData.topJobs.safety, 'featured_safety', '保守槽');
     lanes['featured_target'] = normalizeJobList(matchData.topJobs.target, 'featured_target', '精准槽');
     lanes['featured_reach'] = normalizeJobList(matchData.topJobs.reach, 'featured_reach', '冲刺槽');

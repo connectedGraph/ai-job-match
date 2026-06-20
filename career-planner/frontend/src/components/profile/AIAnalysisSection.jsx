@@ -75,7 +75,7 @@ const AIAnalysisSection = ({ title, desc, dims, type }) => {
     updateProfileAiTask(type, { loading: true, error: null });
     try {
       const endpoint = type === 'softQuality' ? '/api/ai/profile/soft-quality' : '/api/ai/profile/growth-potential';
-      const result = await api.post(endpoint, { studentData });
+      const result = await api.post(endpoint, { studentProfile: studentData });
       const dimensions = normalizeAiDimensionList(result);
       const nextAiResults = { ...(aiResults || {}), [type]: dimensions };
       const nextStudentData = buildMatchStudentPayload(studentData, nextAiResults);

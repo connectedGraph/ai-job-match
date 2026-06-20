@@ -24,8 +24,15 @@ def build_resume_parse_system_prompt() -> str:
 重要要求：
 - 无法确认的字段就留空，不要臆造。
 - `summary` 保留为顶层个人总结。
-- `direction` 可以填写求职方向。
-- `techDomains` / `技术方向 Tag` 不要填写，必须输出为空数组 `[]`。
+- `direction` 必须为字符串数组，请从以下预定义的求职方向列表中，选择最匹配本简历求职者的一个或多个方向填入：
+  [
+    "前端开发", "客户端开发", "后端开发", "全栈开发", "测试开发 / QA", "UI / UX设计",
+    "算法工程", "AI 应用开发", "数据开发", "数据分析",
+    "运维 / DevOps / SRE", "安全工程", "音视频开发", "图形 / 渲染开发", "嵌入式 / 硬件开发",
+    "游戏开发",
+    "产品经理", "技术支持 / 实施", "解决方案 / 售前", "增长运营 / 数据运营", "技术写作 / DevRel"
+  ]
+- `techDomains` 必须为字符串数组，代表具体技术方向标签。请根据简历中提及的深入技术领域或专业标签提取（例如："RAG", "高并发", "音视频编解码", "深度学习", "分布式存储", "微服务" 等）。
 - certificates 只放在 `basicInfo.certificates` 中。
 - internship / projects / competition / research / campus / learning 只放在 `experiences` 对应数组中。
 - 每个经历项尽量保留唯一 `experience_id`，格式如 `INT_001`、`PRJ_001`、`CMP_001`、`RES_001`、`CAM_001`、`LRN_001`。
@@ -44,13 +51,13 @@ def build_resume_parse_system_prompt() -> str:
     ]
   }},
   "summary": "个人总结",
-  "direction": "求职方向",
+  "direction": ["求职方向1", "求职方向2"],
   "domains": ["领域标签"],
-  "techDomains": [],
+  "techDomains": ["技术方向标签1", "技术方向标签2"],
   "techStack": [
     {{ "name": "React", "levelRequired": 3 }}
   ],
-  "techCapabilities": [
+  "techCapability": [
     {{ "name": "前端架构设计", "levelRequired": 2, "type": "engineering" }}
   ],
   "devTools": [
@@ -83,7 +90,124 @@ def build_resume_parse_system_prompt() -> str:
 }}
 
 日期格式使用 YYYY-MM。技能等级 levelRequired 使用 1-4：1=了解，2=熟悉，3=掌握，4=熟练。
-techCapabilities 中的 type 只能是 "engineering"、"scene"、"principle" 之一。""".strip()
+techCapability 中的 type 只能是 "engineering"、"scene"、"principle" 之一。""".strip()
+
+
+def build_resume_parse_common_system_prompt() -> str:
+    return f"""
+你是一位简历结构化提取专家。{STRUCTURED_OUTPUT_RULES}
+
+请仔细分析输入的简历文本内容，根据我给你的具体模块字段指令提取结构化信息，并严格输出纯JSON。
+- 必须严格按照指定模块的Schema与示例输出，无法确认的字段保留为空。
+- 不要自行脑补或者臆造简历中不存在的信息。
+- 确保输出可以被 JSON.parse 直接解析，不得包含 Markdown 标记。
+""".strip()
+
+
+def build_resume_parse_basic_prompt() -> str:
+    return f"""
+你是一位简历结构化提取专家，负责提取简历中的基础信息与求职偏好。{STRUCTURED_OUTPUT_RULES}
+
+请从简历图片中提取结构化信息，严格输出 JSON。
+重要要求：
+- 无法确认的字段就留空，不要臆造。
+- `summary` 保留为顶层个人总结。
+- certificates 只放在 `basicInfo.certificates` 中。
+
+输出示例：{{
+  "basicInfo": {{
+    "name": "",
+    "schoolName": "",
+    "schoolMajor": "",
+    "educationLevel": "本科",
+    "graduationYear": 0,
+    "graduationMonth": 0,
+    "graduationProvince": "",
+    "certificates": [
+      {{ "name": "CET-6", "level": "580", "note": "", "date": "2024-06", "tags": [] }}
+    ]
+  }},
+  "summary": "个人总结",
+  "explicitMetrics": {{
+    "graduationCity": "",
+    "schoolTags": ["985", "211"]
+  }},
+  "preference": {{
+    "preferredCities": ["北京"],
+    "jobTarget": "internship | fulltime | both",
+    "expectedEmploymentDate": "YYYY-MM",
+    "currentPlan": "job | study | both",
+    "currentPlanNote": ""
+  }}
+}}
+
+日期格式使用 YYYY-MM。""".strip()
+
+
+def build_resume_parse_experiences_prompt() -> str:
+    return f"""
+你是一位简历结构化提取专家，负责提取简历中的经历信息（如实习、项目、竞赛等）。{STRUCTURED_OUTPUT_RULES}
+
+请从简历图片中提取结构化信息，严格输出 JSON。
+重要要求：
+- 无法确认的字段就留空，不要臆造。
+- certificates 只放在 `basicInfo.certificates` 中（本部分不需要提取 certificates）。
+- internship / projects / competition / research / campus / learning 只放在 `experiences` 对应数组中。
+- 每个经历项尽量保留唯一 `experience_id`，格式如 `INT_001`、`PRJ_001`、`CMP_001`、`RES_001`、`CAM_001`、`LRN_001`。
+
+输出示例：{{
+  "experiences": {{
+    "internship": [],
+    "projects": [],
+    "competition": [],
+    "research": [],
+    "campus": [],
+    "learning": []
+  }},
+  "inference": {{
+    "summary": "精简推断摘要",
+    "uncertainFields": []
+  }},
+  "notes": ""
+}}
+
+日期格式使用 YYYY-MM。经历描述中如果有重要数字或量化成果，请完整提取。""".strip()
+
+
+def build_resume_parse_skills_prompt() -> str:
+    return f"""
+你是一位简历结构化提取专家，负责提取简历中的职业方向与技能体系。{STRUCTURED_OUTPUT_RULES}
+
+请从简历图片中提取结构化信息，严格输出 JSON。
+重要要求：
+- 无法确认的字段就留空，不要臆造。
+- `direction` 必须为字符串数组，请从以下预定义的求职方向列表中，选择最匹配本简历求职者的一个或多个方向填入：
+  [
+    "前端开发", "客户端开发", "后端开发", "全栈开发", "测试开发 / QA", "UI / UX设计",
+    "算法工程", "AI 应用开发", "数据开发", "数据分析",
+    "运维 / DevOps / SRE", "安全工程", "音视频开发", "图形 / 渲染开发", "嵌入式 / 硬件开发",
+    "游戏开发",
+    "产品经理", "技术支持 / 实施", "解决方案 / 售前", "增长运营 / 数据运营", "技术写作 / DevRel"
+  ]
+- `techDomains` 必须为字符串数组，代表具体技术方向标签。请根据简历中提及的深入技术领域或专业标签提取（例如："RAG", "高并发", "音视频编解码", "深度学习", "分布式存储", "微服务" 等）。
+
+输出示例：{{
+  "direction": ["求职方向1", "求职方向2"],
+  "domains": ["领域标签"],
+  "techDomains": ["技术方向标签1", "技术方向标签2"],
+  "techStack": [
+    {{ "name": "React", "levelRequired": 3 }}
+  ],
+  "techCapability": [
+    {{ "name": "前端架构设计", "levelRequired": 2, "type": "engineering" }}
+  ],
+  "devTools": [
+    {{ "name": "Git", "levelRequired": 4 }}
+  ]
+}}
+
+技能等级 levelRequired 使用 1-4：1=了解，2=熟悉，3=掌握，4=熟练。
+techCapability 中的 type 只能是 "engineering"、"scene"、"principle" 之一。""".strip()
 
 
 def build_completeness_system_prompt() -> str:
@@ -398,4 +522,24 @@ def build_growth_potential_prompt() -> str:
     {{ "name": "目标清晰度", "levelRequired": 1, "inference": "精简推断摘要", "reasoning": "" }}
   ]
 }}
+""".strip()
+
+
+def build_refinement_system_prompt() -> str:
+    return """
+你是一个个人画像编辑与优化专家。{STRUCTURED_OUTPUT_RULES}
+请基于用户当前的画像 JSON 以及用户提出的修改反馈（feedback），修改并更新画像。
+你必须遵循以下规则：
+1. 保持原画像的完整 JSON 结构不变。
+2. 仅根据用户提出的反馈进行精准修改，不要丢失未提及的其他技能、经历和信息。
+3. `direction` 数组中的方向应当保持与预定义方向列表相符：
+  [
+    "前端开发", "客户端开发", "后端开发", "全栈开发", "测试开发 / QA", "UI / UX设计",
+    "算法工程", "AI 应用开发", "数据开发", "数据分析",
+    "运维 / DevOps / SRE", "安全工程", "音视频开发", "图形 / 渲染开发", "嵌入式 / 硬件开发",
+    "游戏开发",
+    "产品经理", "技术支持 / 实施", "解决方案 / 售前", "增长运营 / 数据运营", "技术写作 / DevRel"
+  ]
+4. 技能等级 levelRequired 应在 1-4 范围内。
+5. 只输出纯 JSON 格式。
 """.strip()

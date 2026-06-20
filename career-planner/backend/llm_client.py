@@ -7,6 +7,8 @@ import httpx
 from fastapi import HTTPException
 
 from .config import LLMConfig, load_ai_llm_config, load_resume_llm_config
+from shared.llm_resilience import call_llm_with_resilience, parse_llm_json
+
 
 
 logger = logging.getLogger(__name__)
@@ -62,25 +64,8 @@ def _extract_balanced_json_at(text: str, start: int) -> Optional[str]:
 
 
 def extract_and_parse_json(text: str) -> Any:
-    raw = str(text or "")
-    last_error: Optional[Exception] = None
+    return parse_llm_json(text)
 
-    for idx, char in enumerate(raw):
-        if char not in "{[":
-            continue
-
-        candidate = _extract_balanced_json_at(raw, idx)
-        if not candidate:
-            continue
-
-        try:
-            return json.loads(candidate)
-        except json.JSONDecodeError as exc:
-            last_error = exc
-
-    if last_error:
-        raise ValueError(f"No valid JSON found in response: {last_error}") from last_error
-    raise ValueError("No JSON found in response")
 
 
 def _should_log_raw_response_on_parse_failure() -> bool:
@@ -135,6 +120,7 @@ async def _call_chat_json(
     config_label: str,
     max_retries: int = 3,
     max_tokens: Optional[int] = None,
+    stream: bool = False,
 ) -> Any:
     try:
         config = config_loader()
@@ -145,18 +131,29 @@ async def _call_chat_json(
     if not config.base_url:
         raise HTTPException(status_code=500, detail=f"{config_label} base URL is not configured on backend")
 
-    body = {
-        "model": config.model,
-        "temperature": config.temperature,
-        "max_tokens": max_tokens or config.max_tokens,
-        "messages": messages,
-    }
-    endpoint = f"{config.base_url}/chat/completions"
-    last_error: Optional[Exception] = None
-    retry_count = max(1, max_retries)
+    model_name = config.model
+    temperature = config.temperature
+    reasoning_param = None
+    if model_name.startswith("gpt-5."):
+        temperature = 0
+        reasoning_param = {"effort": "none"}
 
-    for attempt in range(1, retry_count + 1):
-        try:
+    body = {
+        "model": model_name,
+        "messages": messages,
+        "stream": stream,
+    }
+    if temperature is not None:
+        body["temperature"] = temperature
+    if max_tokens or config.max_tokens:
+        body["max_tokens"] = max_tokens or config.max_tokens
+    if reasoning_param:
+        body["reasoning"] = reasoning_param
+
+    endpoint = f"{config.base_url}/chat/completions"
+
+    async def _do_call():
+        if not stream:
             async with httpx.AsyncClient(timeout=config.timeout_seconds) as client:
                 response = await client.post(
                     endpoint,
@@ -166,30 +163,146 @@ async def _call_chat_json(
                     },
                     json=body,
                 )
-            if response.status_code >= 400:
-                raise HTTPException(
-                    status_code=502,
-                    detail=f"{config_label} request failed with status {response.status_code}: {response.text[:500]}",
-                )
-            payload = response.json()
-            raw = _normalize_message_content(payload.get("choices", [{}])[0].get("message", {}).get("content"))
+                response.raise_for_status()
+                data = response.json()
+                raw = data.get("choices", [{}])[0].get("message", {}).get("content", "").strip()
+                try:
+                    return parse_llm_json(raw)
+                except Exception as exc:
+                    _log_json_parse_failure(config_label, config, raw, exc, 1, 1)
+                    raise
+        else:
+            raw_text = ""
+            async with httpx.AsyncClient(timeout=config.timeout_seconds) as client:
+                async with client.stream(
+                    "POST",
+                    endpoint,
+                    headers={
+                        "Authorization": f"Bearer {config.api_key}",
+                        "Content-Type": "application/json",
+                    },
+                    json=body,
+                ) as response:
+                    response.raise_for_status()
+                    async for line in response.aiter_lines():
+                        line = line.strip()
+                        if not line:
+                            continue
+                        if line.startswith("data: "):
+                            data_str = line[6:]
+                            if data_str == "[DONE]":
+                                break
+                            try:
+                                data_json = json.loads(data_str)
+                                choices = data_json.get("choices") or []
+                                if choices:
+                                    delta = choices[0].get("delta") or {}
+                                    content = delta.get("content") or ""
+                                    if content:
+                                        raw_text += content
+                            except Exception:
+                                pass
+            raw = raw_text.strip()
             try:
-                return extract_and_parse_json(raw)
+                return parse_llm_json(raw)
             except Exception as exc:
-                _log_json_parse_failure(config_label, config, raw, exc, attempt, retry_count)
+                _log_json_parse_failure(config_label, config, raw, exc, 1, 1)
                 raise
-        except HTTPException:
-            raise
-        except Exception as exc:
-            last_error = exc
 
-    raise HTTPException(status_code=502, detail=f"{config_label} JSON parse failed: {last_error}")
+    try:
+        return await call_llm_with_resilience(
+            _do_call,
+            label=config_label,
+            max_attempts=max_retries,
+        )
+    except Exception as exc:
+        raise HTTPException(
+            status_code=502,
+            detail=f"{config_label} failed or returned invalid JSON: {str(exc)}"
+        ) from exc
+
+
+async def _call_responses_api_json(
+    messages: List[Dict[str, Any]],
+    config_loader: Callable[[], LLMConfig],
+    config_label: str,
+    max_retries: int = 3,
+    max_tokens: Optional[int] = None,
+) -> Any:
+    try:
+        config = config_loader()
+    except RuntimeError as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+    if not config.api_key:
+        raise HTTPException(status_code=500, detail=f"{config_label} API key is not configured on backend")
+    if not config.base_url:
+        raise HTTPException(status_code=500, detail=f"{config_label} base URL is not configured on backend")
+
+    model_name = config.model
+    temperature = config.temperature
+    reasoning_param = None
+    if model_name.startswith("gpt-5."):
+        temperature = 0
+        reasoning_param = {"effort": "none"}
+
+    body = {
+        "model": model_name,
+        "input": messages,
+    }
+    if temperature is not None:
+        body["temperature"] = temperature
+    if max_tokens or config.max_tokens:
+        body["max_output_tokens"] = max_tokens or config.max_tokens
+    if reasoning_param:
+        body["reasoning"] = reasoning_param
+    # Append responses to base_url
+    endpoint = f"{config.base_url}/responses"
+
+    async def _do_call():
+        async with httpx.AsyncClient(timeout=config.timeout_seconds) as client:
+            response = await client.post(
+                endpoint,
+                headers={
+                    "Authorization": f"Bearer {config.api_key}",
+                    "Content-Type": "application/json",
+                },
+                json=body,
+            )
+            response.raise_for_status()
+            payload = response.json()
+            
+            # Extract content from Responses API structure
+            content_list = []
+            for out_item in payload.get("output", []):
+                if out_item.get("type") == "message" and out_item.get("role") == "assistant":
+                    content_list = out_item.get("content") or []
+                    break
+            
+            raw = _normalize_message_content(content_list)
+            try:
+                return parse_llm_json(raw)
+            except Exception as exc:
+                _log_json_parse_failure(config_label, config, raw, exc, 1, 1)
+                raise
+
+    try:
+        return await call_llm_with_resilience(
+            _do_call,
+            label=config_label,
+            max_attempts=max_retries,
+        )
+    except Exception as exc:
+        raise HTTPException(
+            status_code=502,
+            detail=f"{config_label} failed or returned invalid JSON: {str(exc)}"
+        ) from exc
 
 
 async def call_resume_chat_json(
     messages: List[Dict[str, Any]],
     max_retries: int = 3,
     max_tokens: Optional[int] = None,
+    stream: bool = True,
 ) -> Any:
     return await _call_chat_json(
         messages=messages,
@@ -197,6 +310,7 @@ async def call_resume_chat_json(
         config_label="Resume LLM",
         max_retries=max_retries,
         max_tokens=max_tokens,
+        stream=stream,
     )
 
 
@@ -204,6 +318,7 @@ async def call_ai_chat_json(
     messages: List[Dict[str, Any]],
     max_retries: int = 3,
     max_tokens: Optional[int] = None,
+    stream: bool = False,
 ) -> Any:
     return await _call_chat_json(
         messages=messages,
@@ -211,6 +326,7 @@ async def call_ai_chat_json(
         config_label="AI tools LLM",
         max_retries=max_retries,
         max_tokens=max_tokens,
+        stream=stream,
     )
 
 
@@ -218,5 +334,11 @@ async def call_chat_json(
     messages: List[Dict[str, Any]],
     max_retries: int = 3,
     max_tokens: Optional[int] = None,
+    stream: bool = False,
 ) -> Any:
-    return await call_ai_chat_json(messages=messages, max_retries=max_retries, max_tokens=max_tokens)
+    return await call_ai_chat_json(
+        messages=messages,
+        max_retries=max_retries,
+        max_tokens=max_tokens,
+        stream=stream,
+    )

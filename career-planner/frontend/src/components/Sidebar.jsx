@@ -76,14 +76,14 @@ const Sidebar = () => {
                   "flex items-center rounded-xl transition-all duration-200",
                   isCollapsed ? "justify-center h-10 w-10 mx-auto" : "gap-3 px-3 py-2.5 text-sm font-medium",
                   isActive
-                    ? "bg-blue-50 text-primary shadow-sm ring-1 ring-blue-100"
+                    ? "bg-teal-50 text-[var(--teal)] shadow-sm ring-1 ring-teal-100"
                     : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                 )
               }
             >
               {({ isActive }) => (
                 <>
-                  <item.icon className={cn("h-5 w-5", isActive ? "text-primary" : "text-gray-400")} />
+                  <item.icon className={cn("h-5 w-5", isActive ? "text-[var(--teal)]" : "text-gray-400")} />
                   {!isCollapsed && <span>{item.name}</span>}
                 </>
               )}
@@ -105,7 +105,7 @@ const Sidebar = () => {
               "flex items-center rounded-xl transition-all duration-200",
               isCollapsed ? "justify-center h-10 w-10 mx-auto" : "gap-3 px-3 py-2.5 text-sm font-medium",
               isActive
-                ? "bg-blue-50 text-primary shadow-sm ring-1 ring-blue-100"
+                ? "bg-teal-50 text-[var(--teal)] shadow-sm ring-1 ring-teal-100"
                 : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
             )
           }

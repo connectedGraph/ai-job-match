@@ -25,6 +25,12 @@ const mergeStudentDraft = (serverStudentData, localStudentData) => {
 
 export const DataProvider = ({ children }) => {
   const { user } = useAuth();
+
+  const getDraftKey = useCallback((suffix) => {
+    const userId = user?.dbId || user?.id || 'guest';
+    return `cp_draft_${userId}_${suffix}`;
+  }, [user?.dbId, user?.id]);
+
   const [studentData, setStudentData] = useState({});
   const [aiResults, setAiResults] = useState({});
   const [matchWorkspace, setMatchWorkspace] = useState(createEmptyWorkspace());
@@ -36,6 +42,19 @@ export const DataProvider = ({ children }) => {
   const [ripeningStatus, setRipeningStatus] = useState({ isRipening: false, progress: 0 });
 
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [resumeParsing, setResumeParsing] = useState({
+    isParsing: false,
+    error: null,
+    success: false,
+    fileName: '',
+  });
+  const [hasUploadedResume, setHasUploadedResume] = useState(false);
+
+  useEffect(() => {
+    const userId = user?.dbId || user?.id || 'guest';
+    const key = `cp_draft_${userId}_has_uploaded_resume`;
+    setHasUploadedResume(localStorage.getItem(key) === 'true');
+  }, [user]);
   const studentDataRef = useRef(studentData);
   const aiResultsRef = useRef(aiResults);
   const matchWorkspaceRef = useRef(matchWorkspace);
@@ -53,10 +72,6 @@ export const DataProvider = ({ children }) => {
     matchWorkspaceRef.current = matchWorkspace;
   }, [matchWorkspace]);
 
-  const getDraftKey = useCallback((suffix) => {
-    const userId = user?.dbId || user?.id || 'guest';
-    return `cp_draft_${userId}_${suffix}`;
-  }, [user?.dbId, user?.id]);
 
   const loadData = useCallback(async () => {
     if (!user) return;
@@ -278,6 +293,8 @@ export const DataProvider = ({ children }) => {
       updateMatchWorkspace(createEmptyWorkspace());
       setProfileAiTasks({});
       setShowOnboarding(true); 
+      setHasUploadedResume(false);
+      resetResumeParsing();
       
       return true;
     } catch (error) {
@@ -291,8 +308,8 @@ export const DataProvider = ({ children }) => {
     setMatching(true);
     try {
       const matchStudent = buildMatchStudentPayload(studentDataRef.current, aiResultsRef.current);
-      const result = await api.post('/api/match', {
-        student: matchStudent,
+      const result = await api.post('/api/match/run', {
+        studentProfile: matchStudent,
         batch_offsets: offsets,
       });
       
@@ -323,7 +340,7 @@ export const DataProvider = ({ children }) => {
     if (!user) return null;
     const matchStudent = buildMatchStudentPayload(studentDataRef.current, aiResultsRef.current);
     return api.post('/api/match/check', {
-      student: matchStudent,
+      studentProfile: matchStudent,
       job,
     });
   };
@@ -366,7 +383,7 @@ export const DataProvider = ({ children }) => {
         response = await api.post('/api/match/basket/submit', {
           basket: submittedBasket,
           jobsById: matchWorkspaceRef.current.jobsById,
-          student: studentDataRef.current,
+          studentProfile: studentDataRef.current,
         });
       } catch (error) {
         console.error('Basket submit API failed, falling back to local harvest:', error);
@@ -436,12 +453,82 @@ export const DataProvider = ({ children }) => {
 
   const syncActiveBasket = async ({ basket, jobsById }) => {
     if (!user) return null;
-    const response = await api.put('/api/match/basket/active', {
-      basket,
-      jobsById,
-    });
-    return response?.workspace || null;
+    const nextWorkspace = {
+      ...matchWorkspaceRef.current,
+      currentBasket: basket || matchWorkspaceRef.current.currentBasket || {},
+      jobsById: {
+        ...(matchWorkspaceRef.current.jobsById || {}),
+        ...(jobsById || {}),
+      },
+    };
+    updateMatchWorkspace(nextWorkspace);
+    setSyncing(true);
+    try {
+      const response = await api.put('/api/match/workspace', { workspace: nextWorkspace });
+      return response?.workspace || nextWorkspace;
+    } finally {
+      setSyncing(false);
+    }
   };
+
+
+  const parseResume = useCallback(async (dataUrl, fileName) => {
+    if (!dataUrl) return;
+
+    setResumeParsing({
+      isParsing: true,
+      error: null,
+      success: false,
+      fileName: fileName || 'resume_image',
+    });
+
+    try {
+      const result = await api.post('/api/ai/resume/parse', { dataUrl });
+      if (!result) throw new Error('API 返回的数据为空');
+
+      const currentStudentData = studentDataRef.current || {};
+      const nextData = {
+        ...currentStudentData,
+        ...result,
+        techDomains: (Array.isArray(result.techDomains) && result.techDomains.length > 0)
+          ? result.techDomains
+          : (Array.isArray(currentStudentData.techDomains) ? currentStudentData.techDomains : []),
+      };
+
+      // 保存至本地和草稿
+      updateStudentData(nextData);
+      await saveData(nextData);
+
+      // 设置本地上传标记
+      const hasUploadedKey = getDraftKey('has_uploaded_resume');
+      localStorage.setItem(hasUploadedKey, 'true');
+      setHasUploadedResume(true);
+
+      setResumeParsing({
+        isParsing: false,
+        error: null,
+        success: true,
+        fileName: fileName || '',
+      });
+    } catch (error) {
+      console.error('Resume parsing failed:', error);
+      setResumeParsing({
+        isParsing: false,
+        error: error.message || '解析失败，请检查网络或稍后重试',
+        success: false,
+        fileName: fileName || '',
+      });
+    }
+  }, [getDraftKey]);
+
+  const resetResumeParsing = useCallback(() => {
+    setResumeParsing({
+      isParsing: false,
+      error: null,
+      success: false,
+      fileName: '',
+    });
+  }, []);
 
   const dismissOnboarding = async () => {
     const nextStudentData = {
@@ -465,7 +552,8 @@ export const DataProvider = ({ children }) => {
       resetAllData,
       dismissOnboarding,
       showOnboarding, setShowOnboarding,
-      ripeningStatus, triggerHarvest
+      ripeningStatus, triggerHarvest,
+      resumeParsing, parseResume, resetResumeParsing, hasUploadedResume
     }}>
       {children}
     </DataContext.Provider>

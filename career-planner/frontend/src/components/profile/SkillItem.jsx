@@ -1,13 +1,20 @@
 import React from 'react';
 import { X } from 'lucide-react';
 
-const SkillItem = ({ item, category, index, onDelete, onLevelChange }) => {
+const SkillItem = ({ item, category, index, onDelete, onLevelChange, trendBadge, onTrendClick }) => {
   const level = item.levelRequired || 1;
   
   return (
     <div className="inline-flex items-center bg-white border border-gray-200 shadow-sm rounded-lg px-3 py-2 mr-3 mb-3 hover:border-blue-300 transition-colors group">
       <div className="flex flex-col mr-4 min-w-[60px]">
         <span className="text-sm font-bold text-gray-800 leading-none">{item.name}</span>
+          {trendBadge && (
+            <span
+              onClick={(e) => { e.stopPropagation(); onTrendClick?.(); }}
+              className="ml-1 cursor-pointer text-xs leading-none"
+              title={trendBadge === '🔥' ? '热门上升' : '冷门标签，谨慎选择'}
+            >{trendBadge}</span>
+          )}
         {item.domain && <span className="text-[10px] text-gray-400 font-medium mt-1">{item.domain}</span>}
       </div>
       

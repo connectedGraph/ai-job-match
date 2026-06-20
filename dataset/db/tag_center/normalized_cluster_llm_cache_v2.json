@@ -1,0 +1,343 @@
+{
+  "8ca0e99b889f053c1eec598179f383a181312bc2": {
+    "stage": "cluster_normalization",
+    "tagType": "techCapabilities",
+    "inputTag": "Requirements Discovery",
+    "samples": [
+      "Requirements Discovery",
+      "需求挖掘",
+      "Product Management",
+      "principle"
+    ],
+    "action": "delete",
+    "normalizedTag": "DELETE",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:25"
+  },
+  "e409aa83e584c64e6f2a7daf00337a65b4e5e59d": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "信息检索",
+    "samples": [
+      "信息检索"
+    ],
+    "action": "replace",
+    "normalizedTag": "Information retrieval",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:25"
+  },
+  "91429972086a05a5432d64adc3d6fcd118cc9a97": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "图神经网络",
+    "samples": [
+      "图神经网络"
+    ],
+    "action": "replace",
+    "normalizedTag": "Graph neural networks",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:25"
+  },
+  "d03fc20c7f8385791c34120e5abeeb7634d4f597": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "直播",
+    "samples": [
+      "直播"
+    ],
+    "action": "replace",
+    "normalizedTag": "Live streaming",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:25"
+  },
+  "7b5ed399cfe01513f9770ae5c2bb4a7ac12b2da8": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "广告召回",
+    "samples": [
+      "广告召回"
+    ],
+    "action": "replace",
+    "normalizedTag": "Ad retrieval",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:25"
+  },
+  "320248dd6c91e50f5553d96e2e0a7cb75456e937": {
+    "stage": "cluster_normalization",
+    "tagType": "techCapabilities",
+    "inputTag": "Requirements Analysis",
+    "samples": [
+      "Requirements Analysis",
+      "需求分析与交付落地",
+      "客户需求沟通与方案落地",
+      "Solution Delivery",
+      "scene"
+    ],
+    "action": "delete",
+    "normalizedTag": "DELETE",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "7d8feba55ec7bcc04bb7f177e00afe1ba0af860a": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "人大金仓",
+    "samples": [
+      "人大金仓"
+    ],
+    "action": "replace",
+    "normalizedTag": "KingbaseES",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "8977e2def1d2190ea01cfc66b9cfeabb7e4f8c7e": {
+    "stage": "cluster_normalization",
+    "tagType": "techCapabilities",
+    "inputTag": "LLM product capability understanding, application scenario analysis, feature design, and performance optimization",
+    "samples": [
+      "LLM product capability understanding, application scenario analysis, feature design, and performance optimization",
+      "理解大语言模型产品能力与应用场景，能够围绕功能设计与效果优化开展工作",
+      "engineering"
+    ],
+    "action": "replace",
+    "normalizedTag": "LLM application design and optimization",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "6f895691c120ccfbe9685c41a73c1f850a0286d2": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "BPM系统",
+    "samples": [
+      "BPM系统"
+    ],
+    "action": "replace",
+    "normalizedTag": "BPM system",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "d4ffd49dc930ec8ee120ce6c379ed5ac8dd8b57c": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "图学习",
+    "samples": [
+      "图学习"
+    ],
+    "action": "replace",
+    "normalizedTag": "Graph learning",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "abfe0fa77e36af28c1abe948a0e3de4af4797051": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "数字人",
+    "samples": [
+      "数字人"
+    ],
+    "action": "replace",
+    "normalizedTag": "Digital human",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "f8e9710ab026d89e410b131e6d3aec735a3984ae": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "禅道",
+    "samples": [
+      "禅道"
+    ],
+    "action": "replace",
+    "normalizedTag": "ZenTao",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "c1c5bffd7e2d127508f2f1506a2f0b95463ca7bc": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "模型压缩与加速",
+    "samples": [
+      "模型压缩与加速"
+    ],
+    "action": "replace",
+    "normalizedTag": "Model compression and acceleration",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "6b89e3b7a7c728fe7637ae1faebc071c221013f7": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "模糊测试",
+    "samples": [
+      "模糊测试"
+    ],
+    "action": "replace",
+    "normalizedTag": "Fuzz testing",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "c7007f9bb879e928076b0a1d927fb1de49335794": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "B站",
+    "samples": [
+      "B站"
+    ],
+    "action": "replace",
+    "normalizedTag": "Bilibili",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "1ab2a12b78436ff251b8492a1c19788c85989f45": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "粗排模型",
+    "samples": [
+      "粗排模型"
+    ],
+    "action": "replace",
+    "normalizedTag": "Candidate ranking model",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "59d4e66d0526a8130631b2d2a7bb2b674deca763": {
+    "stage": "cluster_normalization",
+    "tagType": "techCapabilities",
+    "inputTag": "Hands-on Project Experience",
+    "samples": [
+      "Hands-on Project Experience",
+      "实际项目经验",
+      "具有实战经验，参与过相关项目",
+      "AI",
+      "engineering"
+    ],
+    "action": "delete",
+    "normalizedTag": "DELETE",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "6d000d9c72400d098c5f7bf3d91cd20c7b2c17da": {
+    "stage": "cluster_normalization",
+    "tagType": "techCapabilities",
+    "inputTag": "Product Requirements Documentation",
+    "samples": [
+      "Product Requirements Documentation",
+      "PRD的产出能力",
+      "PRD撰写",
+      "Product Management",
+      "engineering"
+    ],
+    "action": "replace",
+    "normalizedTag": "Product requirements documentation",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "81d356dd90955a7ad136536d82d1a454e0be5e28": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "抖音",
+    "samples": [
+      "抖音"
+    ],
+    "action": "replace",
+    "normalizedTag": "Douyin",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "0e623d8548917a91e7618db34d34f17e8e135e88": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "Vector系列",
+    "samples": [
+      "Vector系列"
+    ],
+    "action": "replace",
+    "normalizedTag": "Vector",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:26"
+  },
+  "98db5011c36a2576349de0c893cb24173936edbc": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "工单系统",
+    "samples": [
+      "工单系统"
+    ],
+    "action": "replace",
+    "normalizedTag": "Ticketing system",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:27"
+  },
+  "f6e39ba705d9c68db6b1e046ff58925a86bdedb1": {
+    "stage": "cluster_normalization",
+    "tagType": "techCapabilities",
+    "inputTag": "Requirements Coverage",
+    "samples": [
+      "Requirements Coverage",
+      "需求覆盖",
+      "完成需求覆盖",
+      "Software Testing",
+      "engineering"
+    ],
+    "action": "delete",
+    "normalizedTag": "DELETE",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:27"
+  },
+  "1e2603fe76dc493dc5dc008472d904b7b94ef535": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "异步电机",
+    "samples": [
+      "异步电机"
+    ],
+    "action": "replace",
+    "normalizedTag": "Asynchronous motor",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:27"
+  },
+  "1d32e87bb80947731d6f1646c3ac4f5e5d001c12": {
+    "stage": "cluster_normalization",
+    "tagType": "techStack",
+    "inputTag": "开放架构生态",
+    "samples": [
+      "开放架构生态"
+    ],
+    "action": "replace",
+    "normalizedTag": "Open architecture ecosystem",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:27"
+  },
+  "0ea29b01a314c28652c20eddae3a93e00214ed0c": {
+    "stage": "cluster_normalization",
+    "tagType": "techCapabilities",
+    "inputTag": "Requirements Communication",
+    "samples": [
+      "Requirements Communication",
+      "需求沟通、对接海外各市场内容工作相关需求",
+      "需求沟通与跨团队协作",
+      "Cross-functional Collaboration",
+      "scene"
+    ],
+    "action": "delete",
+    "normalizedTag": "DELETE",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:54:28"
+  },
+  "8b829668ebacc4c64ff30cdec436818df6ffd42b": {
+    "stage": "normalized_tag_review",
+    "tagType": "techCapabilities",
+    "inputTag": "Product requirements documentation",
+    "samples": [
+      "Product requirements documentation",
+      "PRD的产出能力",
+      "PRD撰写",
+      "Product Management",
+      "engineering"
+    ],
+    "action": "delete",
+    "normalizedTag": "DELETE",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:55:47"
+  }
+}

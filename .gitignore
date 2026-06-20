@@ -70,3 +70,20 @@ venv.bak/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# --- 运行时日志目录 ---
+runtime_logs/
+
+# --- 开发/测试临时文件 ---
+task.md
+CLAUDE.md
+ocr_result*.txt
+test_*.py
+
+# --- 生成的 profile 样例数据 ---
+career-planner/profile_*.json
+career-planner/标准导出学生画像.json
+
+# --- 开发文档/code review 记录 ---
+docs/code-review/
+docs/2026-*.md

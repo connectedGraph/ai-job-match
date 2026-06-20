@@ -1,0 +1,535 @@
+[
+  {
+    "tagId": "GP_0C9AFC6D9B7F",
+    "canonicalName": "创新能力",
+    "canonicalNameZh": "创新能力",
+    "tagType": "growthPotential",
+    "jobCount": 10822,
+    "jobRatio": 1.0,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "GP_2B7EF20E611B",
+    "canonicalName": "学习能力",
+    "canonicalNameZh": "学习能力",
+    "tagType": "growthPotential",
+    "jobCount": 10822,
+    "jobRatio": 1.0,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "GP_17DDDBB6932D",
+    "canonicalName": "抗压能力",
+    "canonicalNameZh": "抗压能力",
+    "tagType": "growthPotential",
+    "jobCount": 10822,
+    "jobRatio": 1.0,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "GP_EA12FEAF6AAF",
+    "canonicalName": "目标清晰度",
+    "canonicalNameZh": "目标清晰度",
+    "tagType": "growthPotential",
+    "jobCount": 10822,
+    "jobRatio": 1.0,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "GP_02C61815FCE8",
+    "canonicalName": "迁移能力",
+    "canonicalNameZh": "迁移能力",
+    "tagType": "growthPotential",
+    "jobCount": 10822,
+    "jobRatio": 1.0,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "SQ_0CBC3E87CD6E",
+    "canonicalName": "团队协作",
+    "canonicalNameZh": "团队协作",
+    "tagType": "softQuality",
+    "jobCount": 10822,
+    "jobRatio": 1.0,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "SQ_2450F2F026C1",
+    "canonicalName": "执行力",
+    "canonicalNameZh": "执行力",
+    "tagType": "softQuality",
+    "jobCount": 10822,
+    "jobRatio": 1.0,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "SQ_3C3112AC7F0F",
+    "canonicalName": "沟通表达",
+    "canonicalNameZh": "沟通表达",
+    "tagType": "softQuality",
+    "jobCount": 10822,
+    "jobRatio": 1.0,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "SQ_D01B3F05B66D",
+    "canonicalName": "职业意识",
+    "canonicalNameZh": "职业意识",
+    "tagType": "softQuality",
+    "jobCount": 10822,
+    "jobRatio": 1.0,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "SQ_A5FC969678BC",
+    "canonicalName": "责任心",
+    "canonicalNameZh": "责任心",
+    "tagType": "softQuality",
+    "jobCount": 10822,
+    "jobRatio": 1.0,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TS_B312E0632B0A",
+    "canonicalName": "Python",
+    "canonicalNameZh": "Python",
+    "tagType": "techStack",
+    "jobCount": 2967,
+    "jobRatio": 0.274164,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TS_BD1F07060959",
+    "canonicalName": "C++",
+    "canonicalNameZh": "C++",
+    "tagType": "techStack",
+    "jobCount": 2493,
+    "jobRatio": 0.230364,
+    "isHighFrequency": true,
+    "groupId": "TSG_680476340DA5"
+  },
+  {
+    "tagId": "TS_37080849B6DC",
+    "canonicalName": "Java",
+    "canonicalNameZh": "Java",
+    "tagType": "techStack",
+    "jobCount": 1957,
+    "jobRatio": 0.180835,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TS_AE69DFD4FF41",
+    "canonicalName": "Go",
+    "canonicalNameZh": "Go",
+    "tagType": "techStack",
+    "jobCount": 1134,
+    "jobRatio": 0.104787,
+    "isHighFrequency": true,
+    "groupId": "TSG_680476340DA5"
+  },
+  {
+    "tagId": "TS_BFE8973A9507",
+    "canonicalName": "C",
+    "canonicalNameZh": "C",
+    "tagType": "techStack",
+    "jobCount": 1075,
+    "jobRatio": 0.099335,
+    "isHighFrequency": true,
+    "groupId": "TSG_503F5DF63965"
+  },
+  {
+    "tagId": "TS_F4D559363D41",
+    "canonicalName": "PyTorch",
+    "canonicalNameZh": "PyTorch",
+    "tagType": "techStack",
+    "jobCount": 763,
+    "jobRatio": 0.070505,
+    "isHighFrequency": true,
+    "groupId": "TSG_5907728B8F1E"
+  },
+  {
+    "tagId": "TS_0F9F6BDDEF54",
+    "canonicalName": "JavaScript",
+    "canonicalNameZh": "JavaScript",
+    "tagType": "techStack",
+    "jobCount": 732,
+    "jobRatio": 0.06764,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TS_E620A1C6D0B1",
+    "canonicalName": "TensorFlow",
+    "canonicalNameZh": "TensorFlow",
+    "tagType": "techStack",
+    "jobCount": 542,
+    "jobRatio": 0.050083,
+    "isHighFrequency": true,
+    "groupId": "TSG_5907728B8F1E"
+  },
+  {
+    "tagId": "TS_4897E0B86C70",
+    "canonicalName": "HTML",
+    "canonicalNameZh": "HTML",
+    "tagType": "techStack",
+    "jobCount": 463,
+    "jobRatio": 0.042783,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TC_78DCAB538CEC",
+    "canonicalName": "深入理解数据结构、算法和操作系统知识",
+    "canonicalNameZh": "数据结构与算法",
+    "tagType": "techCapabilities",
+    "jobCount": 458,
+    "jobRatio": 0.042321,
+    "isHighFrequency": true,
+    "groupId": "",
+    "typeCounts": {
+      "principle": 458
+    },
+    "type": "principle"
+  },
+  {
+    "tagId": "TS_46ADC8036823",
+    "canonicalName": "CSS",
+    "canonicalNameZh": "CSS",
+    "tagType": "techStack",
+    "jobCount": 444,
+    "jobRatio": 0.041028,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TS_256B52AD4267",
+    "canonicalName": "React",
+    "canonicalNameZh": "React",
+    "tagType": "techStack",
+    "jobCount": 418,
+    "jobRatio": 0.038625,
+    "isHighFrequency": true,
+    "groupId": "TSG_DEC335BA818C"
+  },
+  {
+    "tagId": "TS_0E1528E7646A",
+    "canonicalName": "PHP",
+    "canonicalNameZh": "PHP",
+    "tagType": "techStack",
+    "jobCount": 411,
+    "jobRatio": 0.037978,
+    "isHighFrequency": true,
+    "groupId": "TSG_5B8ACD1C3648"
+  },
+  {
+    "tagId": "TS_1F51C22DB7BA",
+    "canonicalName": "MySQL",
+    "canonicalNameZh": "MySQL",
+    "tagType": "techStack",
+    "jobCount": 330,
+    "jobRatio": 0.030493,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TS_94C7B4769AD4",
+    "canonicalName": "C Language",
+    "canonicalNameZh": "C Language",
+    "tagType": "techStack",
+    "jobCount": 324,
+    "jobRatio": 0.029939,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TS_6CF563BA3D04",
+    "canonicalName": "Vue",
+    "canonicalNameZh": "Vue",
+    "tagType": "techStack",
+    "jobCount": 320,
+    "jobRatio": 0.029569,
+    "isHighFrequency": true,
+    "groupId": "TSG_DEC335BA818C"
+  },
+  {
+    "tagId": "TC_DA0ABA678335",
+    "canonicalName": "增长运营 / 数据运营（偏技术侧）",
+    "canonicalNameZh": "数据分析",
+    "tagType": "techCapabilities",
+    "jobCount": 302,
+    "jobRatio": 0.027906,
+    "isHighFrequency": true,
+    "groupId": "",
+    "typeCounts": {
+      "scene": 210,
+      "engineering": 92
+    },
+    "type": "scene"
+  },
+  {
+    "tagId": "TS_1EFCA6F81AF3",
+    "canonicalName": "Microsoft Excel",
+    "canonicalNameZh": "Microsoft Excel",
+    "tagType": "techStack",
+    "jobCount": 301,
+    "jobRatio": 0.027814,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TS_7E7FF19A6F28",
+    "canonicalName": "Golang",
+    "canonicalNameZh": "Golang",
+    "tagType": "techStack",
+    "jobCount": 272,
+    "jobRatio": 0.025134,
+    "isHighFrequency": true,
+    "groupId": "TSG_E3E8F83A73EF"
+  },
+  {
+    "tagId": "TC_FF0667A53859",
+    "canonicalName": "弱电技术、自动化、安防系统、工业互联网+危化安全生产、物联网相关背景",
+    "canonicalNameZh": "弱电系统",
+    "tagType": "techCapabilities",
+    "jobCount": 238,
+    "jobRatio": 0.021992,
+    "isHighFrequency": true,
+    "groupId": "",
+    "typeCounts": {
+      "scene": 238
+    },
+    "type": "scene"
+  },
+  {
+    "tagId": "TS_BD41814B943A",
+    "canonicalName": "Redis",
+    "canonicalNameZh": "Redis",
+    "tagType": "techStack",
+    "jobCount": 221,
+    "jobRatio": 0.020421,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TC_6E95A0F9DC1B",
+    "canonicalName": "掌握扎实的计算机基础知识",
+    "canonicalNameZh": "计算机基础",
+    "tagType": "techCapabilities",
+    "jobCount": 189,
+    "jobRatio": 0.017464,
+    "isHighFrequency": true,
+    "groupId": "",
+    "typeCounts": {
+      "principle": 189
+    },
+    "type": "principle"
+  },
+  {
+    "tagId": "TS_F62A73B53CFA",
+    "canonicalName": "Objective-C",
+    "canonicalNameZh": "Objective-C",
+    "tagType": "techStack",
+    "jobCount": 171,
+    "jobRatio": 0.015801,
+    "isHighFrequency": true,
+    "groupId": "TSG_ED1035973EA9"
+  },
+  {
+    "tagId": "TS_04D3494AA832",
+    "canonicalName": "Kotlin",
+    "canonicalNameZh": "Kotlin",
+    "tagType": "techStack",
+    "jobCount": 169,
+    "jobRatio": 0.015616,
+    "isHighFrequency": true,
+    "groupId": "TSG_2D7689468951"
+  },
+  {
+    "tagId": "TC_F03B6B0B3A3C",
+    "canonicalName": "扎实的数据结构和算法基础",
+    "canonicalNameZh": "数据结构与算法",
+    "tagType": "techCapabilities",
+    "jobCount": 167,
+    "jobRatio": 0.015432,
+    "isHighFrequency": true,
+    "groupId": "",
+    "typeCounts": {
+      "principle": 167
+    },
+    "type": "principle"
+  },
+  {
+    "tagId": "TS_EE9236C77350",
+    "canonicalName": "Swift",
+    "canonicalNameZh": "Swift",
+    "tagType": "techStack",
+    "jobCount": 161,
+    "jobRatio": 0.014877,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TS_EE8E30BEEB6E",
+    "canonicalName": "TypeScript",
+    "canonicalNameZh": "TypeScript",
+    "tagType": "techStack",
+    "jobCount": 151,
+    "jobRatio": 0.013953,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TC_6F384D48B7DF",
+    "canonicalName": "熟悉机器学习、自然语言处理、数据挖掘、分布式计算、计算机视觉、计算机图形、语音识别与合成中一项或多项",
+    "canonicalNameZh": "机器学习",
+    "tagType": "techCapabilities",
+    "jobCount": 144,
+    "jobRatio": 0.013306,
+    "isHighFrequency": true,
+    "groupId": "",
+    "typeCounts": {
+      "principle": 134,
+      "engineering": 10
+    },
+    "type": "principle"
+  },
+  {
+    "tagId": "TS_F390BE26D455",
+    "canonicalName": "Angular",
+    "canonicalNameZh": "Angular",
+    "tagType": "techStack",
+    "jobCount": 144,
+    "jobRatio": 0.013306,
+    "isHighFrequency": true,
+    "groupId": "TSG_DEC335BA818C"
+  },
+  {
+    "tagId": "TS_FB3BA5441313",
+    "canonicalName": "Spark",
+    "canonicalNameZh": "Spark",
+    "tagType": "techStack",
+    "jobCount": 137,
+    "jobRatio": 0.012659,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TC_1606ED1D1EA1",
+    "canonicalName": "优秀的代码能力、数据结构和基础算法功底",
+    "canonicalNameZh": "数据结构",
+    "tagType": "techCapabilities",
+    "jobCount": 136,
+    "jobRatio": 0.012567,
+    "isHighFrequency": true,
+    "groupId": "",
+    "typeCounts": {
+      "principle": 78,
+      "engineering": 58
+    },
+    "type": "principle"
+  },
+  {
+    "tagId": "TC_626EC934C02F",
+    "canonicalName": "熟悉机器学习、自然语言处理、数据挖掘中一项或多项",
+    "canonicalNameZh": "机器学习",
+    "tagType": "techCapabilities",
+    "jobCount": 133,
+    "jobRatio": 0.01229,
+    "isHighFrequency": true,
+    "groupId": "",
+    "typeCounts": {
+      "principle": 133
+    },
+    "type": "principle"
+  },
+  {
+    "tagId": "TS_C613C07CC987",
+    "canonicalName": "Node.js",
+    "canonicalNameZh": "Node.js",
+    "tagType": "techStack",
+    "jobCount": 133,
+    "jobRatio": 0.01229,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TS_1F4544650F5B",
+    "canonicalName": "HTML5",
+    "canonicalNameZh": "HTML",
+    "tagType": "techStack",
+    "jobCount": 120,
+    "jobRatio": 0.011089,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TS_E192F4410374",
+    "canonicalName": "Linux",
+    "canonicalNameZh": "Linux",
+    "tagType": "techStack",
+    "jobCount": 119,
+    "jobRatio": 0.010996,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TS_4D921881693A",
+    "canonicalName": "Hive",
+    "canonicalNameZh": "Hive",
+    "tagType": "techStack",
+    "jobCount": 117,
+    "jobRatio": 0.010811,
+    "isHighFrequency": true,
+    "groupId": ""
+  },
+  {
+    "tagId": "TC_3FC035D11893",
+    "canonicalName": "掌握扎实的计算机基础知识，深入理解数据结构、算法和操作系统知识",
+    "canonicalNameZh": "数据结构",
+    "tagType": "techCapabilities",
+    "jobCount": 114,
+    "jobRatio": 0.010534,
+    "isHighFrequency": true,
+    "groupId": "",
+    "typeCounts": {
+      "principle": 114
+    },
+    "type": "principle"
+  },
+  {
+    "tagId": "TC_354B27F1FB76",
+    "canonicalName": "在深度学习、强化学习、NLP、多模态方向有深入的理解与研究经历",
+    "canonicalNameZh": "深度学习",
+    "tagType": "techCapabilities",
+    "jobCount": 112,
+    "jobRatio": 0.010349,
+    "isHighFrequency": true,
+    "groupId": "",
+    "typeCounts": {
+      "principle": 112
+    },
+    "type": "principle"
+  },
+  {
+    "tagId": "DT_FF75FBEAECD6",
+    "canonicalName": "熟悉Linux开发环境",
+    "canonicalNameZh": "Linux",
+    "tagType": "devTools",
+    "jobCount": 111,
+    "jobRatio": 0.010257,
+    "isHighFrequency": true,
+    "groupId": ""
+  }
+]

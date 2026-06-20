@@ -1,0 +1,6116 @@
+{
+  "computer science": {
+    "domain": "Computer Science",
+    "nameZh": "计算机科学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "software engineering": {
+    "domain": "Software Engineering",
+    "nameZh": "软件工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "machine learning": {
+    "domain": "Machine Learning",
+    "nameZh": "机器学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data analysis": {
+    "domain": "Data Analysis",
+    "nameZh": "数据分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai": {
+    "domain": "AI",
+    "nameZh": "人工智能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "natural language processing": {
+    "domain": "Natural Language Processing",
+    "nameZh": "自然语言处理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "computer vision": {
+    "domain": "Computer Vision",
+    "nameZh": "计算机视觉",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "web development": {
+    "domain": "Web Development",
+    "nameZh": "Web 开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data engineering": {
+    "domain": "Data Engineering",
+    "nameZh": "数据工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "software testing": {
+    "domain": "Software Testing",
+    "nameZh": "软件测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "distributed systems": {
+    "domain": "Distributed Systems",
+    "nameZh": "分布式系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "deep learning": {
+    "domain": "Deep Learning",
+    "nameZh": "深度学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "artificial intelligence": {
+    "domain": "Artificial Intelligence",
+    "nameZh": "人工智能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "networking": {
+    "domain": "Networking",
+    "nameZh": "网络",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data science": {
+    "domain": "Data Science",
+    "nameZh": "数据科学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data mining": {
+    "domain": "Data Mining",
+    "nameZh": "数据挖掘",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "industrial iot": {
+    "domain": "Industrial IoT",
+    "nameZh": "工业物联网",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "iot": {
+    "domain": "IoT",
+    "nameZh": "物联网",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "industrial automation": {
+    "domain": "Industrial Automation",
+    "nameZh": "工业自动化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "electrical engineering": {
+    "domain": "Electrical Engineering",
+    "nameZh": "电气工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "security systems": {
+    "domain": "Security Systems",
+    "nameZh": "安全系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "algorithm engineering": {
+    "domain": "Algorithm Engineering",
+    "nameZh": "算法工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "operating systems": {
+    "domain": "Operating Systems",
+    "nameZh": "操作系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "computer graphics": {
+    "domain": "Computer Graphics",
+    "nameZh": "计算机图形学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai engineering": {
+    "domain": "AI Engineering",
+    "nameZh": "AI 工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "security": {
+    "domain": "Security",
+    "nameZh": "安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "reinforcement learning": {
+    "domain": "Reinforcement Learning",
+    "nameZh": "强化学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "database": {
+    "domain": "Database",
+    "nameZh": "数据库",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "recommendation systems": {
+    "domain": "Recommendation Systems",
+    "nameZh": "推荐系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "embedded systems": {
+    "domain": "Embedded Systems",
+    "nameZh": "嵌入式系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "frontend engineering": {
+    "domain": "Frontend Engineering",
+    "nameZh": "前端工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "mobile development": {
+    "domain": "Mobile Development",
+    "nameZh": "移动开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "large language models": {
+    "domain": "Large Language Models",
+    "nameZh": "大语言模型",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "backend engineering": {
+    "domain": "Backend Engineering",
+    "nameZh": "后端工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "multimodal ai": {
+    "domain": "Multimodal AI",
+    "nameZh": "多模态 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "multimodal learning": {
+    "domain": "Multimodal Learning",
+    "nameZh": "多模态学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "statistics": {
+    "domain": "Statistics",
+    "nameZh": "统计学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "nlp": {
+    "domain": "NLP",
+    "nameZh": "自然语言处理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "system engineering": {
+    "domain": "System Engineering",
+    "nameZh": "系统工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "backend development": {
+    "domain": "Backend Development",
+    "nameZh": "后端开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data operations": {
+    "domain": "Data Operations",
+    "nameZh": "数据运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "mathematics": {
+    "domain": "Mathematics",
+    "nameZh": "数学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "computer architecture": {
+    "domain": "Computer Architecture",
+    "nameZh": "计算机体系结构",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "web engineering": {
+    "domain": "Web Engineering",
+    "nameZh": "Web 工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "product management": {
+    "domain": "Product Management",
+    "nameZh": "产品管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "speech processing": {
+    "domain": "Speech Processing",
+    "nameZh": "语音处理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "multimedia": {
+    "domain": "Multimedia",
+    "nameZh": "多媒体",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "system architecture": {
+    "domain": "System Architecture",
+    "nameZh": "系统架构",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "software development": {
+    "domain": "Software Development",
+    "nameZh": "软件开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "cloud computing": {
+    "domain": "Cloud Computing",
+    "nameZh": "云计算",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "frontend development": {
+    "domain": "Frontend Development",
+    "nameZh": "前端开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "testing": {
+    "domain": "Testing",
+    "nameZh": "测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "big data": {
+    "domain": "Big Data",
+    "nameZh": "大数据",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "hardware engineering": {
+    "domain": "Hardware Engineering",
+    "nameZh": "硬件工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "generative ai": {
+    "domain": "Generative AI",
+    "nameZh": "生成式 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai systems": {
+    "domain": "AI Systems",
+    "nameZh": "AI 系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "computational advertising": {
+    "domain": "Computational Advertising",
+    "nameZh": "计算广告",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "robotics": {
+    "domain": "Robotics",
+    "nameZh": "机器人",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "automation": {
+    "domain": "Automation",
+    "nameZh": "自动化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "cybersecurity": {
+    "domain": "Cybersecurity",
+    "nameZh": "网络安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ui/ux design": {
+    "domain": "UI/UX Design",
+    "nameZh": "UI/UX 设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "system administration": {
+    "domain": "System Administration",
+    "nameZh": "系统管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "growth operations": {
+    "domain": "Growth Operations",
+    "nameZh": "增长运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "database systems": {
+    "domain": "Database Systems",
+    "nameZh": "数据库系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "software architecture": {
+    "domain": "Software Architecture",
+    "nameZh": "软件架构",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "performance testing": {
+    "domain": "Performance Testing",
+    "nameZh": "性能测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "performance engineering": {
+    "domain": "Performance Engineering",
+    "nameZh": "性能工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "computer networks": {
+    "domain": "Computer Networks",
+    "nameZh": "计算机网络",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "growth engineering": {
+    "domain": "Growth Engineering",
+    "nameZh": "增长工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "advertising": {
+    "domain": "Advertising",
+    "nameZh": "广告",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "e-commerce": {
+    "domain": "E-commerce",
+    "nameZh": "电子商务",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "quality assurance": {
+    "domain": "Quality Assurance",
+    "nameZh": "质量保证",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "search engines": {
+    "domain": "Search Engines",
+    "nameZh": "搜索引擎",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "information retrieval": {
+    "domain": "Information Retrieval",
+    "nameZh": "信息检索",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai applications": {
+    "domain": "AI Applications",
+    "nameZh": "AI 应用",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "project management": {
+    "domain": "Project Management",
+    "nameZh": "项目管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "operations research": {
+    "domain": "Operations Research",
+    "nameZh": "运筹学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data visualization": {
+    "domain": "Data Visualization",
+    "nameZh": "数据可视化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "research": {
+    "domain": "Research",
+    "nameZh": "研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data analytics": {
+    "domain": "Data Analytics",
+    "nameZh": "数据分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "cryptography": {
+    "domain": "Cryptography",
+    "nameZh": "密码学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "system programming": {
+    "domain": "System Programming",
+    "nameZh": "系统编程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "aigc": {
+    "domain": "AIGC",
+    "nameZh": "AIGC",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data processing": {
+    "domain": "Data Processing",
+    "nameZh": "数据处理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "search": {
+    "domain": "Search",
+    "nameZh": "搜索",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "electronics": {
+    "domain": "Electronics",
+    "nameZh": "电子学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai research": {
+    "domain": "AI Research",
+    "nameZh": "AI 研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "audio processing": {
+    "domain": "Audio Processing",
+    "nameZh": "音频处理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "hardware": {
+    "domain": "Hardware",
+    "nameZh": "硬件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "industrial safety": {
+    "domain": "Industrial Safety",
+    "nameZh": "工业安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "game development": {
+    "domain": "Game Development",
+    "nameZh": "游戏开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "parallel computing": {
+    "domain": "Parallel Computing",
+    "nameZh": "并行计算",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "hardware design": {
+    "domain": "Hardware Design",
+    "nameZh": "硬件设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "generative models": {
+    "domain": "Generative Models",
+    "nameZh": "生成模型",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "control systems": {
+    "domain": "Control Systems",
+    "nameZh": "控制系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "algorithms": {
+    "domain": "Algorithms",
+    "nameZh": "算法",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "hardware testing": {
+    "domain": "Hardware Testing",
+    "nameZh": "硬件测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai infrastructure": {
+    "domain": "AI Infrastructure",
+    "nameZh": "AI 基础设施",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "devops": {
+    "domain": "DevOps",
+    "nameZh": "DevOps",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "algorithm": {
+    "domain": "Algorithm",
+    "nameZh": "算法",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "product design": {
+    "domain": "Product Design",
+    "nameZh": "产品设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "user experience": {
+    "domain": "User Experience",
+    "nameZh": "用户体验",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "mobile security": {
+    "domain": "Mobile Security",
+    "nameZh": "移动安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "infrastructure": {
+    "domain": "Infrastructure",
+    "nameZh": "基础设施",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "business analysis": {
+    "domain": "Business Analysis",
+    "nameZh": "业务分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai design": {
+    "domain": "AI Design",
+    "nameZh": "AI 设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "business intelligence": {
+    "domain": "Business Intelligence",
+    "nameZh": "商业智能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "databases": {
+    "domain": "Databases",
+    "nameZh": "数据库",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "speech": {
+    "domain": "Speech",
+    "nameZh": "语音",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "search systems": {
+    "domain": "Search Systems",
+    "nameZh": "搜索系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "security engineering": {
+    "domain": "Security Engineering",
+    "nameZh": "安全工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "content creation": {
+    "domain": "Content Creation",
+    "nameZh": "内容创作",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "model optimization": {
+    "domain": "Model Optimization",
+    "nameZh": "模型优化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai security": {
+    "domain": "AI Security",
+    "nameZh": "AI 安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "network engineering": {
+    "domain": "Network Engineering",
+    "nameZh": "网络工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "network programming": {
+    "domain": "Network Programming",
+    "nameZh": "网络编程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "programming": {
+    "domain": "Programming",
+    "nameZh": "编程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "programming languages": {
+    "domain": "Programming Languages",
+    "nameZh": "编程语言",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "graphics": {
+    "domain": "Graphics",
+    "nameZh": "图形学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "high performance computing": {
+    "domain": "High Performance Computing",
+    "nameZh": "高性能计算",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "user research": {
+    "domain": "User Research",
+    "nameZh": "用户研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "distributed computing": {
+    "domain": "Distributed Computing",
+    "nameZh": "分布式计算",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "video production": {
+    "domain": "Video Production",
+    "nameZh": "视频制作",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "graphics engineering": {
+    "domain": "Graphics Engineering",
+    "nameZh": "图形工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "game design": {
+    "domain": "Game Design",
+    "nameZh": "游戏设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "semiconductor engineering": {
+    "domain": "Semiconductor Engineering",
+    "nameZh": "半导体工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "design": {
+    "domain": "Design",
+    "nameZh": "设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "problem solving": {
+    "domain": "Problem Solving",
+    "nameZh": "问题解决",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "risk control": {
+    "domain": "Risk Control",
+    "nameZh": "风控",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "hardware architecture": {
+    "domain": "Hardware Architecture",
+    "nameZh": "硬件架构",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "computer systems": {
+    "domain": "Computer Systems",
+    "nameZh": "计算机系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "android development": {
+    "domain": "Android Development",
+    "nameZh": "Android 开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "quality management": {
+    "domain": "Quality Management",
+    "nameZh": "质量管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "search engine": {
+    "domain": "Search Engine",
+    "nameZh": "搜索引擎",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "java platform": {
+    "domain": "Java Platform",
+    "nameZh": "Java 平台",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "marketing": {
+    "domain": "Marketing",
+    "nameZh": "市场营销",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai application": {
+    "domain": "AI Application",
+    "nameZh": "AI 应用",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "content operations": {
+    "domain": "Content Operations",
+    "nameZh": "内容运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "growth analytics": {
+    "domain": "Growth Analytics",
+    "nameZh": "增长分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "test engineering": {
+    "domain": "Test Engineering",
+    "nameZh": "测试工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "application security": {
+    "domain": "Application Security",
+    "nameZh": "应用安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "recommendation": {
+    "domain": "Recommendation",
+    "nameZh": "推荐",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "system design": {
+    "domain": "System Design",
+    "nameZh": "系统设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "optical engineering": {
+    "domain": "Optical Engineering",
+    "nameZh": "光学工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "animation": {
+    "domain": "Animation",
+    "nameZh": "动画",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "business engineering": {
+    "domain": "Business Engineering",
+    "nameZh": "业务工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "mechanical engineering": {
+    "domain": "Mechanical Engineering",
+    "nameZh": "机械工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "internet of things": {
+    "domain": "Internet of Things",
+    "nameZh": "物联网",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai evaluation": {
+    "domain": "AI Evaluation",
+    "nameZh": "AI 评估",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "llm application": {
+    "domain": "LLM Application",
+    "nameZh": "LLM 应用",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "platform engineering": {
+    "domain": "Platform Engineering",
+    "nameZh": "平台工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "system software": {
+    "domain": "System Software",
+    "nameZh": "系统软件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "field service": {
+    "domain": "Field Service",
+    "nameZh": "现场服务",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "llm": {
+    "domain": "LLM",
+    "nameZh": "LLM",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "speech technology": {
+    "domain": "Speech Technology",
+    "nameZh": "语音技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "large language model": {
+    "domain": "Large Language Model",
+    "nameZh": "大语言模型",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "system development": {
+    "domain": "System Development",
+    "nameZh": "系统开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "visual design": {
+    "domain": "Visual Design",
+    "nameZh": "视觉设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "business operations": {
+    "domain": "Business Operations",
+    "nameZh": "业务运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data management": {
+    "domain": "Data Management",
+    "nameZh": "数据管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "image processing": {
+    "domain": "Image Processing",
+    "nameZh": "图像处理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "recommendation system": {
+    "domain": "Recommendation System",
+    "nameZh": "推荐系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "speech recognition": {
+    "domain": "Speech Recognition",
+    "nameZh": "语音识别",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "cv": {
+    "domain": "CV",
+    "nameZh": "计算机视觉",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data operation": {
+    "domain": "Data Operation",
+    "nameZh": "数据运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "mobile engineering": {
+    "domain": "Mobile Engineering",
+    "nameZh": "移动工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "network security": {
+    "domain": "Network Security",
+    "nameZh": "网络安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "product strategy": {
+    "domain": "Product Strategy",
+    "nameZh": "产品策略",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "storage": {
+    "domain": "Storage",
+    "nameZh": "存储",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "industrial engineering": {
+    "domain": "Industrial Engineering",
+    "nameZh": "工业工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "mobile testing": {
+    "domain": "Mobile Testing",
+    "nameZh": "移动测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "offensive security": {
+    "domain": "Offensive Security",
+    "nameZh": "攻防安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "office productivity": {
+    "domain": "Office Productivity",
+    "nameZh": "办公效率",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "simulation": {
+    "domain": "Simulation",
+    "nameZh": "仿真",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "video technology": {
+    "domain": "Video Technology",
+    "nameZh": "视频技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "semiconductor": {
+    "domain": "Semiconductor",
+    "nameZh": "半导体",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "system implementation": {
+    "domain": "System Implementation",
+    "nameZh": "系统实施",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "audio ai": {
+    "domain": "Audio AI",
+    "nameZh": "音频 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data product engineering": {
+    "domain": "Data Product Engineering",
+    "nameZh": "数据产品工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "iot engineering": {
+    "domain": "IoT Engineering",
+    "nameZh": "物联网工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "machine learning engineering": {
+    "domain": "Machine Learning Engineering",
+    "nameZh": "机器学习工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "speech ai": {
+    "domain": "Speech AI",
+    "nameZh": "语音 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "automotive": {
+    "domain": "Automotive",
+    "nameZh": "汽车",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "operations": {
+    "domain": "Operations",
+    "nameZh": "运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "full-stack development": {
+    "domain": "Full-stack Development",
+    "nameZh": "全栈开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "virtualization": {
+    "domain": "Virtualization",
+    "nameZh": "虚拟化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "concurrency": {
+    "domain": "Concurrency",
+    "nameZh": "并发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "manufacturing": {
+    "domain": "Manufacturing",
+    "nameZh": "制造",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "social media": {
+    "domain": "Social Media",
+    "nameZh": "社交媒体",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ui design": {
+    "domain": "UI Design",
+    "nameZh": "UI 设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai agents": {
+    "domain": "AI Agents",
+    "nameZh": "AI 智能体",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "cloud platform": {
+    "domain": "Cloud Platform",
+    "nameZh": "云平台",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "search and recommendation": {
+    "domain": "Search and Recommendation",
+    "nameZh": "搜索与推荐",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "rendering": {
+    "domain": "Rendering",
+    "nameZh": "渲染",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "telecommunications": {
+    "domain": "Telecommunications",
+    "nameZh": "电信",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "optics": {
+    "domain": "Optics",
+    "nameZh": "光学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "autonomous driving": {
+    "domain": "Autonomous Driving",
+    "nameZh": "自动驾驶",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "security compliance": {
+    "domain": "Security Compliance",
+    "nameZh": "安全合规",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "technical support": {
+    "domain": "Technical Support",
+    "nameZh": "技术支持",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai optimization": {
+    "domain": "AI Optimization",
+    "nameZh": "AI 优化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "e-commerce operations": {
+    "domain": "E-commerce Operations",
+    "nameZh": "电商运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "graph learning": {
+    "domain": "Graph Learning",
+    "nameZh": "图学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "growth": {
+    "domain": "Growth",
+    "nameZh": "增长",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "streaming media": {
+    "domain": "Streaming Media",
+    "nameZh": "流媒体",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "communication": {
+    "domain": "Communication",
+    "nameZh": "通信",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "content understanding": {
+    "domain": "Content Understanding",
+    "nameZh": "内容理解",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "design tools": {
+    "domain": "Design Tools",
+    "nameZh": "设计工具",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "experimentation": {
+    "domain": "Experimentation",
+    "nameZh": "实验",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "quality engineering": {
+    "domain": "Quality Engineering",
+    "nameZh": "质量工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "signal processing": {
+    "domain": "Signal Processing",
+    "nameZh": "信号处理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "system security": {
+    "domain": "System Security",
+    "nameZh": "系统安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "web security": {
+    "domain": "Web Security",
+    "nameZh": "Web 安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai platform": {
+    "domain": "AI Platform",
+    "nameZh": "AI 平台",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "compiler technology": {
+    "domain": "Compiler Technology",
+    "nameZh": "编译技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data annotation": {
+    "domain": "Data Annotation",
+    "nameZh": "数据标注",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "graph computing": {
+    "domain": "Graph Computing",
+    "nameZh": "图计算",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "graphic design": {
+    "domain": "Graphic Design",
+    "nameZh": "平面设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "low-level programming": {
+    "domain": "Low-level Programming",
+    "nameZh": "底层编程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "storage systems": {
+    "domain": "Storage Systems",
+    "nameZh": "存储系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "systems engineering": {
+    "domain": "Systems Engineering",
+    "nameZh": "系统工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "3d graphics": {
+    "domain": "3D Graphics",
+    "nameZh": "3D 图形",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "program analysis": {
+    "domain": "Program Analysis",
+    "nameZh": "程序分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data center": {
+    "domain": "Data Center",
+    "nameZh": "数据中心",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "game operations": {
+    "domain": "Game Operations",
+    "nameZh": "游戏运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "motor control": {
+    "domain": "Motor Control",
+    "nameZh": "电机控制",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "it infrastructure": {
+    "domain": "IT Infrastructure",
+    "nameZh": "IT 基础设施",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "audio": {
+    "domain": "Audio",
+    "nameZh": "音频",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "agent": {
+    "domain": "Agent",
+    "nameZh": "智能体",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai testing": {
+    "domain": "AI Testing",
+    "nameZh": "AI 测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "computational chemistry": {
+    "domain": "Computational Chemistry",
+    "nameZh": "计算化学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "linguistics": {
+    "domain": "Linguistics",
+    "nameZh": "语言学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "product operations": {
+    "domain": "Product Operations",
+    "nameZh": "产品运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "video editing": {
+    "domain": "Video Editing",
+    "nameZh": "视频编辑",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai development": {
+    "domain": "AI Development",
+    "nameZh": "AI 开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "content platform": {
+    "domain": "Content Platform",
+    "nameZh": "内容平台",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "cross-functional collaboration": {
+    "domain": "Cross-functional Collaboration",
+    "nameZh": "跨职能协作",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "gis": {
+    "domain": "GIS",
+    "nameZh": "地理信息系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "product engineering": {
+    "domain": "Product Engineering",
+    "nameZh": "产品工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "speech synthesis": {
+    "domain": "Speech Synthesis",
+    "nameZh": "语音合成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "xr technology": {
+    "domain": "XR Technology",
+    "nameZh": "XR 技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai generation": {
+    "domain": "AI Generation",
+    "nameZh": "AI 生成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "applied ai": {
+    "domain": "Applied AI",
+    "nameZh": "应用 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "automotive testing": {
+    "domain": "Automotive Testing",
+    "nameZh": "汽车测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "compilers": {
+    "domain": "Compilers",
+    "nameZh": "编译器",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "field support": {
+    "domain": "Field Support",
+    "nameZh": "现场支持",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "hardware acceleration": {
+    "domain": "Hardware Acceleration",
+    "nameZh": "硬件加速",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "machine learning systems": {
+    "domain": "Machine Learning Systems",
+    "nameZh": "机器学习系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "middleware": {
+    "domain": "Middleware",
+    "nameZh": "中间件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "power systems": {
+    "domain": "Power Systems",
+    "nameZh": "电力系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "web technology": {
+    "domain": "Web Technology",
+    "nameZh": "Web 技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "social networks": {
+    "domain": "Social Networks",
+    "nameZh": "社交网络",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai training": {
+    "domain": "AI Training",
+    "nameZh": "AI 训练",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "project delivery": {
+    "domain": "Project Delivery",
+    "nameZh": "项目交付",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "audio video technology": {
+    "domain": "Audio Video Technology",
+    "nameZh": "音视频技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "multimedia engineering": {
+    "domain": "Multimedia Engineering",
+    "nameZh": "多媒体工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai integration": {
+    "domain": "AI Integration",
+    "nameZh": "AI 集成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "digital design": {
+    "domain": "Digital Design",
+    "nameZh": "数字设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "recommendation & ads": {
+    "domain": "Recommendation & Ads",
+    "nameZh": "推荐与广告",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "art": {
+    "domain": "Art",
+    "nameZh": "艺术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "bioinformatics": {
+    "domain": "Bioinformatics",
+    "nameZh": "生物信息学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "cloud native": {
+    "domain": "Cloud Native",
+    "nameZh": "云原生",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "content production": {
+    "domain": "Content Production",
+    "nameZh": "内容生产",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "desktop development": {
+    "domain": "Desktop Development",
+    "nameZh": "桌面开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "electromagnetics": {
+    "domain": "Electromagnetics",
+    "nameZh": "电磁学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "finance": {
+    "domain": "Finance",
+    "nameZh": "金融",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "materials science": {
+    "domain": "Materials Science",
+    "nameZh": "材料科学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "multi-agent systems": {
+    "domain": "Multi-Agent Systems",
+    "nameZh": "多智能体系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "site reliability engineering": {
+    "domain": "Site Reliability Engineering",
+    "nameZh": "站点可靠性工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "strategy": {
+    "domain": "Strategy",
+    "nameZh": "策略",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "agent systems": {
+    "domain": "Agent Systems",
+    "nameZh": "智能体系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "audio video": {
+    "domain": "Audio Video",
+    "nameZh": "音视频",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "code intelligence": {
+    "domain": "Code Intelligence",
+    "nameZh": "代码智能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data infrastructure": {
+    "domain": "Data Infrastructure",
+    "nameZh": "数据基础设施",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "design systems": {
+    "domain": "Design Systems",
+    "nameZh": "设计系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "growth operation": {
+    "domain": "Growth Operation",
+    "nameZh": "增长运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "machine learning infrastructure": {
+    "domain": "Machine Learning Infrastructure",
+    "nameZh": "机器学习基础设施",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ml systems": {
+    "domain": "ML Systems",
+    "nameZh": "机器学习系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "reverse engineering": {
+    "domain": "Reverse Engineering",
+    "nameZh": "逆向工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "risk management": {
+    "domain": "Risk Management",
+    "nameZh": "风险管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "system optimization": {
+    "domain": "System Optimization",
+    "nameZh": "系统优化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "wireless communication": {
+    "domain": "Wireless Communication",
+    "nameZh": "无线通信",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "advertising technology": {
+    "domain": "Advertising Technology",
+    "nameZh": "广告技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai content creation": {
+    "domain": "AI Content Creation",
+    "nameZh": "AI 内容创作",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai hardware": {
+    "domain": "AI Hardware",
+    "nameZh": "AI 硬件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai tools": {
+    "domain": "AI Tools",
+    "nameZh": "AI 工具",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "business strategy": {
+    "domain": "Business Strategy",
+    "nameZh": "业务策略",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "causal inference": {
+    "domain": "Causal Inference",
+    "nameZh": "因果推断",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "chemical industry": {
+    "domain": "Chemical Industry",
+    "nameZh": "化工",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "client engineering": {
+    "domain": "Client Engineering",
+    "nameZh": "客户端工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "computational biology": {
+    "domain": "Computational Biology",
+    "nameZh": "计算生物学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data center operations": {
+    "domain": "Data Center Operations",
+    "nameZh": "数据中心运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data modeling": {
+    "domain": "Data Modeling",
+    "nameZh": "数据建模",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "debugging": {
+    "domain": "Debugging",
+    "nameZh": "调试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "design research": {
+    "domain": "Design Research",
+    "nameZh": "设计研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "device driver": {
+    "domain": "Device Driver",
+    "nameZh": "设备驱动",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "digital marketing": {
+    "domain": "Digital Marketing",
+    "nameZh": "数字营销",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "display technology": {
+    "domain": "Display Technology",
+    "nameZh": "显示技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "governance risk and compliance": {
+    "domain": "Governance Risk and Compliance",
+    "nameZh": "治理、风险与合规",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "graph machine learning": {
+    "domain": "Graph Machine Learning",
+    "nameZh": "图机器学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "graph models": {
+    "domain": "Graph Models",
+    "nameZh": "图模型",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "hardware software co-design": {
+    "domain": "Hardware Software Co-design",
+    "nameZh": "软硬件协同设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "human resources": {
+    "domain": "Human Resources",
+    "nameZh": "人力资源",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "industrial support": {
+    "domain": "Industrial Support",
+    "nameZh": "工业支持",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "instrumentation": {
+    "domain": "Instrumentation",
+    "nameZh": "仪器仪表",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "llm application engineering": {
+    "domain": "LLM Application Engineering",
+    "nameZh": "LLM 应用工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "llm training": {
+    "domain": "LLM Training",
+    "nameZh": "LLM 训练",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "marketing technology": {
+    "domain": "Marketing Technology",
+    "nameZh": "营销技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "model engineering": {
+    "domain": "Model Engineering",
+    "nameZh": "模型工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "model training": {
+    "domain": "Model Training",
+    "nameZh": "模型训练",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "multimodal": {
+    "domain": "Multimodal",
+    "nameZh": "多模态",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "operations management": {
+    "domain": "Operations Management",
+    "nameZh": "运营管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "optoelectronics": {
+    "domain": "Optoelectronics",
+    "nameZh": "光电子学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "platform development": {
+    "domain": "Platform Development",
+    "nameZh": "平台开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "process management": {
+    "domain": "Process Management",
+    "nameZh": "流程管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "product development": {
+    "domain": "Product Development",
+    "nameZh": "产品开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "productivity": {
+    "domain": "Productivity",
+    "nameZh": "生产力",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "rf engineering": {
+    "domain": "RF Engineering",
+    "nameZh": "射频工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "software security": {
+    "domain": "Software Security",
+    "nameZh": "软件安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "solution design": {
+    "domain": "Solution Design",
+    "nameZh": "方案设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "structural biology": {
+    "domain": "Structural Biology",
+    "nameZh": "结构生物学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ui development": {
+    "domain": "UI Development",
+    "nameZh": "UI 开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "user growth": {
+    "domain": "User Growth",
+    "nameZh": "用户增长",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "driver development": {
+    "domain": "Driver Development",
+    "nameZh": "驱动开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "cyber security": {
+    "domain": "Cyber Security",
+    "nameZh": "网络安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "real-time communication": {
+    "domain": "Real-time Communication",
+    "nameZh": "实时通信",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "safety engineering": {
+    "domain": "Safety Engineering",
+    "nameZh": "安全工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "art design": {
+    "domain": "Art Design",
+    "nameZh": "艺术设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "geographic information systems": {
+    "domain": "Geographic Information Systems",
+    "nameZh": "地理信息系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "industrial control": {
+    "domain": "Industrial Control",
+    "nameZh": "工业控制",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "molecular dynamics": {
+    "domain": "Molecular Dynamics",
+    "nameZh": "分子动力学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "physics": {
+    "domain": "Physics",
+    "nameZh": "物理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "search & recommendation": {
+    "domain": "Search & Recommendation",
+    "nameZh": "搜索与推荐",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "supply chain": {
+    "domain": "Supply Chain",
+    "nameZh": "供应链",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai algorithms": {
+    "domain": "AI Algorithms",
+    "nameZh": "AI 算法",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai compiler": {
+    "domain": "AI Compiler",
+    "nameZh": "AI 编译器",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "audio video codec": {
+    "domain": "Audio Video Codec",
+    "nameZh": "音视频编解码",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "compiler engineering": {
+    "domain": "Compiler Engineering",
+    "nameZh": "编译工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data governance": {
+    "domain": "Data Governance",
+    "nameZh": "数据治理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data-driven growth": {
+    "domain": "Data-driven Growth",
+    "nameZh": "数据驱动增长",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "development tools": {
+    "domain": "Development Tools",
+    "nameZh": "开发工具",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "gpu testing": {
+    "domain": "GPU Testing",
+    "nameZh": "GPU 测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "growth product": {
+    "domain": "Growth Product",
+    "nameZh": "增长产品",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "hardware development": {
+    "domain": "Hardware Development",
+    "nameZh": "硬件开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "it operations": {
+    "domain": "IT Operations",
+    "nameZh": "IT 运维",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "java development": {
+    "domain": "Java Development",
+    "nameZh": "Java 开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "llm agent": {
+    "domain": "LLM Agent",
+    "nameZh": "LLM 智能体",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "material science": {
+    "domain": "Material Science",
+    "nameZh": "材料科学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "model evaluation": {
+    "domain": "Model Evaluation",
+    "nameZh": "模型评估",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "optical communication": {
+    "domain": "Optical Communication",
+    "nameZh": "光通信",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "video analysis": {
+    "domain": "Video Analysis",
+    "nameZh": "视频分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "vulnerability analysis": {
+    "domain": "Vulnerability Analysis",
+    "nameZh": "漏洞分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai agent": {
+    "domain": "AI Agent",
+    "nameZh": "AI 智能体",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "android system": {
+    "domain": "Android System",
+    "nameZh": "Android 系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "art & design": {
+    "domain": "Art & Design",
+    "nameZh": "艺术与设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "automotive electronics": {
+    "domain": "Automotive Electronics",
+    "nameZh": "汽车电子",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "character design": {
+    "domain": "Character Design",
+    "nameZh": "角色设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "content marketing": {
+    "domain": "Content Marketing",
+    "nameZh": "内容营销",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data center infrastructure": {
+    "domain": "Data Center Infrastructure",
+    "nameZh": "数据中心基础设施",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data interchange": {
+    "domain": "Data Interchange",
+    "nameZh": "数据交换",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data warehousing": {
+    "domain": "Data Warehousing",
+    "nameZh": "数据仓库",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "economics": {
+    "domain": "Economics",
+    "nameZh": "经济学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "embedded engineering": {
+    "domain": "Embedded Engineering",
+    "nameZh": "嵌入式工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "embedded software": {
+    "domain": "Embedded Software",
+    "nameZh": "嵌入式软件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "embodied ai": {
+    "domain": "Embodied AI",
+    "nameZh": "具身智能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "graphics programming": {
+    "domain": "Graphics Programming",
+    "nameZh": "图形编程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "growth strategy": {
+    "domain": "Growth Strategy",
+    "nameZh": "增长策略",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "hardware security": {
+    "domain": "Hardware Security",
+    "nameZh": "硬件安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "information management": {
+    "domain": "Information Management",
+    "nameZh": "信息管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "java": {
+    "domain": "Java",
+    "nameZh": "Java",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "llm evaluation": {
+    "domain": "LLM Evaluation",
+    "nameZh": "LLM 评估",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "machine vision": {
+    "domain": "Machine Vision",
+    "nameZh": "机器视觉",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "mechanical design": {
+    "domain": "Mechanical Design",
+    "nameZh": "机械设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "meteorology": {
+    "domain": "Meteorology",
+    "nameZh": "气象学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "mlops": {
+    "domain": "MLOps",
+    "nameZh": "MLOps",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "navigation": {
+    "domain": "Navigation",
+    "nameZh": "导航",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "product analytics": {
+    "domain": "Product Analytics",
+    "nameZh": "产品分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "quantum chemistry": {
+    "domain": "Quantum Chemistry",
+    "nameZh": "量子化学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "recommendation & advertising": {
+    "domain": "Recommendation & Advertising",
+    "nameZh": "推荐与广告",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "remote sensing": {
+    "domain": "Remote Sensing",
+    "nameZh": "遥感",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "secure development": {
+    "domain": "Secure Development",
+    "nameZh": "安全开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "software maintenance": {
+    "domain": "Software Maintenance",
+    "nameZh": "软件维护",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "streaming protocols": {
+    "domain": "Streaming Protocols",
+    "nameZh": "流媒体协议",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "video generation": {
+    "domain": "Video Generation",
+    "nameZh": "视频生成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "3d design": {
+    "domain": "3D Design",
+    "nameZh": "3D 设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "3d modeling": {
+    "domain": "3D Modeling",
+    "nameZh": "3D 建模",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "advertising operations": {
+    "domain": "Advertising Operations",
+    "nameZh": "广告运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai platforms": {
+    "domain": "AI Platforms",
+    "nameZh": "AI 平台",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ai reasoning": {
+    "domain": "AI Reasoning",
+    "nameZh": "AI 推理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "aiops": {
+    "domain": "AIOps",
+    "nameZh": "AIOps",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "algorithm design": {
+    "domain": "Algorithm Design",
+    "nameZh": "算法设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "analytical thinking": {
+    "domain": "Analytical Thinking",
+    "nameZh": "分析思维",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "android graphics": {
+    "domain": "Android Graphics",
+    "nameZh": "Android 图形",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "audio codec": {
+    "domain": "Audio Codec",
+    "nameZh": "音频编解码",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "audio generation": {
+    "domain": "Audio Generation",
+    "nameZh": "音频生成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "audio synthesis": {
+    "domain": "Audio Synthesis",
+    "nameZh": "音频合成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "audio video engineering": {
+    "domain": "Audio Video Engineering",
+    "nameZh": "音视频工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "automation engineering": {
+    "domain": "Automation Engineering",
+    "nameZh": "自动化工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "automotive software": {
+    "domain": "Automotive Software",
+    "nameZh": "汽车软件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "avionics": {
+    "domain": "Avionics",
+    "nameZh": "航空电子",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "biophysics": {
+    "domain": "Biophysics",
+    "nameZh": "生物物理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "build systems": {
+    "domain": "Build Systems",
+    "nameZh": "构建系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "chemical engineering": {
+    "domain": "Chemical Engineering",
+    "nameZh": "化学工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "circuit analysis": {
+    "domain": "Circuit Analysis",
+    "nameZh": "电路分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "compiler": {
+    "domain": "Compiler",
+    "nameZh": "编译器",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "compiler design": {
+    "domain": "Compiler Design",
+    "nameZh": "编译器设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "computer hardware": {
+    "domain": "Computer Hardware",
+    "nameZh": "计算机硬件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "computing": {
+    "domain": "Computing",
+    "nameZh": "计算",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "content management": {
+    "domain": "Content Management",
+    "nameZh": "内容管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data quality": {
+    "domain": "Data Quality",
+    "nameZh": "数据质量",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data security": {
+    "domain": "Data Security",
+    "nameZh": "数据安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "data strategy": {
+    "domain": "Data Strategy",
+    "nameZh": "数据策略",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "device driver development": {
+    "domain": "Device Driver Development",
+    "nameZh": "设备驱动开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "device driver engineering": {
+    "domain": "Device Driver Engineering",
+    "nameZh": "设备驱动工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "drug discovery": {
+    "domain": "Drug Discovery",
+    "nameZh": "药物研发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "full stack development": {
+    "domain": "Full Stack Development",
+    "nameZh": "全栈开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "game ai": {
+    "domain": "Game AI",
+    "nameZh": "游戏 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "gpu computing": {
+    "domain": "GPU Computing",
+    "nameZh": "GPU 计算",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "gpu programming": {
+    "domain": "GPU Programming",
+    "nameZh": "GPU 编程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "graphics rendering": {
+    "domain": "Graphics Rendering",
+    "nameZh": "图形渲染",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "growth & data operations": {
+    "domain": "Growth & Data Operations",
+    "nameZh": "增长与数据运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "gui development": {
+    "domain": "GUI Development",
+    "nameZh": "GUI 开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "hardware test": {
+    "domain": "Hardware Test",
+    "nameZh": "硬件测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "host security": {
+    "domain": "Host Security",
+    "nameZh": "主机安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "human-computer interaction": {
+    "domain": "Human-Computer Interaction",
+    "nameZh": "人机交互",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "implementation": {
+    "domain": "Implementation",
+    "nameZh": "实施",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "industry operations": {
+    "domain": "Industry Operations",
+    "nameZh": "行业运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "information processing": {
+    "domain": "Information Processing",
+    "nameZh": "信息处理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "integration engineering": {
+    "domain": "Integration Engineering",
+    "nameZh": "集成工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "internationalization": {
+    "domain": "Internationalization",
+    "nameZh": "国际化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "it support": {
+    "domain": "IT Support",
+    "nameZh": "IT 支持",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "jvm": {
+    "domain": "JVM",
+    "nameZh": "JVM",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "knowledge graph": {
+    "domain": "Knowledge Graph",
+    "nameZh": "知识图谱",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "large model research": {
+    "domain": "Large Model Research",
+    "nameZh": "大模型研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "live streaming": {
+    "domain": "Live Streaming",
+    "nameZh": "直播",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "market research": {
+    "domain": "Market Research",
+    "nameZh": "市场研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ml": {
+    "domain": "ML",
+    "nameZh": "机器学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "mobile systems": {
+    "domain": "Mobile Systems",
+    "nameZh": "移动系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "music streaming": {
+    "domain": "Music Streaming",
+    "nameZh": "音乐流媒体",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "network infrastructure": {
+    "domain": "Network Infrastructure",
+    "nameZh": "网络基础设施",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "neural networks": {
+    "domain": "Neural Networks",
+    "nameZh": "神经网络",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "operations analysis": {
+    "domain": "Operations Analysis",
+    "nameZh": "运营分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "optimization": {
+    "domain": "Optimization",
+    "nameZh": "优化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "phonetics": {
+    "domain": "Phonetics",
+    "nameZh": "语音学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "platform operations": {
+    "domain": "Platform Operations",
+    "nameZh": "平台运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "power electronics": {
+    "domain": "Power Electronics",
+    "nameZh": "电力电子",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "presentation": {
+    "domain": "Presentation",
+    "nameZh": "演示",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "process optimization": {
+    "domain": "Process Optimization",
+    "nameZh": "流程优化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "product experimentation": {
+    "domain": "Product Experimentation",
+    "nameZh": "产品实验",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "productivity tools": {
+    "domain": "Productivity Tools",
+    "nameZh": "生产力工具",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "psychology": {
+    "domain": "Psychology",
+    "nameZh": "心理学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "research and development": {
+    "domain": "Research and Development",
+    "nameZh": "研发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "rl": {
+    "domain": "RL",
+    "nameZh": "强化学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "search quality": {
+    "domain": "Search Quality",
+    "nameZh": "搜索质量",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "security competition": {
+    "domain": "Security Competition",
+    "nameZh": "安全竞赛",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "security testing": {
+    "domain": "Security Testing",
+    "nameZh": "安全测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "semiconductor testing": {
+    "domain": "Semiconductor Testing",
+    "nameZh": "半导体测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "sensors": {
+    "domain": "Sensors",
+    "nameZh": "传感器",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "software design": {
+    "domain": "Software Design",
+    "nameZh": "软件设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "software quality": {
+    "domain": "Software Quality",
+    "nameZh": "软件质量",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "speech enhancement": {
+    "domain": "Speech Enhancement",
+    "nameZh": "语音增强",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "statistical learning": {
+    "domain": "Statistical Learning",
+    "nameZh": "统计学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "systems programming": {
+    "domain": "Systems Programming",
+    "nameZh": "系统编程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "talent acquisition": {
+    "domain": "Talent Acquisition",
+    "nameZh": "人才招聘",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "technology": {
+    "domain": "Technology",
+    "nameZh": "技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "test automation": {
+    "domain": "Test Automation",
+    "nameZh": "测试自动化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "user operations": {
+    "domain": "User Operations",
+    "nameZh": "用户运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "ux design": {
+    "domain": "UX Design",
+    "nameZh": "UX 设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "video processing": {
+    "domain": "Video Processing",
+    "nameZh": "视频处理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "web standards": {
+    "domain": "Web Standards",
+    "nameZh": "Web 标准",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "workflow automation": {
+    "domain": "Workflow Automation",
+    "nameZh": "工作流自动化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "multimodal vision": {
+    "domain": "Multimodal Vision",
+    "nameZh": "多模态视觉",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "semiconductor verification": {
+    "domain": "Semiconductor Verification",
+    "nameZh": "半导体验证",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "bios testing": {
+    "domain": "BIOS Testing",
+    "nameZh": "BIOS 测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "blockchain": {
+    "domain": "Blockchain",
+    "nameZh": "区块链",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "programming language & compiler": {
+    "domain": "Programming Language & Compiler",
+    "nameZh": "编程语言与编译器",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "testing engineering": {
+    "domain": "Testing Engineering",
+    "nameZh": "测试工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "frontend": {
+    "domain": "Frontend",
+    "nameZh": "前端",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "game art": {
+    "domain": "Game Art",
+    "nameZh": "游戏美术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "hardware firmware": {
+    "domain": "Hardware Firmware",
+    "nameZh": "硬件固件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "neuroscience": {
+    "domain": "Neuroscience",
+    "nameZh": "神经科学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "satellite systems": {
+    "domain": "Satellite Systems",
+    "nameZh": "卫星系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "user modeling": {
+    "domain": "User Modeling",
+    "nameZh": "用户建模",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "video engineering": {
+    "domain": "Video Engineering",
+    "nameZh": "视频工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "advertising ai": {
+    "domain": "Advertising AI",
+    "nameZh": "广告 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "audio engineering": {
+    "domain": "Audio Engineering",
+    "nameZh": "音频工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "computational electromagnetics": {
+    "domain": "Computational Electromagnetics",
+    "nameZh": "计算电磁学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "digital art": {
+    "domain": "Digital Art",
+    "nameZh": "数字艺术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "documentation": {
+    "domain": "Documentation",
+    "nameZh": "文档",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "electronics manufacturing": {
+    "domain": "Electronics Manufacturing",
+    "nameZh": "电子制造",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "fintech / payments": {
+    "domain": "Fintech / Payments",
+    "nameZh": "金融科技/支付",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "geospatial systems": {
+    "domain": "Geospatial Systems",
+    "nameZh": "地理空间系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "hardware protocols": {
+    "domain": "Hardware Protocols",
+    "nameZh": "硬件协议",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "laboratory management": {
+    "domain": "Laboratory Management",
+    "nameZh": "实验室管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "large recommendation models": {
+    "domain": "Large Recommendation Models",
+    "nameZh": "大推荐模型",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "large scale systems": {
+    "domain": "Large Scale Systems",
+    "nameZh": "大规模系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "llm engineering": {
+    "domain": "LLM Engineering",
+    "nameZh": "LLM 工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "media systems engineering": {
+    "domain": "Media Systems Engineering",
+    "nameZh": "媒体系统工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "merchant operations": {
+    "domain": "Merchant Operations",
+    "nameZh": "商家运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "operations support": {
+    "domain": "Operations Support",
+    "nameZh": "运营支持",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "physical security": {
+    "domain": "Physical Security",
+    "nameZh": "物理安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:07:39"
+  },
+  "public relations": {
+    "domain": "Public Relations",
+    "nameZh": "公关",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "qa": {
+    "domain": "QA",
+    "nameZh": "质量保证",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "recommendation/search": {
+    "domain": "Recommendation/Search",
+    "nameZh": "推荐/搜索",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "recruiting": {
+    "domain": "Recruiting",
+    "nameZh": "招聘",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "sensor engineering": {
+    "domain": "Sensor Engineering",
+    "nameZh": "传感器工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "software migration": {
+    "domain": "Software Migration",
+    "nameZh": "软件迁移",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "supply chain operations": {
+    "domain": "Supply Chain Operations",
+    "nameZh": "供应链运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "system operations": {
+    "domain": "System Operations",
+    "nameZh": "系统运维",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "system reliability": {
+    "domain": "System Reliability",
+    "nameZh": "系统可靠性",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "academic communication": {
+    "domain": "Academic Communication",
+    "nameZh": "学术交流",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai agent engineering": {
+    "domain": "AI Agent Engineering",
+    "nameZh": "AI Agent 工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai content generation": {
+    "domain": "AI Content Generation",
+    "nameZh": "AI 内容生成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai fundamentals": {
+    "domain": "AI Fundamentals",
+    "nameZh": "AI 基础",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai strategy": {
+    "domain": "AI Strategy",
+    "nameZh": "AI 战略",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "aigc product operations": {
+    "domain": "AIGC Product Operations",
+    "nameZh": "AIGC 产品运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "application and data security": {
+    "domain": "Application and Data Security",
+    "nameZh": "应用与数据安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "application development": {
+    "domain": "Application Development",
+    "nameZh": "应用开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "applied ai research": {
+    "domain": "Applied AI Research",
+    "nameZh": "应用 AI 研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "asset production": {
+    "domain": "Asset Production",
+    "nameZh": "资产制作",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "audio and multimodal ai": {
+    "domain": "Audio and Multimodal AI",
+    "nameZh": "音频与多模态 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "audio systems": {
+    "domain": "Audio Systems",
+    "nameZh": "音频系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "audio-visual intelligence": {
+    "domain": "Audio-Visual Intelligence",
+    "nameZh": "视听智能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "automotive troubleshooting": {
+    "domain": "Automotive Troubleshooting",
+    "nameZh": "汽车故障诊断",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "banking systems": {
+    "domain": "Banking Systems",
+    "nameZh": "银行系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "bd operations": {
+    "domain": "BD Operations",
+    "nameZh": "商务拓展运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "brand design": {
+    "domain": "Brand Design",
+    "nameZh": "品牌设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "business growth engineering": {
+    "domain": "Business Growth Engineering",
+    "nameZh": "业务增长工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "business management": {
+    "domain": "Business Management",
+    "nameZh": "业务管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "business process optimization": {
+    "domain": "Business Process Optimization",
+    "nameZh": "业务流程优化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "business systems": {
+    "domain": "Business Systems",
+    "nameZh": "业务系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "cinema projection engineering": {
+    "domain": "Cinema Projection Engineering",
+    "nameZh": "影院放映工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "codec evaluation": {
+    "domain": "Codec Evaluation",
+    "nameZh": "编解码评估",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "communication protocols": {
+    "domain": "Communication Protocols",
+    "nameZh": "通信协议",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "compliance": {
+    "domain": "Compliance",
+    "nameZh": "合规",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "content design": {
+    "domain": "Content Design",
+    "nameZh": "内容设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "control engineering": {
+    "domain": "Control Engineering",
+    "nameZh": "控制工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "creator operations": {
+    "domain": "Creator Operations",
+    "nameZh": "创作者运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "customer communication": {
+    "domain": "Customer Communication",
+    "nameZh": "客户沟通",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "customer engineering": {
+    "domain": "Customer Engineering",
+    "nameZh": "客户工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "customer training": {
+    "domain": "Customer Training",
+    "nameZh": "客户培训",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "data assimilation": {
+    "domain": "Data Assimilation",
+    "nameZh": "数据同化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "data product / growth": {
+    "domain": "Data Product / Growth",
+    "nameZh": "数据产品/增长",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "decision intelligence": {
+    "domain": "Decision Intelligence",
+    "nameZh": "决策智能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "developer relations": {
+    "domain": "Developer Relations",
+    "nameZh": "开发者关系",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "dialogue systems": {
+    "domain": "Dialogue Systems",
+    "nameZh": "对话系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "distributed ml": {
+    "domain": "Distributed ML",
+    "nameZh": "分布式机器学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "electronic hardware": {
+    "domain": "Electronic Hardware",
+    "nameZh": "电子硬件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "electronics engineering": {
+    "domain": "Electronics Engineering",
+    "nameZh": "电子工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "embedded hardware": {
+    "domain": "Embedded Hardware",
+    "nameZh": "嵌入式硬件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "embedded software engineering": {
+    "domain": "Embedded Software Engineering",
+    "nameZh": "嵌入式软件工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "embedded systems engineering": {
+    "domain": "Embedded Systems Engineering",
+    "nameZh": "嵌入式系统工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "embodied ai / rl": {
+    "domain": "Embodied AI / RL",
+    "nameZh": "具身智能/强化学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "experiment & ai practice": {
+    "domain": "Experiment & AI Practice",
+    "nameZh": "实验与 AI 实践",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "eye tracking": {
+    "domain": "Eye Tracking",
+    "nameZh": "眼动追踪",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "fine arts": {
+    "domain": "Fine Arts",
+    "nameZh": "美术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "foundation models": {
+    "domain": "Foundation Models",
+    "nameZh": "基座模型",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "game analysis": {
+    "domain": "Game Analysis",
+    "nameZh": "游戏分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "game industry": {
+    "domain": "Game Industry",
+    "nameZh": "游戏行业",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "generative biology": {
+    "domain": "Generative Biology",
+    "nameZh": "生成生物学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "geomatics": {
+    "domain": "Geomatics",
+    "nameZh": "测绘学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "geospatial": {
+    "domain": "Geospatial",
+    "nameZh": "地理空间",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "government digitalization": {
+    "domain": "Government Digitalization",
+    "nameZh": "政府数字化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "growth hacking": {
+    "domain": "Growth Hacking",
+    "nameZh": "增长黑客",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "growth technology": {
+    "domain": "Growth Technology",
+    "nameZh": "增长技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "infrastructure service delivery": {
+    "domain": "Infrastructure Service Delivery",
+    "nameZh": "基础设施服务交付",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "knowledge engineering": {
+    "domain": "Knowledge Engineering",
+    "nameZh": "知识工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "maintenance support": {
+    "domain": "Maintenance Support",
+    "nameZh": "维护支持",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "marketing analytics": {
+    "domain": "Marketing Analytics",
+    "nameZh": "营销分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "marketing design": {
+    "domain": "Marketing Design",
+    "nameZh": "营销设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "mechanics": {
+    "domain": "Mechanics",
+    "nameZh": "力学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "media analysis": {
+    "domain": "Media Analysis",
+    "nameZh": "媒体分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "medical ai": {
+    "domain": "Medical AI",
+    "nameZh": "医疗 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "medical research": {
+    "domain": "Medical Research",
+    "nameZh": "医学研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "microscopy": {
+    "domain": "Microscopy",
+    "nameZh": "显微镜技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "mineral processing": {
+    "domain": "Mineral Processing",
+    "nameZh": "选矿",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "mobile graphics & interactive media": {
+    "domain": "Mobile Graphics & Interactive Media",
+    "nameZh": "移动图形与交互媒体",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "model architecture": {
+    "domain": "Model Architecture",
+    "nameZh": "模型架构",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "model compression": {
+    "domain": "Model Compression",
+    "nameZh": "模型压缩",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "multimedia / 3d vision": {
+    "domain": "Multimedia / 3D Vision",
+    "nameZh": "多媒体/3D 视觉",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "music": {
+    "domain": "Music",
+    "nameZh": "音乐",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "music theory": {
+    "domain": "Music Theory",
+    "nameZh": "乐理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ocr & document ai": {
+    "domain": "OCR & Document AI",
+    "nameZh": "OCR 与文档 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "operational optimization": {
+    "domain": "Operational Optimization",
+    "nameZh": "运营优化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "operations analytics": {
+    "domain": "Operations Analytics",
+    "nameZh": "运营分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "performance analysis": {
+    "domain": "Performance Analysis",
+    "nameZh": "性能分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "platform governance": {
+    "domain": "Platform Governance",
+    "nameZh": "平台治理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "privacy computing": {
+    "domain": "Privacy Computing",
+    "nameZh": "隐私计算",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "privacy preserving ml": {
+    "domain": "Privacy Preserving ML",
+    "nameZh": "隐私保护机器学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "procedural generation": {
+    "domain": "Procedural Generation",
+    "nameZh": "过程生成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "process control": {
+    "domain": "Process Control",
+    "nameZh": "过程控制",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "product quality": {
+    "domain": "Product Quality",
+    "nameZh": "产品质量",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "product technology": {
+    "domain": "Product Technology",
+    "nameZh": "产品技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "prompt engineering": {
+    "domain": "Prompt Engineering",
+    "nameZh": "提示工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "quality assurance engineering": {
+    "domain": "Quality Assurance Engineering",
+    "nameZh": "质量保证工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "recommendation engineering": {
+    "domain": "Recommendation Engineering",
+    "nameZh": "推荐工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "reinforcement learning systems": {
+    "domain": "Reinforcement Learning Systems",
+    "nameZh": "强化学习系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "research collaboration": {
+    "domain": "Research Collaboration",
+    "nameZh": "研究合作",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "search / recommendation": {
+    "domain": "Search / Recommendation",
+    "nameZh": "搜索/推荐",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "solution engineering": {
+    "domain": "Solution Engineering",
+    "nameZh": "解决方案工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "storage product management": {
+    "domain": "Storage Product Management",
+    "nameZh": "存储产品管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "storyboarding": {
+    "domain": "Storyboarding",
+    "nameZh": "分镜设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "system analysis": {
+    "domain": "System Analysis",
+    "nameZh": "系统分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "systems optimization": {
+    "domain": "Systems Optimization",
+    "nameZh": "系统优化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "technical content operations": {
+    "domain": "Technical Content Operations",
+    "nameZh": "技术内容运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "technical writing": {
+    "domain": "Technical Writing",
+    "nameZh": "技术写作",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "trend analysis": {
+    "domain": "Trend Analysis",
+    "nameZh": "趋势分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "user experience design": {
+    "domain": "User Experience Design",
+    "nameZh": "用户体验设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "user research & growth": {
+    "domain": "User Research & Growth",
+    "nameZh": "用户研究与增长",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "vendor operations": {
+    "domain": "Vendor Operations",
+    "nameZh": "供应商运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "video codec": {
+    "domain": "Video Codec",
+    "nameZh": "视频编解码",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "video quality assessment": {
+    "domain": "Video Quality Assessment",
+    "nameZh": "视频质量评估",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "vulnerability research": {
+    "domain": "Vulnerability Research",
+    "nameZh": "漏洞研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "work planning": {
+    "domain": "Work Planning",
+    "nameZh": "工作规划",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "3d content pipeline": {
+    "domain": "3D Content Pipeline",
+    "nameZh": "3D 内容流水线",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "3d data": {
+    "domain": "3D Data",
+    "nameZh": "3D 数据",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "3d generation": {
+    "domain": "3D Generation",
+    "nameZh": "3D 生成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "3d pipeline": {
+    "domain": "3D Pipeline",
+    "nameZh": "3D 流水线",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "academic research": {
+    "domain": "Academic Research",
+    "nameZh": "学术研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "academic supervision": {
+    "domain": "Academic Supervision",
+    "nameZh": "学术指导",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "advertising data science": {
+    "domain": "Advertising Data Science",
+    "nameZh": "广告数据科学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "advertising product strategy": {
+    "domain": "Advertising Product Strategy",
+    "nameZh": "广告产品策略",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "advertising systems": {
+    "domain": "Advertising Systems",
+    "nameZh": "广告系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "aerospace": {
+    "domain": "Aerospace",
+    "nameZh": "航空航天",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "affective computing": {
+    "domain": "Affective Computing",
+    "nameZh": "情感计算",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai and xr": {
+    "domain": "AI and XR",
+    "nameZh": "AI 与 XR",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai application engineering": {
+    "domain": "AI Application Engineering",
+    "nameZh": "AI 应用工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai data operations": {
+    "domain": "AI Data Operations",
+    "nameZh": "AI 数据运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai deployment": {
+    "domain": "AI Deployment",
+    "nameZh": "AI 部署",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai for biology": {
+    "domain": "AI for Biology",
+    "nameZh": "AI 生物学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai for communications": {
+    "domain": "AI for Communications",
+    "nameZh": "AI 通信",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai for science": {
+    "domain": "AI for Science",
+    "nameZh": "AI for Science",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai for software engineering": {
+    "domain": "AI for Software Engineering",
+    "nameZh": "AI 软件工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai industry research": {
+    "domain": "AI Industry Research",
+    "nameZh": "AI 行业研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai inference": {
+    "domain": "AI Inference",
+    "nameZh": "AI 推理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai interaction": {
+    "domain": "AI Interaction",
+    "nameZh": "AI 交互",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai medical software": {
+    "domain": "AI Medical Software",
+    "nameZh": "AI 医疗软件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai operations": {
+    "domain": "AI Operations",
+    "nameZh": "AI 运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai planning": {
+    "domain": "AI Planning",
+    "nameZh": "AI 规划",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai product engineering": {
+    "domain": "AI Product Engineering",
+    "nameZh": "AI 产品工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai product operations": {
+    "domain": "AI Product Operations",
+    "nameZh": "AI 产品运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai product strategy": {
+    "domain": "AI Product Strategy",
+    "nameZh": "AI 产品策略",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai safety/moderation": {
+    "domain": "AI Safety/Moderation",
+    "nameZh": "AI 安全/审核",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai solution architecture": {
+    "domain": "AI Solution Architecture",
+    "nameZh": "AI 解决方案架构",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ai technology": {
+    "domain": "AI Technology",
+    "nameZh": "AI 技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "aigc / 3d generation": {
+    "domain": "AIGC / 3D Generation",
+    "nameZh": "AIGC/3D 生成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "aigc / creative intelligence": {
+    "domain": "AIGC / Creative Intelligence",
+    "nameZh": "AIGC/创意智能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "algorithm application": {
+    "domain": "Algorithm Application",
+    "nameZh": "算法应用",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "algorithm research": {
+    "domain": "Algorithm Research",
+    "nameZh": "算法研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "analog circuit design": {
+    "domain": "Analog Circuit Design",
+    "nameZh": "模拟电路设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "analytics": {
+    "domain": "Analytics",
+    "nameZh": "分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "analytics project": {
+    "domain": "Analytics Project",
+    "nameZh": "分析项目",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "android": {
+    "domain": "Android",
+    "nameZh": "Android",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "animation & film": {
+    "domain": "Animation & Film",
+    "nameZh": "动画与电影",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "api testing": {
+    "domain": "API Testing",
+    "nameZh": "API 测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "applied ai systems": {
+    "domain": "Applied AI Systems",
+    "nameZh": "应用 AI 系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "applied machine learning": {
+    "domain": "Applied Machine Learning",
+    "nameZh": "应用机器学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "applied research": {
+    "domain": "Applied Research",
+    "nameZh": "应用研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "architecture": {
+    "domain": "Architecture",
+    "nameZh": "架构",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "architecture design": {
+    "domain": "Architecture Design",
+    "nameZh": "架构设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "architecture engineering": {
+    "domain": "Architecture Engineering",
+    "nameZh": "架构工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "art analysis": {
+    "domain": "Art Analysis",
+    "nameZh": "艺术分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "audio signal processing": {
+    "domain": "Audio Signal Processing",
+    "nameZh": "音频信号处理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "audio video evaluation": {
+    "domain": "Audio Video Evaluation",
+    "nameZh": "音视频评估",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "audio video systems": {
+    "domain": "Audio Video Systems",
+    "nameZh": "音视频系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "audit": {
+    "domain": "Audit",
+    "nameZh": "审计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "automation control": {
+    "domain": "Automation Control",
+    "nameZh": "自动化控制",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "automotive engineering": {
+    "domain": "Automotive Engineering",
+    "nameZh": "汽车工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "autonomous driving operations": {
+    "domain": "Autonomous Driving Operations",
+    "nameZh": "自动驾驶运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "backend infrastructure": {
+    "domain": "Backend Infrastructure",
+    "nameZh": "后端基础设施",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "biomedical engineering": {
+    "domain": "Biomedical Engineering",
+    "nameZh": "生物医学工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "build engineering": {
+    "domain": "Build Engineering",
+    "nameZh": "构建工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "build tools": {
+    "domain": "Build Tools",
+    "nameZh": "构建工具",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "building automation": {
+    "domain": "Building Automation",
+    "nameZh": "楼宇自动化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "business analytics": {
+    "domain": "Business Analytics",
+    "nameZh": "业务分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "business communication": {
+    "domain": "Business Communication",
+    "nameZh": "商务沟通",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "business enablement": {
+    "domain": "Business Enablement",
+    "nameZh": "业务赋能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "business integration": {
+    "domain": "Business Integration",
+    "nameZh": "业务集成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "candidate management": {
+    "domain": "Candidate Management",
+    "nameZh": "候选人管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "carbon analytics": {
+    "domain": "Carbon Analytics",
+    "nameZh": "碳分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "cheminformatics": {
+    "domain": "Cheminformatics",
+    "nameZh": "化学信息学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "circuit simulation": {
+    "domain": "Circuit Simulation",
+    "nameZh": "电路仿真",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "client development": {
+    "domain": "Client Development",
+    "nameZh": "客户端开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "clinical medicine": {
+    "domain": "Clinical Medicine",
+    "nameZh": "临床医学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "cloud architecture": {
+    "domain": "Cloud Architecture",
+    "nameZh": "云架构",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "cloud storage": {
+    "domain": "Cloud Storage",
+    "nameZh": "云存储",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "code quality": {
+    "domain": "Code Quality",
+    "nameZh": "代码质量",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "code security": {
+    "domain": "Code Security",
+    "nameZh": "代码安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "collaboration": {
+    "domain": "Collaboration",
+    "nameZh": "协作",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "color science": {
+    "domain": "Color Science",
+    "nameZh": "色彩科学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "communication technology": {
+    "domain": "Communication Technology",
+    "nameZh": "通信技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "communication testing": {
+    "domain": "Communication Testing",
+    "nameZh": "通信测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "compiler theory": {
+    "domain": "Compiler Theory",
+    "nameZh": "编译原理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "computational fluid dynamics": {
+    "domain": "Computational Fluid Dynamics",
+    "nameZh": "计算流体力学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "computational linguistics": {
+    "domain": "Computational Linguistics",
+    "nameZh": "计算语言学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "computational optics": {
+    "domain": "Computational Optics",
+    "nameZh": "计算光学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "computer security architecture": {
+    "domain": "Computer Security Architecture",
+    "nameZh": "计算机安全架构",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "computer vision / graphics": {
+    "domain": "Computer Vision / Graphics",
+    "nameZh": "计算机视觉/图形学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "computer vision / nlp / speech": {
+    "domain": "Computer Vision / NLP / Speech",
+    "nameZh": "计算机视觉/自然语言处理/语音",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "computing systems": {
+    "domain": "Computing Systems",
+    "nameZh": "计算系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "concurrent programming": {
+    "domain": "Concurrent Programming",
+    "nameZh": "并发编程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "container technology": {
+    "domain": "Container Technology",
+    "nameZh": "容器技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "content": {
+    "domain": "Content",
+    "nameZh": "内容",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "content ecosystem": {
+    "domain": "Content Ecosystem",
+    "nameZh": "内容生态",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "content generation": {
+    "domain": "Content Generation",
+    "nameZh": "内容生成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "content governance": {
+    "domain": "Content Governance",
+    "nameZh": "内容治理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "content moderation": {
+    "domain": "Content Moderation",
+    "nameZh": "内容审核",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "content safety & quality": {
+    "domain": "Content Safety & Quality",
+    "nameZh": "内容安全与质量",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "content security": {
+    "domain": "Content Security",
+    "nameZh": "内容安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "control theory": {
+    "domain": "Control Theory",
+    "nameZh": "控制理论",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "creative design": {
+    "domain": "Creative Design",
+    "nameZh": "创意设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "cross platform": {
+    "domain": "Cross Platform",
+    "nameZh": "跨平台",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "cross platform development": {
+    "domain": "Cross Platform Development",
+    "nameZh": "跨平台开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "cross-border e-commerce": {
+    "domain": "Cross-border E-commerce",
+    "nameZh": "跨境电商",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "cross-functional operations": {
+    "domain": "Cross-functional Operations",
+    "nameZh": "跨职能运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "cross-functional product delivery": {
+    "domain": "Cross-functional Product Delivery",
+    "nameZh": "跨职能产品交付",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "cross-platform development": {
+    "domain": "Cross-platform Development",
+    "nameZh": "跨平台开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "customer service product": {
+    "domain": "Customer Service Product",
+    "nameZh": "客服产品",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "data acquisition": {
+    "domain": "Data Acquisition",
+    "nameZh": "数据采集",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "data center design": {
+    "domain": "Data Center Design",
+    "nameZh": "数据中心设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "data center engineering": {
+    "domain": "Data Center Engineering",
+    "nameZh": "数据中心工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "data development": {
+    "domain": "Data Development",
+    "nameZh": "数据开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "data engineering for ai": {
+    "domain": "Data Engineering for AI",
+    "nameZh": "AI 数据工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "data integration": {
+    "domain": "Data Integration",
+    "nameZh": "数据集成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "data platform": {
+    "domain": "Data Platform",
+    "nameZh": "数据平台",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "data platform engineering": {
+    "domain": "Data Platform Engineering",
+    "nameZh": "数据平台工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "data privacy": {
+    "domain": "Data Privacy",
+    "nameZh": "数据隐私",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "data product": {
+    "domain": "Data Product",
+    "nameZh": "数据产品",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "data science & analytics": {
+    "domain": "Data Science & Analytics",
+    "nameZh": "数据科学与分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "data structures": {
+    "domain": "Data Structures",
+    "nameZh": "数据结构",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "database engineering": {
+    "domain": "Database Engineering",
+    "nameZh": "数据库工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "database management": {
+    "domain": "Database Management",
+    "nameZh": "数据库管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "decision optimization": {
+    "domain": "Decision Optimization",
+    "nameZh": "决策优化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "decision support": {
+    "domain": "Decision Support",
+    "nameZh": "决策支持",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "deployment": {
+    "domain": "Deployment",
+    "nameZh": "部署",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "design collaboration": {
+    "domain": "Design Collaboration",
+    "nameZh": "设计协作",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "design fundamentals": {
+    "domain": "Design Fundamentals",
+    "nameZh": "设计基础",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "design methodology": {
+    "domain": "Design Methodology",
+    "nameZh": "设计方法论",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "design process": {
+    "domain": "Design Process",
+    "nameZh": "设计流程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "developer platform": {
+    "domain": "Developer Platform",
+    "nameZh": "开发者平台",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "developer productivity": {
+    "domain": "Developer Productivity",
+    "nameZh": "开发者生产力",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "developer tools": {
+    "domain": "Developer Tools",
+    "nameZh": "开发者工具",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "development platforms": {
+    "domain": "Development Platforms",
+    "nameZh": "开发平台",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "device software": {
+    "domain": "Device Software",
+    "nameZh": "设备软件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "digital content creation": {
+    "domain": "Digital Content Creation",
+    "nameZh": "数字内容创作",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "digital human": {
+    "domain": "Digital Human",
+    "nameZh": "数字人",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "display physics": {
+    "domain": "Display Physics",
+    "nameZh": "显示物理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "distributed search": {
+    "domain": "Distributed Search",
+    "nameZh": "分布式搜索",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "distributed storage": {
+    "domain": "Distributed Storage",
+    "nameZh": "分布式存储",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "document ai": {
+    "domain": "Document AI",
+    "nameZh": "文档 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "document management": {
+    "domain": "Document Management",
+    "nameZh": "文档管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "domain llm": {
+    "domain": "Domain LLM",
+    "nameZh": "领域大语言模型",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "driver engineering": {
+    "domain": "Driver Engineering",
+    "nameZh": "驱动工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "e-commerce analytics": {
+    "domain": "E-commerce Analytics",
+    "nameZh": "电商分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "e-commerce design": {
+    "domain": "E-commerce Design",
+    "nameZh": "电商设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "e-learning": {
+    "domain": "E-Learning",
+    "nameZh": "在线学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "edge computing": {
+    "domain": "Edge Computing",
+    "nameZh": "边缘计算",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "electromagnetic compatibility": {
+    "domain": "Electromagnetic Compatibility",
+    "nameZh": "电磁兼容性",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "electromechanical systems": {
+    "domain": "Electromechanical Systems",
+    "nameZh": "机电系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "embedded testing": {
+    "domain": "Embedded Testing",
+    "nameZh": "嵌入式测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "embodied / real-world ai": {
+    "domain": "Embodied / Real-world AI",
+    "nameZh": "具身/现实世界 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "energy storage": {
+    "domain": "Energy Storage",
+    "nameZh": "储能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "energy systems": {
+    "domain": "Energy Systems",
+    "nameZh": "能源系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "engineering practice": {
+    "domain": "Engineering Practice",
+    "nameZh": "工程实践",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "enterprise it": {
+    "domain": "Enterprise IT",
+    "nameZh": "企业 IT",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "enterprise management": {
+    "domain": "Enterprise Management",
+    "nameZh": "企业管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "enterprise software": {
+    "domain": "Enterprise Software",
+    "nameZh": "企业软件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "enterprise systems": {
+    "domain": "Enterprise Systems",
+    "nameZh": "企业系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "environmental science": {
+    "domain": "Environmental Science",
+    "nameZh": "环境科学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "event management": {
+    "domain": "Event Management",
+    "nameZh": "活动管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "event operations": {
+    "domain": "Event Operations",
+    "nameZh": "活动运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "experiment analysis": {
+    "domain": "Experiment Analysis",
+    "nameZh": "实验分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "experiment design": {
+    "domain": "Experiment Design",
+    "nameZh": "实验设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "experimental methods": {
+    "domain": "Experimental Methods",
+    "nameZh": "实验方法",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "experimentation science": {
+    "domain": "Experimentation Science",
+    "nameZh": "实验科学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "extended reality": {
+    "domain": "Extended Reality",
+    "nameZh": "扩展现实",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "field engineering": {
+    "domain": "Field Engineering",
+    "nameZh": "现场工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "financial technology": {
+    "domain": "Financial Technology",
+    "nameZh": "金融科技",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "fintech": {
+    "domain": "FinTech",
+    "nameZh": "金融科技",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "firmware engineering": {
+    "domain": "Firmware Engineering",
+    "nameZh": "固件工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "fluid dynamics": {
+    "domain": "Fluid Dynamics",
+    "nameZh": "流体力学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "forecasting": {
+    "domain": "Forecasting",
+    "nameZh": "预测",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "fraud prevention": {
+    "domain": "Fraud Prevention",
+    "nameZh": "欺诈防范",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "frontend architecture": {
+    "domain": "Frontend Architecture",
+    "nameZh": "前端架构",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "frontend infrastructure": {
+    "domain": "Frontend Infrastructure",
+    "nameZh": "前端基础设施",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "frontend rendering": {
+    "domain": "Frontend Rendering",
+    "nameZh": "前端渲染",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "frontier ai research": {
+    "domain": "Frontier AI Research",
+    "nameZh": "前沿 AI 研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "full-stack engineering": {
+    "domain": "Full-stack Engineering",
+    "nameZh": "全栈工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "game engine": {
+    "domain": "Game Engine",
+    "nameZh": "游戏引擎",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "game security": {
+    "domain": "Game Security",
+    "nameZh": "游戏安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "game theory": {
+    "domain": "Game Theory",
+    "nameZh": "博弈论",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "gaming": {
+    "domain": "Gaming",
+    "nameZh": "游戏",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "general office": {
+    "domain": "General Office",
+    "nameZh": "综合行政",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "generative ai solution design": {
+    "domain": "Generative AI Solution Design",
+    "nameZh": "生成式 AI 解决方案设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "generative model": {
+    "domain": "Generative Model",
+    "nameZh": "生成模型",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "generative model architecture": {
+    "domain": "Generative Model Architecture",
+    "nameZh": "生成模型架构",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "generative model engineering": {
+    "domain": "Generative Model Engineering",
+    "nameZh": "生成模型工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "generative vision": {
+    "domain": "Generative Vision",
+    "nameZh": "生成式视觉",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "geo ai": {
+    "domain": "Geo AI",
+    "nameZh": "地理 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "geo data operations": {
+    "domain": "Geo Data Operations",
+    "nameZh": "地理数据运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "geospatial ai": {
+    "domain": "Geospatial AI",
+    "nameZh": "地理空间 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "global advertising product": {
+    "domain": "Global Advertising Product",
+    "nameZh": "全球广告产品",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "global operations": {
+    "domain": "Global Operations",
+    "nameZh": "全球运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "governance strategy": {
+    "domain": "Governance Strategy",
+    "nameZh": "治理策略",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "graphics engine": {
+    "domain": "Graphics Engine",
+    "nameZh": "图形引擎",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "graphics software": {
+    "domain": "Graphics Software",
+    "nameZh": "图形软件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "growth & monetization analytics": {
+    "domain": "Growth & Monetization Analytics",
+    "nameZh": "增长与变现分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "hardware & firmware": {
+    "domain": "Hardware & Firmware",
+    "nameZh": "硬件与固件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "hardware assembly": {
+    "domain": "Hardware Assembly",
+    "nameZh": "硬件组装",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "hardware interfaces": {
+    "domain": "Hardware Interfaces",
+    "nameZh": "硬件接口",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "hardware-software co-design": {
+    "domain": "Hardware-Software Co-design",
+    "nameZh": "软硬件协同设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "hd map": {
+    "domain": "HD Map",
+    "nameZh": "高精地图",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "healthcare": {
+    "domain": "Healthcare",
+    "nameZh": "医疗保健",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "healthcare ai": {
+    "domain": "Healthcare AI",
+    "nameZh": "医疗 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "hpc platform engineering": {
+    "domain": "HPC Platform Engineering",
+    "nameZh": "高性能计算平台工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "hr operations": {
+    "domain": "HR Operations",
+    "nameZh": "人力资源运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "hrbp / recruiting": {
+    "domain": "HRBP / Recruiting",
+    "nameZh": "HRBP/招聘",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "human factors": {
+    "domain": "Human Factors",
+    "nameZh": "人机工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "human-machine interface": {
+    "domain": "Human-Machine Interface",
+    "nameZh": "人机界面",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ic design": {
+    "domain": "IC Design",
+    "nameZh": "集成电路设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "image and text analysis": {
+    "domain": "Image and Text Analysis",
+    "nameZh": "图文分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "implementation & technical support": {
+    "domain": "Implementation & Technical Support",
+    "nameZh": "实施与技术支持",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "industrial communication": {
+    "domain": "Industrial Communication",
+    "nameZh": "工业通信",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "industry": {
+    "domain": "Industry",
+    "nameZh": "行业",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "industry experience": {
+    "domain": "Industry Experience",
+    "nameZh": "行业经验",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "industry research": {
+    "domain": "Industry Research",
+    "nameZh": "行业研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "information and communication technology": {
+    "domain": "Information and Communication Technology",
+    "nameZh": "信息与通信技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "information security": {
+    "domain": "Information Security",
+    "nameZh": "信息安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "infrastructure engineering": {
+    "domain": "Infrastructure Engineering",
+    "nameZh": "基础设施工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "infrastructure operations": {
+    "domain": "Infrastructure Operations",
+    "nameZh": "基础设施运维",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "interaction design": {
+    "domain": "Interaction Design",
+    "nameZh": "交互设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "internal control": {
+    "domain": "Internal Control",
+    "nameZh": "内控",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "international growth operations": {
+    "domain": "International Growth Operations",
+    "nameZh": "国际增长运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "international product": {
+    "domain": "International Product",
+    "nameZh": "国际产品",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "international short video": {
+    "domain": "International Short Video",
+    "nameZh": "国际短视频",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "internet technology": {
+    "domain": "Internet Technology",
+    "nameZh": "互联网技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ios development": {
+    "domain": "iOS Development",
+    "nameZh": "iOS 开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "javascript": {
+    "domain": "JavaScript",
+    "nameZh": "JavaScript",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "knowledge management": {
+    "domain": "Knowledge Management",
+    "nameZh": "知识管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "language model": {
+    "domain": "Language Model",
+    "nameZh": "语言模型",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "large model training": {
+    "domain": "Large Model Training",
+    "nameZh": "大模型训练",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "lbs": {
+    "domain": "LBS",
+    "nameZh": "基于位置的服务",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "live streaming operations": {
+    "domain": "Live Streaming Operations",
+    "nameZh": "直播运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "llm applications": {
+    "domain": "LLM Applications",
+    "nameZh": "大语言模型应用",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "llm for ads": {
+    "domain": "LLM for Ads",
+    "nameZh": "广告大语言模型",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "llm post-training": {
+    "domain": "LLM Post-Training",
+    "nameZh": "大语言模型后训练",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "llm security": {
+    "domain": "LLM Security",
+    "nameZh": "大语言模型安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "localization": {
+    "domain": "Localization",
+    "nameZh": "本地化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "logic": {
+    "domain": "Logic",
+    "nameZh": "逻辑",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "logistics": {
+    "domain": "Logistics",
+    "nameZh": "物流",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "logistics intelligence": {
+    "domain": "Logistics Intelligence",
+    "nameZh": "物流智能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "machine learning evaluation": {
+    "domain": "Machine Learning Evaluation",
+    "nameZh": "机器学习评估",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "market intelligence": {
+    "domain": "Market Intelligence",
+    "nameZh": "市场情报",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "marketing ai": {
+    "domain": "Marketing AI",
+    "nameZh": "营销 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "marketing strategy": {
+    "domain": "Marketing Strategy",
+    "nameZh": "营销策略",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "marketplace": {
+    "domain": "Marketplace",
+    "nameZh": "交易平台",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "measurement": {
+    "domain": "Measurement",
+    "nameZh": "测量",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "media production": {
+    "domain": "Media Production",
+    "nameZh": "媒体制作",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "media technology": {
+    "domain": "Media Technology",
+    "nameZh": "媒体技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "medical science": {
+    "domain": "Medical Science",
+    "nameZh": "医学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "medical technology": {
+    "domain": "Medical Technology",
+    "nameZh": "医疗技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "memory circuit design": {
+    "domain": "Memory Circuit Design",
+    "nameZh": "存储电路设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "memory optimization": {
+    "domain": "Memory Optimization",
+    "nameZh": "内存优化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "message queuing": {
+    "domain": "Message Queuing",
+    "nameZh": "消息队列",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "microcontroller systems": {
+    "domain": "Microcontroller Systems",
+    "nameZh": "微控制器系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "microwave sensing": {
+    "domain": "Microwave Sensing",
+    "nameZh": "微波传感",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ml evaluation": {
+    "domain": "ML Evaluation",
+    "nameZh": "机器学习评估",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "ml platform engineering": {
+    "domain": "ML Platform Engineering",
+    "nameZh": "机器学习平台工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "mobile game development": {
+    "domain": "Mobile Game Development",
+    "nameZh": "移动游戏开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "mobile os engineering": {
+    "domain": "Mobile OS Engineering",
+    "nameZh": "移动操作系统工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "model fine-tuning": {
+    "domain": "Model Fine-tuning",
+    "nameZh": "模型微调",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "model serving": {
+    "domain": "Model Serving",
+    "nameZh": "模型推理服务",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "model training and alignment": {
+    "domain": "Model Training and Alignment",
+    "nameZh": "模型训练与对齐",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "modeling": {
+    "domain": "Modeling",
+    "nameZh": "建模",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "monitoring": {
+    "domain": "Monitoring",
+    "nameZh": "监控",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "motion control": {
+    "domain": "Motion Control",
+    "nameZh": "运动控制",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "motion graphics": {
+    "domain": "Motion Graphics",
+    "nameZh": "动态图形",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "multi-modal learning": {
+    "domain": "Multi-modal Learning",
+    "nameZh": "多模态学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "multilingual data operations": {
+    "domain": "Multilingual Data Operations",
+    "nameZh": "多语言数据运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "multimedia tools": {
+    "domain": "Multimedia Tools",
+    "nameZh": "多媒体工具",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "multimodal generation": {
+    "domain": "Multimodal Generation",
+    "nameZh": "多模态生成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "multimodal llm": {
+    "domain": "Multimodal LLM",
+    "nameZh": "多模态大语言模型",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "multimodal model": {
+    "domain": "Multimodal Model",
+    "nameZh": "多模态模型",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "music analysis": {
+    "domain": "Music Analysis",
+    "nameZh": "音乐分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "music information retrieval": {
+    "domain": "Music Information Retrieval",
+    "nameZh": "音乐信息检索",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "natural language understanding": {
+    "domain": "Natural Language Understanding",
+    "nameZh": "自然语言理解",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "network communication": {
+    "domain": "Network Communication",
+    "nameZh": "网络通信",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "neuro-ai education": {
+    "domain": "Neuro-AI Education",
+    "nameZh": "神经 AI 教育",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "neuroscience x ai": {
+    "domain": "Neuroscience x AI",
+    "nameZh": "神经科学与 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "new media": {
+    "domain": "New Media",
+    "nameZh": "新媒体",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "numerical computing": {
+    "domain": "Numerical Computing",
+    "nameZh": "数值计算",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "object-oriented programming": {
+    "domain": "Object-Oriented Programming",
+    "nameZh": "面向对象编程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "objective modeling": {
+    "domain": "Objective Modeling",
+    "nameZh": "客观建模",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "office automation": {
+    "domain": "Office Automation",
+    "nameZh": "办公自动化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "office software": {
+    "domain": "Office Software",
+    "nameZh": "办公软件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "office tools": {
+    "domain": "Office Tools",
+    "nameZh": "办公工具",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "open source": {
+    "domain": "Open Source",
+    "nameZh": "开源",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "open source development": {
+    "domain": "Open Source Development",
+    "nameZh": "开源开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "operating systems engineering": {
+    "domain": "Operating Systems Engineering",
+    "nameZh": "操作系统工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "operation efficiency": {
+    "domain": "Operation Efficiency",
+    "nameZh": "运营效率",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "operations excellence": {
+    "domain": "Operations Excellence",
+    "nameZh": "卓越运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "payment systems": {
+    "domain": "Payment Systems",
+    "nameZh": "支付系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "pcb design": {
+    "domain": "PCB Design",
+    "nameZh": "PCB 设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "performance": {
+    "domain": "Performance",
+    "nameZh": "性能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "performance optimization": {
+    "domain": "Performance Optimization",
+    "nameZh": "性能优化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "pipeline engineering": {
+    "domain": "Pipeline Engineering",
+    "nameZh": "流水线工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "platform architecture": {
+    "domain": "Platform Architecture",
+    "nameZh": "平台架构",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "platform product operations": {
+    "domain": "Platform Product Operations",
+    "nameZh": "平台产品运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "plc programming": {
+    "domain": "PLC Programming",
+    "nameZh": "PLC 编程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "policy intelligence": {
+    "domain": "Policy Intelligence",
+    "nameZh": "政策智能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "pricing / marketing strategy": {
+    "domain": "Pricing / Marketing Strategy",
+    "nameZh": "定价/营销策略",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "printing equipment": {
+    "domain": "Printing Equipment",
+    "nameZh": "打印设备",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "process automation": {
+    "domain": "Process Automation",
+    "nameZh": "流程自动化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "process engineering": {
+    "domain": "Process Engineering",
+    "nameZh": "工艺工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "process improvement": {
+    "domain": "Process Improvement",
+    "nameZh": "流程改进",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "procurement enablement": {
+    "domain": "Procurement Enablement",
+    "nameZh": "采购赋能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "procurement management": {
+    "domain": "Procurement Management",
+    "nameZh": "采购管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "product experience": {
+    "domain": "Product Experience",
+    "nameZh": "产品体验",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "product planning": {
+    "domain": "Product Planning",
+    "nameZh": "产品规划",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "production": {
+    "domain": "Production",
+    "nameZh": "生产",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "programming language & ai infrastructure": {
+    "domain": "Programming Language & AI Infrastructure",
+    "nameZh": "编程语言与 AI 基础设施",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "project analysis": {
+    "domain": "Project Analysis",
+    "nameZh": "项目分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "project and strategy management": {
+    "domain": "Project and Strategy Management",
+    "nameZh": "项目与战略管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "project documentation management": {
+    "domain": "Project Documentation Management",
+    "nameZh": "项目文档管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "project execution": {
+    "domain": "Project Execution",
+    "nameZh": "项目执行",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "protein engineering": {
+    "domain": "Protein Engineering",
+    "nameZh": "蛋白质工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "prototyping": {
+    "domain": "Prototyping",
+    "nameZh": "原型设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "qa engineering": {
+    "domain": "QA Engineering",
+    "nameZh": "质量保证工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "quantum physics": {
+    "domain": "Quantum Physics",
+    "nameZh": "量子物理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "reasoning / social intelligence": {
+    "domain": "Reasoning / Social Intelligence",
+    "nameZh": "推理/社会智能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "recommendation / content intelligence": {
+    "domain": "Recommendation / Content Intelligence",
+    "nameZh": "推荐/内容智能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "recommendation ai": {
+    "domain": "Recommendation AI",
+    "nameZh": "推荐 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "recruitment technology": {
+    "domain": "Recruitment Technology",
+    "nameZh": "招聘技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "rendering engineering": {
+    "domain": "Rendering Engineering",
+    "nameZh": "渲染工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "reporting": {
+    "domain": "Reporting",
+    "nameZh": "报表",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "research & development": {
+    "domain": "Research & Development",
+    "nameZh": "研发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "research engineering": {
+    "domain": "Research Engineering",
+    "nameZh": "研究工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "research management": {
+    "domain": "Research Management",
+    "nameZh": "研究管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "research methodology": {
+    "domain": "Research Methodology",
+    "nameZh": "研究方法论",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "resource management": {
+    "domain": "Resource Management",
+    "nameZh": "资源管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "risk control engineering": {
+    "domain": "Risk Control Engineering",
+    "nameZh": "风控工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "rlhf": {
+    "domain": "RLHF",
+    "nameZh": "RLHF",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "robot ai": {
+    "domain": "Robot AI",
+    "nameZh": "机器人 AI",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "robotics safety": {
+    "domain": "Robotics Safety",
+    "nameZh": "机器人安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "sales operations": {
+    "domain": "Sales Operations",
+    "nameZh": "销售运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "satellite communication": {
+    "domain": "Satellite Communication",
+    "nameZh": "卫星通信",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "scene design": {
+    "domain": "Scene Design",
+    "nameZh": "场景设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "scientific computing": {
+    "domain": "Scientific Computing",
+    "nameZh": "科学计算",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "scientific research": {
+    "domain": "Scientific Research",
+    "nameZh": "科学研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "scripting": {
+    "domain": "Scripting",
+    "nameZh": "脚本编写",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "search / nlp": {
+    "domain": "Search / NLP",
+    "nameZh": "搜索/自然语言处理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "search engineering": {
+    "domain": "Search Engineering",
+    "nameZh": "搜索工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "search ranking": {
+    "domain": "Search Ranking",
+    "nameZh": "搜索排序",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "search technology": {
+    "domain": "Search Technology",
+    "nameZh": "搜索技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "search understanding": {
+    "domain": "Search Understanding",
+    "nameZh": "搜索理解",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "security competitions": {
+    "domain": "Security Competitions",
+    "nameZh": "安全竞赛",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "security general": {
+    "domain": "Security General",
+    "nameZh": "通用安全",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "security governance": {
+    "domain": "Security Governance",
+    "nameZh": "安全治理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "security risk control": {
+    "domain": "Security Risk Control",
+    "nameZh": "安全风控",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "sensor technology": {
+    "domain": "Sensor Technology",
+    "nameZh": "传感器技术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "sequence learning": {
+    "domain": "Sequence Learning",
+    "nameZh": "序列学习",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "server operations": {
+    "domain": "Server Operations",
+    "nameZh": "服务器运维",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "service engineering": {
+    "domain": "Service Engineering",
+    "nameZh": "服务工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "service operations": {
+    "domain": "Service Operations",
+    "nameZh": "服务运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "short video engineering": {
+    "domain": "Short Video Engineering",
+    "nameZh": "短视频工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "simulation engineering": {
+    "domain": "Simulation Engineering",
+    "nameZh": "仿真工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "soc system optimization": {
+    "domain": "SoC System Optimization",
+    "nameZh": "SoC 系统优化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "software": {
+    "domain": "Software",
+    "nameZh": "软件",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "software configuration management": {
+    "domain": "Software Configuration Management",
+    "nameZh": "软件配置管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "software/hardware testing": {
+    "domain": "Software/Hardware Testing",
+    "nameZh": "软硬件测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "solution consulting": {
+    "domain": "Solution Consulting",
+    "nameZh": "解决方案咨询",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "spatial audio": {
+    "domain": "Spatial Audio",
+    "nameZh": "空间音频",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "spatial computing": {
+    "domain": "Spatial Computing",
+    "nameZh": "空间计算",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "spatial intelligence": {
+    "domain": "Spatial Intelligence",
+    "nameZh": "空间智能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "spectroscopy": {
+    "domain": "Spectroscopy",
+    "nameZh": "光谱学",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "speech ai data service": {
+    "domain": "Speech AI Data Service",
+    "nameZh": "语音 AI 数据服务",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "speech data": {
+    "domain": "Speech Data",
+    "nameZh": "语音数据",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "speech llm": {
+    "domain": "Speech LLM",
+    "nameZh": "语音大语言模型",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "stakeholder communication": {
+    "domain": "Stakeholder Communication",
+    "nameZh": "利益相关者沟通",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "storage testing": {
+    "domain": "Storage Testing",
+    "nameZh": "存储测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "store operations": {
+    "domain": "Store Operations",
+    "nameZh": "门店运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "strategy analysis": {
+    "domain": "Strategy Analysis",
+    "nameZh": "策略分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "strategy analytics": {
+    "domain": "Strategy Analytics",
+    "nameZh": "策略分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "streaming infrastructure": {
+    "domain": "Streaming Infrastructure",
+    "nameZh": "流媒体基础设施",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "student mentorship": {
+    "domain": "Student Mentorship",
+    "nameZh": "学生指导",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "supply chain management": {
+    "domain": "Supply Chain Management",
+    "nameZh": "供应链管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "system": {
+    "domain": "System",
+    "nameZh": "系统",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "system integration": {
+    "domain": "System Integration",
+    "nameZh": "系统集成",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "talent assessment": {
+    "domain": "Talent Assessment",
+    "nameZh": "人才评估",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "technical communication": {
+    "domain": "Technical Communication",
+    "nameZh": "技术沟通",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "technical enablement": {
+    "domain": "Technical Enablement",
+    "nameZh": "技术赋能",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "technology application": {
+    "domain": "Technology Application",
+    "nameZh": "技术应用",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "technology strategy": {
+    "domain": "Technology Strategy",
+    "nameZh": "技术战略",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "technology trends": {
+    "domain": "Technology Trends",
+    "nameZh": "技术趋势",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "test development": {
+    "domain": "Test Development",
+    "nameZh": "测试开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "thermal engineering": {
+    "domain": "Thermal Engineering",
+    "nameZh": "热工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "thermal simulation": {
+    "domain": "Thermal Simulation",
+    "nameZh": "热仿真",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "threat hunting": {
+    "domain": "Threat Hunting",
+    "nameZh": "威胁猎杀",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "timing analysis": {
+    "domain": "Timing Analysis",
+    "nameZh": "时序分析",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "training": {
+    "domain": "Training",
+    "nameZh": "培训",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "training operations": {
+    "domain": "Training Operations",
+    "nameZh": "培训运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:27"
+  },
+  "typography": {
+    "domain": "Typography",
+    "nameZh": "字体排印",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "ugc game development": {
+    "domain": "UGC Game Development",
+    "nameZh": "UGC 游戏开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "user research & issue triage": {
+    "domain": "User Research & Issue Triage",
+    "nameZh": "用户研究与问题分拣",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "ux evaluation": {
+    "domain": "UX Evaluation",
+    "nameZh": "用户体验评估",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "ux research": {
+    "domain": "UX Research",
+    "nameZh": "用户体验研究",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "ux strategy": {
+    "domain": "UX Strategy",
+    "nameZh": "用户体验策略",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "video platforms": {
+    "domain": "Video Platforms",
+    "nameZh": "视频平台",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "visual arts": {
+    "domain": "Visual Arts",
+    "nameZh": "视觉艺术",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "visual effects": {
+    "domain": "Visual Effects",
+    "nameZh": "视觉特效",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "web application development": {
+    "domain": "Web Application Development",
+    "nameZh": "Web 应用开发",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "web frontend engineering": {
+    "domain": "Web Frontend Engineering",
+    "nameZh": "Web 前端工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "web optimization": {
+    "domain": "Web Optimization",
+    "nameZh": "Web 优化",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "wireless testing": {
+    "domain": "Wireless Testing",
+    "nameZh": "无线测试",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "workflow design": {
+    "domain": "Workflow Design",
+    "nameZh": "工作流设计",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "workflow engineering": {
+    "domain": "Workflow Engineering",
+    "nameZh": "工作流工程",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "xr": {
+    "domain": "XR",
+    "nameZh": "XR",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "商业运营": {
+    "domain": "商业运营",
+    "nameZh": "商业运营",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "技术支持": {
+    "domain": "技术支持",
+    "nameZh": "技术支持",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  },
+  "渠道管理": {
+    "domain": "渠道管理",
+    "nameZh": "渠道管理",
+    "model": "gemini-3-flash-preview",
+    "updatedAt": "2026-04-14T21:08:36"
+  }
+}

@@ -38,10 +38,11 @@ from .match_config import (
     evaluate_tier,
     get_similarity_thresholds,
 )
-from .model_config import load_flagship_llm_config
+from .model_config import load_flagship_llm_config, normalize_openai_base_url, LLMConfigResolver
+from shared.llm_resilience import call_llm_with_resilience
 from .schemas import DebugScoreRequest, InternshipRecommendationRequest, MatchHarvestRequest, MatchRequest
-from .tag_center_service import resolve_tag_center
-from .utils import clean_text, extract_item_name
+from .tag_center_service import resolve_tag_center, resolve_tag_reference
+from .utils import clean_text, extract_item_name, clamp as clamp_score
 
 
 FLAGSHIP_LLM_CONFIG = load_flagship_llm_config()
@@ -69,7 +70,7 @@ def freq_coeff(freq: int) -> float:
 
 def level_modifier(level_delta: Optional[float]) -> float:
     if level_delta is None:
-        return 0.0
+        return 1.0
     if level_delta >= 0:
         return 1.0
     if level_delta >= -1:
@@ -79,12 +80,8 @@ def level_modifier(level_delta: Optional[float]) -> float:
     return 0.0
 
 
-def clamp_score(value: Any, fallback: float = 0.0) -> float:
-    try:
-        numeric = float(value)
-    except (TypeError, ValueError):
-        numeric = fallback
-    return max(0.0, min(100.0, numeric))
+
+
 
 
 def harvest_star_to_score(stars: Any) -> float:
@@ -160,30 +157,7 @@ def match_dev_tool_name(item: Any) -> str:
 
 
 def resolve_student_tag_reference(item: Dict[str, Any], tag_type: str) -> str:
-    direct_normalized = clean_text(item.get("normalizedTag"))
-    if direct_normalized:
-        resolved = resolve_tag_center(value=direct_normalized, tag_type=tag_type)
-        if resolved:
-            return clean_text(resolved.get("normalizedTag"))
-        return direct_normalized
-
-    for value in (
-        clean_text(item.get("tagId")),
-        clean_text(item.get("name")),
-        clean_text(item.get("skill")),
-        clean_text(item.get("skillZh")),
-        clean_text(item.get("displayName")),
-    ):
-        if not value:
-            continue
-        resolved = resolve_tag_center(
-            tag_id=value if value.startswith(("TS_", "TC_", "DT_")) else "",
-            value="" if value.startswith(("TS_", "TC_", "DT_")) else value,
-            tag_type=tag_type,
-        )
-        if resolved:
-            return clean_text(resolved.get("normalizedTag"))
-    return ""
+    return resolve_tag_reference(item, tag_type)
 
 
 def normalize_direction_list(value: Any) -> list[str]:
@@ -409,13 +383,6 @@ def evaluate_experience_match(
     return {"score": 0.0, "status": "❌ 不符", "note": f"毕业时间（{s_year}）不在岗位要求范围内"}
 
 
-def normalize_text_model_base_url(base_url: str) -> str:
-    text = clean_text(base_url).rstrip("/")
-    if not text:
-        return ""
-    return text if text.endswith("/v1") else f"{text}/v1"
-
-
 def match_llm_timeout_seconds() -> int:
     return max(5, int(FLAGSHIP_LLM_CONFIG.timeout_seconds or MATCH_LLM_TIMEOUT_SECONDS_DEFAULT))
 
@@ -425,31 +392,7 @@ def match_llm_max_tokens() -> int:
 
 
 def resolve_match_text_model_config(request_config: Any) -> Dict[str, Any]:
-    if request_config is not None and bool(getattr(request_config, "enabled", True)):
-        base_url = normalize_text_model_base_url(getattr(request_config, "baseUrl", ""))
-        api_key = clean_text(getattr(request_config, "apiKey", ""))
-        model = clean_text(getattr(request_config, "model", ""))
-        if base_url and api_key and model:
-            return {
-                "source": "request_config",
-                "base_url": base_url,
-                "api_key": api_key,
-                "model": model,
-                "temperature": float(getattr(request_config, "temperature", FLAGSHIP_LLM_CONFIG.temperature) or FLAGSHIP_LLM_CONFIG.temperature),
-                "max_tokens": min(
-                    int(getattr(request_config, "maxTokens", FLAGSHIP_LLM_CONFIG.max_tokens) or FLAGSHIP_LLM_CONFIG.max_tokens),
-                    match_llm_max_tokens(),
-                ),
-            }
-
-    return {
-        "source": "flagship_llm",
-        "base_url": normalize_text_model_base_url(FLAGSHIP_LLM_CONFIG.base_url),
-        "api_key": clean_text(FLAGSHIP_LLM_CONFIG.api_key),
-        "model": clean_text(FLAGSHIP_LLM_CONFIG.model),
-        "temperature": float(FLAGSHIP_LLM_CONFIG.temperature),
-        "max_tokens": match_llm_max_tokens(),
-    }
+    return LLMConfigResolver.resolve("matching", request_config)
 
 
 def brief_llm_error(exc: Exception) -> str:
@@ -545,19 +488,29 @@ async def call_match_llm_raw(
         "max_tokens": max_tokens or llm_config["max_tokens"],
         "messages": messages,
     }
-    async with httpx.AsyncClient(timeout=match_llm_timeout_seconds()) as client:
-        response = await client.post(
-            endpoint,
-            headers={
-                "Authorization": f"Bearer {llm_config['api_key']}",
-                "Content-Type": "application/json",
-            },
-            json=body,
+
+    async def _do_call():
+        async with httpx.AsyncClient(timeout=match_llm_timeout_seconds()) as client:
+            response = await client.post(
+                endpoint,
+                headers={
+                    "Authorization": f"Bearer {llm_config['api_key']}",
+                    "Content-Type": "application/json",
+                },
+                json=body,
+            )
+        response.raise_for_status()
+        payload = response.json()
+        return normalize_llm_message_content(payload.get("choices", [{}])[0].get("message", {}).get("content"))
+
+    try:
+        return await call_llm_with_resilience(
+            _do_call,
+            label="Match LLM Raw",
+            max_attempts=3,
         )
-    if response.status_code >= 400:
-        raise RuntimeError(f"match LLM HTTP {response.status_code}: {response.text[:500]}")
-    payload = response.json()
-    return normalize_llm_message_content(payload.get("choices", [{}])[0].get("message", {}).get("content"))
+    except Exception as exc:
+        raise RuntimeError(f"match LLM failed: {str(exc)}") from exc
 
 
 def classify_match_status(sim: float, cat: str, level_delta: Optional[float]) -> str:
@@ -1408,13 +1361,23 @@ async def get_scored_candidates_for_student(
     student: Dict[str, Any],
     recall_limit: int = DEFAULT_RECALL_LIMIT,
     tier_rules: Optional[Dict[str, Dict[str, float]]] = None,
+    degradations: Optional[list[Dict[str, Any]]] = None,
 ) -> list[Dict[str, Any]]:
     await ensure_jobs_fresh()
     if not state.jobs_metadata:
         raise HTTPException(status_code=500, detail="Backend data not loaded")
 
     stu_parsed = parse_student_tags(student)
-    await embed_batch(stu_parsed["all_tags"], label="StudentTags")
+    try:
+        await embed_batch(stu_parsed["all_tags"], label="StudentTags")
+    except Exception as exc:
+        logger.warning("[MatchScoring] Student tags embedding failed: %s", exc)
+        if degradations is not None:
+            degradations.append({
+                "component": "embedding_cache",
+                "reason": str(exc),
+                "impact": "无法生成学生画像标签的向量，将依赖本地缓存或字面匹配"
+            })
 
     hit_scores: Dict[int, int] = {}
 
@@ -1486,7 +1449,16 @@ async def get_scored_candidates_for_student(
             if name:
                 jd_tags_need.add(name)
 
-    await embed_batch(list(jd_tags_need), label="JD-Top50-Fill")
+    try:
+        await embed_batch(list(jd_tags_need), label="JD-Top50-Fill")
+    except Exception as exc:
+        logger.warning("[MatchScoring] JD tags embedding failed: %s", exc)
+        if degradations is not None:
+            degradations.append({
+                "component": "embedding_cache",
+                "reason": str(exc),
+                "impact": "无法生成候选JD标签的向量，将依赖本地缓存或字面匹配"
+            })
 
     results = []
     for idx in top_indices:
@@ -1725,7 +1697,7 @@ async def recommend_internship_jobs(req: InternshipRecommendationRequest) -> Dic
             "timing": {"totalSeconds": round(time.time() - start_time, 3)},
         }
 
-    gap_student = _gap_student_from_gaps(req.student or {}, normalized_gaps)
+    gap_student = _gap_student_from_gaps(req.studentProfile or {}, normalized_gaps)
     stu_parsed = parse_student_tags(gap_student)
     await embed_batch(stu_parsed["all_tags"], label="ActionGapTags")
 
@@ -2495,16 +2467,50 @@ async def evaluate_jd_split_with_llm(job: Dict[str, Any], student: Dict[str, Any
 
 
 async def run_match_harvest(req: MatchHarvestRequest) -> Dict[str, Any]:
-    stu_parsed = parse_student_tags(req.student or {})
-    competitiveness = await run_gold_assessment(stu_parsed)
+    start_time = time.time()
+    degradations = []
+    stu_parsed = parse_student_tags(req.studentProfile or {})
+    
+    # 1. 评估竞争力
+    try:
+        competitiveness = await run_gold_assessment(stu_parsed)
+        if competitiveness.get("source") == "deterministic_fallback":
+            degradations.append({
+                "component": "gold_assessment",
+                "reason": "LLM competitiveness assessment fallback",
+                "impact": "置信度系数退化为基于确定性规则评估"
+            })
+    except Exception as exc:
+        logger.warning("[Harvest] Gold assessment failed: %s", exc)
+        competitiveness = deterministic_competitiveness(stu_parsed)
+        degradations.append({
+            "component": "gold_assessment",
+            "reason": f"Gold assessment error: {str(exc)}",
+            "impact": "置信度系数退化为基于确定性规则评估"
+        })
+
     coefficient = float(competitiveness.get("confidence_coefficient") or competitiveness.get("gold_weight_k") or 0.5)
     coefficient = max(0.5, min(1.0, coefficient))
     llm_config = resolve_match_text_model_config(req.config)
     jobs = [dict(job) for job in (req.jobs or []) if isinstance(job, dict)]
+    
+    # 2. 评估 JD 细项
     assessments = await asyncio.gather(*[
-        evaluate_jd_split_with_llm(job, req.student or {}, llm_config)
+        evaluate_jd_split_with_llm(job, req.studentProfile or {}, llm_config)
         for job in jobs
     ]) if jobs else []
+
+    any_fallback = False
+    for jd_items in assessments:
+        if any(item.get("assessmentSource") == "tag_fallback" for item in jd_items):
+            any_fallback = True
+            break
+    if any_fallback:
+        degradations.append({
+            "component": "jd_split_assessment",
+            "reason": "大模型评估不可用或部分解析失败",
+            "impact": "使用标签匹配分数推断星级（粗粒度评估）"
+        })
 
     rankings: list[Dict[str, Any]] = []
     for index, job in enumerate(jobs):
@@ -2583,15 +2589,20 @@ async def run_match_harvest(req: MatchHarvestRequest) -> Dict[str, Any]:
             f"最终报告分 = (逐条星级分 × {HARVEST_JD_STAR_WEIGHT:.1f} + 标签匹配分 × {HARVEST_TAG_MATCH_WEIGHT:.1f}) "
             f"× 置信度系数 {coefficient:.3f}。"
         ),
+        "meta": {
+            "degradation": degradations,
+            "processing_time_ms": int((time.time() - start_time) * 1000)
+        }
     }
 
 
 async def run_match(req: MatchRequest) -> Dict[str, Any]:
     start_time = time.time()
-    results = await get_scored_candidates_for_student(req.student)
+    degradations = []
+    results = await get_scored_candidates_for_student(req.studentProfile, degradations=degradations)
     scoring_seconds = time.time() - start_time
 
-    student_direction = req.student.get("direction")
+    student_direction = req.studentProfile.get("direction")
     bucket_size = req.top_k or DEFAULT_BUCKET_SIZE
     batch_offsets = dict(req.batch_offsets or {})
 
@@ -2614,15 +2625,20 @@ async def run_match(req: MatchRequest) -> Dict[str, Any]:
             "scoringSeconds": round(scoring_seconds, 3),
             "totalSeconds": round(total_seconds, 3),
         },
+        "meta": {
+            "degradation": degradations,
+            "processing_time_ms": int((time.time() - start_time) * 1000)
+        }
     }
 
 
 async def run_match_insight(req: MatchRequest) -> Dict[str, Any]:
     """独立生成大模型深度分析报告，不阻塞岗位列表返回"""
     start_time = time.time()
-    results = await get_scored_candidates_for_student(req.student)
+    degradations = []
+    results = await get_scored_candidates_for_student(req.studentProfile, degradations=degradations)
     
-    student_direction = req.student.get("direction")
+    student_direction = req.studentProfile.get("direction")
     bucket_size = req.top_k or DEFAULT_BUCKET_SIZE
     batch_offsets = dict(req.batch_offsets or {})
 
@@ -2690,6 +2706,11 @@ async def run_match_insight(req: MatchRequest) -> Dict[str, Any]:
             )
         else:
             analysis = f"推荐报告生成失败（{analysis_meta.get('error', '')}）。下方匹配岗位与分数已正常生成。"
+            degradations.append({
+                "component": "match_insight_llm",
+                "reason": analysis_meta.get("error") or "大模型接口调用失败",
+                "impact": "无法生成匹配分析报告与面试建议"
+            })
     else:
         analysis = "当前画像尚未通过这批岗位的技术要求与素质要求卡口。"
 
@@ -2700,6 +2721,10 @@ async def run_match_insight(req: MatchRequest) -> Dict[str, Any]:
         "timing": {
             "totalSeconds": round(time.time() - start_time, 3),
         },
+        "meta": {
+            "degradation": degradations,
+            "processing_time_ms": int((time.time() - start_time) * 1000)
+        }
     }
 
 
@@ -2721,7 +2746,7 @@ async def run_debug_score(req: DebugScoreRequest) -> Dict[str, Any]:
     if not jd:
         raise HTTPException(status_code=404, detail="Job not found")
 
-    stu_parsed = parse_student_tags(req.student)
+    stu_parsed = parse_student_tags(req.studentProfile)
     jd_tags = set()
     for item in iter_tech_stack_leaf_items(jd.get("techStack", [])):
         name = match_tech_stack_name(item)

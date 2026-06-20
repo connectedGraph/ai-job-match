@@ -11,6 +11,7 @@ import TagsCenter from './pages/TagsCenter';
 import RunLogs from './pages/RunLogs';
 import Settings from './pages/Settings';
 import Normalization from './pages/Normalization';
+import TagTrends from './pages/TagTrends';
 
 const App = () => {
   const location = useLocation();
@@ -37,7 +38,8 @@ const App = () => {
       '/tags': 'Tags Center',
       '/runs': 'Run Logs',
       '/settings': 'Settings',
-      '/normalize': 'Normalization'
+      '/normalize': 'Normalization',
+      '/tag-trends': 'Tag Trends'
     };
     return [mapping[path] || 'Section'];
   };
@@ -72,6 +74,7 @@ const App = () => {
             <Route path="/runs" element={<RunLogs />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/normalize" element={<Normalization />} />
+            <Route path="/tag-trends" element={<TagTrends />} />
           </Routes>
         </div>
       </main>

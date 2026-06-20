@@ -75,6 +75,14 @@ class LLMConfig:
     timeout_seconds: int
 
 
+@dataclass(frozen=True)
+class OCRConfig:
+    base_url: str
+    api_key: str
+    model: str
+    timeout_seconds: int
+
+
 def _load_flagship_llm_config() -> LLMConfig:
     return LLMConfig(
         base_url=normalize_base_url(_env_str("JOB_SYSTEM_FLAGSHIP_LLM_BASE_URL")),
@@ -96,6 +104,18 @@ def load_ai_llm_config() -> LLMConfig:
 
 def load_llm_config() -> LLMConfig:
     return load_ai_llm_config()
+
+
+def load_ocr_config() -> OCRConfig:
+    base_url = _env_str("JOB_SYSTEM_OCR_BASE_URL") or "https://aihubmix.com/v1"
+    api_key = _env_str("JOB_SYSTEM_OCR_API_KEY") or "sk-Hx37ujzWVwblX4vHDfDbA0D51900489a9905Df3b544f1245"
+    model = _env_str("JOB_SYSTEM_OCR_MODEL") or "glm-ocr"
+    return OCRConfig(
+        base_url=normalize_base_url(base_url),
+        api_key=api_key,
+        model=model,
+        timeout_seconds=_env_int("JOB_SYSTEM_OCR_TIMEOUT_SECONDS", 120),
+    )
 
 
 JWT_SECRET = _required_env("CAREER_PLANNER_JWT_SECRET")

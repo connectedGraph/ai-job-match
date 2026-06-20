@@ -9,6 +9,7 @@ from langchain_openai import ChatOpenAI
 
 from .config import logger
 from .model_config import load_flagship_llm_config
+from shared.llm_resilience import call_llm_with_resilience, parse_llm_json
 
 
 EXPERIENCE_WEIGHTS = {
@@ -106,14 +107,15 @@ async def evaluate_category_llm(category: str, items: List[Dict], student_direct
             ]
         )
         chain = prompt_tmpl | llm | StrOutputParser()
-        raw_res = await chain.ainvoke({"payload": json.dumps(items, ensure_ascii=False)})
+        async def _do_run():
+            return await chain.ainvoke({"payload": json.dumps(items, ensure_ascii=False)})
 
-        start = raw_res.find("[")
-        end = raw_res.rfind("]") + 1
-        if start < 0 or end <= start:
-            return _fallback_scores(len(items))
-
-        parsed = json.loads(raw_res[start:end])
+        raw_res = await call_llm_with_resilience(
+            _do_run,
+            label=f"Experience Assessment ({category})",
+            max_attempts=3,
+        )
+        parsed = parse_llm_json(raw_res)
         if not isinstance(parsed, list):
             return _fallback_scores(len(items))
 
@@ -152,14 +154,17 @@ async def evaluate_synergy_llm(experiences: Dict[str, List[Dict]]) -> float:
             ]
         )
         chain = prompt | llm | StrOutputParser()
-        raw_res = await chain.ainvoke({"payload": json.dumps(experiences, ensure_ascii=False)})
+        async def _do_run():
+            return await chain.ainvoke({"payload": json.dumps(experiences, ensure_ascii=False)})
 
-        start = raw_res.find("{")
-        end = raw_res.rfind("}") + 1
-        if start < 0 or end <= start:
+        raw_res = await call_llm_with_resilience(
+            _do_run,
+            label="Synergy Assessment",
+            max_attempts=3,
+        )
+        parsed = parse_llm_json(raw_res)
+        if not isinstance(parsed, dict):
             return 0.0
-
-        parsed = json.loads(raw_res[start:end])
         return float(parsed.get("bonus", 0) or 0)
     except Exception as e:
         logger.error(f"[ExpAssessment] Synergy LLM failed: {e}")

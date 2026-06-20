@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Brain,
   Layers,
@@ -11,6 +11,7 @@ import {
   Toolbox,
 } from 'lucide-react';
 import SkillItem from './SkillItem';
+import TagTrendPanel from './TagTrendPanel';
 import { useData } from '../../context/DataContext';
 import api from '../../services/api';
 
@@ -285,6 +286,24 @@ const SkillsModule = () => {
   const { studentData, setStudentData, saveData } = useData();
   const [searchState, setSearchState] = useState({});
   const [recommendationState, setRecommendationState] = useState({});
+  const [hotMap, setHotMap] = useState(new Map());
+  const [trendPanel, setTrendPanel] = useState(null);
+
+  useEffect(() => {
+    api.get('/api/tags/hot?limit=100').then(res => {
+      const m = new Map();
+      (res?.data || []).forEach(t => m.set(t.normalizedTag, t));
+      setHotMap(m);
+    }).catch(() => {});
+  }, []);
+
+  const getTrendBadge = (item) => {
+    const t = hotMap.get(item.normalizedTag);
+    if (!t) return null;
+    if (t.trend_type === 'rising') return '🔥';
+    if (t.trend_type === 'cold') return '⚠️';
+    return null;
+  };
 
   const techStack = studentData.techStack || [];
   const techCapability = studentData.techCapability || studentData.techCapabilities || [];
@@ -503,6 +522,8 @@ const SkillsModule = () => {
                 index={index}
                 onDelete={handleDelete}
                 onLevelChange={handleLevelChange}
+                trendBadge={getTrendBadge(item)}
+                onTrendClick={() => setTrendPanel(hotMap.get(item.normalizedTag))}
               />
             ))}
           </div>
@@ -582,6 +603,8 @@ const SkillsModule = () => {
                           index={techCapability.indexOf(item)}
                           onDelete={handleDelete}
                           onLevelChange={handleLevelChange}
+                          trendBadge={getTrendBadge(item)}
+                          onTrendClick={() => setTrendPanel(hotMap.get(item.normalizedTag))}
                         />
                       ))
                     ) : (
@@ -619,6 +642,8 @@ const SkillsModule = () => {
                 index={index}
                 onDelete={handleDelete}
                 onLevelChange={handleLevelChange}
+                trendBadge={getTrendBadge(item)}
+                onTrendClick={() => setTrendPanel(hotMap.get(item.normalizedTag))}
               />
             ))}
           </div>
@@ -634,6 +659,7 @@ const SkillsModule = () => {
           </div>
         </section>
       </div>
+      <TagTrendPanel tag={trendPanel} onClose={() => setTrendPanel(null)} />
     </div>
   );
 };

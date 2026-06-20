@@ -10,7 +10,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
 from .config import logger
-from .model_config import load_flagship_llm_config
+from .model_config import load_flagship_llm_config, normalize_openai_base_url, LLMConfigResolver
+from shared.llm_resilience import call_llm_with_resilience, parse_llm_json
+from .utils import clean_text as normalize_text, clamp
 
 
 INSTITUTION_LEVEL_MAP = {
@@ -143,8 +145,7 @@ def midpoint(score_range: Tuple[float, float]) -> float:
     return round((score_range[0] + score_range[1]) / 2.0, 1)
 
 
-def clamp(value: float, lower: float, upper: float) -> float:
-    return max(lower, min(upper, value))
+
 
 
 def grade_for_score(score: float, max_score: float = 100.0) -> str:
@@ -166,26 +167,11 @@ def competitiveness_coefficient(score: float) -> float:
     return round(0.5 + (clamp(float(score or 0), 0.0, 100.0) / 200.0), 3)
 
 
-def normalize_text_model_base_url(base_url: str) -> str:
-    text = normalize_text(base_url).rstrip("/")
-    if not text:
-        return ""
-    return text if text.endswith("/v1") else f"{text}/v1"
-
-
 def resolve_competitiveness_llm_config() -> Dict[str, Any]:
-    base_cfg = load_flagship_llm_config()
-    return {
-        "base_url": normalize_text_model_base_url(base_cfg.base_url),
-        "api_key": normalize_text(base_cfg.api_key),
-        "model": normalize_text(base_cfg.model),
-        "temperature": float(base_cfg.temperature),
-        "max_tokens": max(512, int(base_cfg.max_tokens or 1200)),
-    }
+    return LLMConfigResolver.resolve("competitiveness")
 
 
-def normalize_text(value: Any) -> str:
-    return str(value or "").strip()
+
 
 
 def join_item_text(item: Any) -> str:
@@ -506,16 +492,7 @@ def deterministic_competitiveness(student_info: Dict[str, Any]) -> Dict[str, Any
 
 
 def extract_json_object(raw: str) -> Dict[str, Any]:
-    text = normalize_text(raw)
-    if text.startswith("```"):
-        text = text.split("\n", 1)[-1]
-    if text.endswith("```"):
-        text = text.rsplit("```", 1)[0]
-    start = text.find("{")
-    end = text.rfind("}") + 1
-    if start < 0 or end <= start:
-        raise ValueError("model did not return JSON object")
-    parsed = json.loads(text[start:end])
+    parsed = parse_llm_json(raw)
     if not isinstance(parsed, dict):
         raise ValueError("model JSON is not an object")
     return parsed
@@ -545,19 +522,29 @@ async def call_competitiveness_llm_raw(config: Dict[str, Any], messages: List[Di
         "max_tokens": config["max_tokens"],
         "messages": messages,
     }
-    async with httpx.AsyncClient(timeout=120.0) as client:
-        response = await client.post(
-            endpoint,
-            headers={
-                "Authorization": f"Bearer {config['api_key']}",
-                "Content-Type": "application/json",
-            },
-            json=body,
+
+    async def _do_call():
+        async with httpx.AsyncClient(timeout=120.0) as client:
+            response = await client.post(
+                endpoint,
+                headers={
+                    "Authorization": f"Bearer {config['api_key']}",
+                    "Content-Type": "application/json",
+                },
+                json=body,
+            )
+        response.raise_for_status()
+        payload = response.json()
+        return normalize_llm_message_content(payload.get("choices", [{}])[0].get("message", {}).get("content"))
+
+    try:
+        return await call_llm_with_resilience(
+            _do_call,
+            label="Competitiveness LLM Raw",
+            max_attempts=3,
         )
-    if response.status_code >= 400:
-        raise RuntimeError(f"competitiveness LLM HTTP {response.status_code}: {response.text[:500]}")
-    payload = response.json()
-    return normalize_llm_message_content(payload.get("choices", [{}])[0].get("message", {}).get("content"))
+    except Exception as exc:
+        raise RuntimeError(f"competitiveness LLM failed: {str(exc)}") from exc
 
 
 async def evaluate_competitiveness_llm(student_info: Dict[str, Any], fallback: Dict[str, Any]) -> Dict[str, Any]:

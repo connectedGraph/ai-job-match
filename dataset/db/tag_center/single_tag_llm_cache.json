@@ -1,0 +1,18 @@
+{
+  "535d204842bd40a3f09fedb9ec64fdfbbce379a8": {
+    "stage": "single_tag_fallback",
+    "tagType": "techCapabilities",
+    "inputTag": "Product requirements documentation",
+    "samples": [
+      "Product requirements documentation",
+      "PRD的产出能力",
+      "PRD撰写",
+      "Product Management",
+      "engineering"
+    ],
+    "action": "replace",
+    "normalizedTag": "Product requirements documentation",
+    "model": "gpt-5.4",
+    "updatedAt": "2026-04-12T08:55:08"
+  }
+}

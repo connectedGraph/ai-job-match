@@ -1,6 +1,6 @@
 import os
 from dataclasses import dataclass
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 
 FLAGSHIP_LLM_MODEL_DEFAULT = "gpt-5.4"
@@ -152,3 +152,87 @@ def list_vector_model_profiles() -> List[Dict[str, str]]:
             "note": "Unified OpenAI-compatible embedding profile for semantic search, tag normalization, and matching.",
         }
     ]
+
+
+class LLMConfigResolver:
+    @staticmethod
+    def resolve(role: str, request_config: Any = None) -> Dict[str, Any]:
+        """Resolve LLM configuration based on the role and optional request config overrides.
+
+        roles:
+            - 'matching': flagship LLM config with request overrides
+            - 'check': fast LLM config with request overrides
+            - 'competitiveness': flagship LLM config (no overrides)
+        """
+        if role == "matching":
+            base_cfg = load_flagship_llm_config()
+            max_tokens_default = 4000
+
+            if request_config is not None and bool(getattr(request_config, "enabled", True)):
+                base_url = normalize_openai_base_url(getattr(request_config, "baseUrl", ""))
+                api_key = (getattr(request_config, "apiKey", "") or "").strip()
+                model = (getattr(request_config, "model", "") or "").strip()
+                if base_url and api_key and model:
+                    return {
+                        "source": "request_config",
+                        "base_url": base_url,
+                        "api_key": api_key,
+                        "model": model,
+                        "temperature": float(getattr(request_config, "temperature", base_cfg.temperature) or base_cfg.temperature),
+                        "max_tokens": min(
+                            int(getattr(request_config, "maxTokens", base_cfg.max_tokens) or base_cfg.max_tokens),
+                            max(256, int(base_cfg.max_tokens or max_tokens_default)),
+                        ),
+                    }
+            return {
+                "source": "flagship_llm",
+                "base_url": normalize_openai_base_url(base_cfg.base_url),
+                "api_key": base_cfg.api_key.strip(),
+                "model": base_cfg.model.strip(),
+                "temperature": float(base_cfg.temperature),
+                "max_tokens": max(256, int(base_cfg.max_tokens or max_tokens_default)),
+            }
+
+        elif role == "check":
+            base_cfg = load_fast_llm_config()
+            max_tokens_default = 1800
+
+            request_enabled = bool(getattr(request_config, "enabled", True)) if request_config is not None else True
+            if request_config is not None and request_enabled:
+                base_url = normalize_openai_base_url(getattr(request_config, "baseUrl", ""))
+                api_key = (getattr(request_config, "apiKey", "") or "").strip()
+                model = (getattr(request_config, "model", "") or "").strip() or base_cfg.model.strip()
+                if base_url and api_key:
+                    return {
+                        "source": "request_config",
+                        "base_url": base_url,
+                        "api_key": api_key,
+                        "model": model,
+                        "temperature": float(getattr(request_config, "temperature", 0.0) or 0.0),
+                        "max_tokens": min(
+                            int(getattr(request_config, "maxTokens", max_tokens_default) or max_tokens_default),
+                            max(512, min(int(base_cfg.max_tokens or max_tokens_default), max_tokens_default)),
+                        ),
+                    }
+            return {
+                "source": "fast_llm",
+                "base_url": normalize_openai_base_url(base_cfg.base_url),
+                "api_key": base_cfg.api_key.strip(),
+                "model": base_cfg.model.strip(),
+                "temperature": float(base_cfg.temperature),
+                "max_tokens": max(512, min(int(base_cfg.max_tokens or max_tokens_default), max_tokens_default)),
+            }
+
+        elif role == "competitiveness":
+            base_cfg = load_flagship_llm_config()
+            return {
+                "source": "flagship_llm",
+                "base_url": normalize_openai_base_url(base_cfg.base_url),
+                "api_key": base_cfg.api_key.strip(),
+                "model": base_cfg.model.strip(),
+                "temperature": float(base_cfg.temperature),
+                "max_tokens": max(512, int(base_cfg.max_tokens or 1200)),
+            }
+
+        else:
+            raise ValueError(f"Unknown config resolver role: {role}")

@@ -380,7 +380,7 @@ const ActionPlan = () => {
     setInternshipError('');
     try {
       const response = await api.post('/api/match/internship-recommendations', {
-        student: studentData,
+        studentProfile: studentData,
         gaps: plan.gaps || plan.tasks,
         top_k: 6,
       });

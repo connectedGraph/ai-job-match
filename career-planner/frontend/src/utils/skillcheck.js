@@ -69,7 +69,7 @@ const appliedSkillNames = (aiResults) =>
   );
 
 export const buildSkillTaskPayload = (studentData, aiResults = {}) => ({
-  studentData,
+  studentProfile: studentData,
   techNames: skillNames(studentData, 'techStack'),
   capNames: skillNames(studentData, 'techCapability'),
   toolNames: skillNames(studentData, 'devTools'),

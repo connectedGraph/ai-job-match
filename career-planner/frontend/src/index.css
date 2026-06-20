@@ -49,7 +49,7 @@
 
 @layer components {
   .orchard-card {
-    @apply bg-[var(--surface-1)] border border-[var(--border)] rounded-sm p-4 transition-all duration-300 hover:bg-[var(--surface-2)] hover:border-gray-200;
+    @apply bg-[var(--surface-1)] border border-[var(--border)] rounded-2xl p-4 transition-all duration-300 hover:bg-[var(--surface-2)] hover:border-gray-200;
   }
   
   .no-scrollbar::-webkit-scrollbar {
@@ -92,12 +92,6 @@
     100% { opacity: 1; transform: translateY(0); }
   }
 
-  @keyframes soft-glow-pulse {
-    0% { box-shadow: 0 0 15px rgba(20, 184, 166, 0.2); }
-    50% { box-shadow: 0 0 30px rgba(20, 184, 166, 0.4); }
-    100% { box-shadow: 0 0 15px rgba(20, 184, 166, 0.2); }
-  }
-
 .animate-float {
   animation: float 4s ease-in-out infinite;
 }
@@ -108,6 +102,10 @@
 
 .animate-ripening {
   animation: ripening 1.4s ease-in-out forwards;
+}
+
+.animate-entry {
+  animation: entry-slide-up 0.3s ease-out both;
 }
 
 @media print {

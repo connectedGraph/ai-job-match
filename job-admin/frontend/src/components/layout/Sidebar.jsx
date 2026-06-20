@@ -12,6 +12,7 @@ import {
   Sparkles,
   Sprout,
   Tag,
+  TrendingUp,
   Upload,
   UserRound,
   Wheat,
@@ -40,6 +41,7 @@ const ADMIN_ITEMS = [
   { to: '/runs', icon: History, title: 'Run Logs', sub: '批次与记录' },
   { to: '/settings', icon: Settings, title: 'Settings', sub: '模型与并发配置' },
   { to: '/normalize', icon: Activity, title: 'Normalize', sub: '标签复查' },
+  { to: '/tag-trends', icon: TrendingUp, title: 'Tag Trends', sub: '热榜与趋势分析' },
 ];
 
 const SidebarItem = ({ to, icon, title, sub, badge, end = false }) => {

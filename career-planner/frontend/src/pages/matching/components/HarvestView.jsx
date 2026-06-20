@@ -177,7 +177,7 @@ const ConfidenceExplanationModal = ({ detail, onClose }) => {
       >
         <div className="flex items-start justify-between gap-4 border-b border-slate-100 pb-4">
           <div>
-            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500">Composite Confidence</div>
+            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--teal)]">Composite Confidence</div>
             <h3 className="mt-1 text-lg font-black text-slate-950">合成置信度计算过程</h3>
             <p className="mt-1 text-xs font-semibold text-slate-500">
               {explanation.title} @ {explanation.companyName}
@@ -194,11 +194,11 @@ const ConfidenceExplanationModal = ({ detail, onClose }) => {
         </div>
 
         <div className="mt-5 grid gap-4 md:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-2xl border border-blue-100 bg-blue-50/60 p-4">
-            <div className="text-[10px] font-black uppercase tracking-widest text-blue-600">计算公式</div>
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-1)] p-4">
+            <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--teal)]">计算公式</div>
             <div className="mt-3 rounded-xl bg-white px-4 py-3 font-mono text-[12px] font-bold leading-6 text-slate-700">
               <div>合成置信度 = JD 星级分 x {formatFormulaNumber(explanation.jdWeight)} + 技能匹配分 x {formatFormulaNumber(explanation.tagWeight)}</div>
-              <div className="mt-1 text-blue-600">
+              <div className="mt-1 text-[var(--teal)]">
                 {formatFormulaNumber(explanation.jdScore)} x {formatFormulaNumber(explanation.jdWeight)}
                 {' + '}
                 {formatFormulaNumber(explanation.tagScore)} x {formatFormulaNumber(explanation.tagWeight)}
@@ -215,7 +215,7 @@ const ConfidenceExplanationModal = ({ detail, onClose }) => {
             <div className="text-[10px] font-black uppercase tracking-widest text-slate-500">最终分联动</div>
             <div className="mt-3 grid grid-cols-3 gap-2 text-center">
               <div className="rounded-xl bg-white px-2 py-3">
-                <div className="text-lg font-black text-blue-500">{formatScore(explanation.compositeScore)}</div>
+                <div className="text-lg font-semibold text-[var(--teal)]">{formatScore(explanation.compositeScore)}</div>
                 <div className="mt-1 text-[9px] font-bold text-slate-400">合成</div>
               </div>
               <div className="rounded-xl bg-white px-2 py-3">
@@ -293,7 +293,7 @@ const JdAssessmentPreview = ({ rank, onOpenPreview }) => {
     >
       <div className="flex flex-wrap items-center gap-2 text-[10px] font-bold text-gray-500">
         <span>岗位要求/加分项逐条评分</span>
-        <span className="rounded bg-blue-50 px-1.5 py-0.5 text-blue-600">星级均分 {renderStars(getJdStarScore(rank))}</span>
+        <span className="rounded bg-[var(--teal-dim)] px-1.5 py-0.5 text-[var(--teal)]">星级均分 {renderStars(getJdStarScore(rank))}</span>
         <span className="rounded bg-emerald-50 px-1.5 py-0.5 text-emerald-600">达到 {counts.three || 0}</span>
         <span className="rounded bg-amber-50 px-1.5 py-0.5 text-amber-600">部分 {counts.two || 0}</span>
         <span className="rounded bg-rose-50 px-1.5 py-0.5 text-rose-600">未达 {counts.one || 0}</span>
@@ -558,19 +558,19 @@ const HarvestView = () => {
                       </p>
                     </div>
                     <div className="grid min-w-[220px] grid-cols-3 gap-2">
-                      <div className="rounded-2xl border border-orange-50 bg-orange-50/20 p-3 text-center">
-                        <div className="mb-1 text-[9px] font-black uppercase text-orange-400 tracking-wider">报告置信度</div>
-                        <div className="text-lg font-black text-orange-500">{selectedHarvest.confidence || 0}%</div>
+                      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-1)] p-3 text-center border-l-2 border-l-[var(--teal)]">
+                        <div className="mb-1 text-[9px] font-bold uppercase text-[var(--tx-2)] tracking-wider">报告置信度</div>
+                        <div className="text-lg font-bold text-[var(--teal)]">{selectedHarvest.confidence || 0}%</div>
                       </div>
-                      <div className="rounded-2xl border border-slate-50 bg-slate-50/50 p-3 text-center">
-                        <div className="mb-1 text-[9px] font-black uppercase text-slate-400 tracking-wider">背景竞争力</div>
-                        <div className="text-lg font-black text-slate-900">
+                      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-1)] p-3 text-center">
+                        <div className="mb-1 text-[9px] font-bold uppercase text-[var(--tx-2)] tracking-wider">背景竞争力</div>
+                        <div className="text-lg font-semibold text-[var(--tx-1)]">
                           {formatScore(selectedHarvestStudentScore)}
                         </div>
                       </div>
-                      <div className="rounded-2xl border border-slate-50 bg-slate-50/50 p-3 text-center">
-                        <div className="mb-1 text-[9px] font-black uppercase text-slate-400 tracking-wider">置信度系数</div>
-                        <div className="text-lg font-black text-slate-900">
+                      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-1)] p-3 text-center">
+                        <div className="mb-1 text-[9px] font-bold uppercase text-[var(--tx-2)] tracking-wider">置信度系数</div>
+                        <div className="text-lg font-semibold text-[var(--tx-1)]">
                           {formatCoefficient(selectedHarvestCoefficient)}
                         </div>
                       </div>
@@ -597,8 +597,8 @@ const HarvestView = () => {
                       return (
                         <div key={rank.stableId} className={cn(
                           "bg-white border rounded-3xl transition-all duration-300 overflow-hidden",
-                          isTarget ? "border-red-200 shadow-sm shadow-red-50" : "border-slate-100 hover:border-orange-200 hover:shadow-lg hover:shadow-orange-500/5",
-                          isSaved && "ring-1 ring-orange-200"
+                          isTarget ? "border-[var(--teal)] shadow-sm" : "border-[var(--border)] hover:border-[var(--amber)] hover:shadow-lg hover:shadow-amber-500/5",
+                          isSaved && "ring-1 ring-[var(--amber)]"
                         )}>
                           {/* Card Content Wrapper */}
                           <div className="p-6 space-y-5">
@@ -607,10 +607,10 @@ const HarvestView = () => {
                               <div className="flex items-start gap-4 min-w-0">
                                 {/* Global Rank Badge */}
                                 <div className={cn(
-                                  "w-12 h-12 rounded-2xl shrink-0 flex items-center justify-center font-black text-lg border",
-                                  rank.rank === 1 
-                                    ? "bg-orange-500 border-orange-600 text-white shadow-lg shadow-orange-500/20" 
-                                    : "bg-slate-50 border-slate-100 text-slate-400"
+                                  "w-12 h-12 rounded-2xl shrink-0 flex items-center justify-center font-bold text-lg border",
+                                  rank.rank === 1
+                                    ? "bg-[var(--amber)] border-[var(--amber)] text-white shadow-lg shadow-amber-500/20"
+                                    : "bg-[var(--surface-2)] border-[var(--border)] text-[var(--tx-2)]"
                                 )}>
                                   {rank.rank}
                                 </div>
@@ -659,13 +659,13 @@ const HarvestView = () => {
                                 >
                                   {isSaved ? <BookmarkCheck size={18} /> : <Bookmark size={18} />}
                                 </button>
-                                <button 
+                                <button
                                   onClick={() => handleSelectTarget(rank.stableId)}
                                   className={cn(
-                                    "flex items-center gap-2 h-10 px-4 rounded-xl transition-all font-black text-[10px] uppercase tracking-wider border",
-                                    isTarget 
-                                      ? "bg-red-500 border-red-600 text-white shadow-md shadow-red-500/20" 
-                                      : "bg-white border-slate-100 text-slate-400 hover:border-red-200 hover:text-red-500"
+                                    "flex items-center gap-2 h-10 px-4 rounded-xl transition-all font-semibold text-[10px] uppercase tracking-wider border",
+                                    isTarget
+                                      ? "bg-[var(--teal)] border-[var(--teal)] text-white shadow-md shadow-teal-500/20"
+                                      : "bg-white border-[var(--border)] text-[var(--tx-2)] hover:border-[var(--teal)] hover:text-[var(--teal)]"
                                   )}
                                 >
                                   <Target size={16} />
@@ -694,14 +694,14 @@ const HarvestView = () => {
                                   <button
                                     type="button"
                                     onClick={() => setConfidenceDetail({ harvest: selectedHarvest, rank })}
-                                    className="flex h-5 w-5 items-center justify-center rounded-full border border-blue-100 bg-white text-[10px] font-black text-blue-500 transition hover:border-blue-300 hover:bg-blue-50"
+                                    className="flex h-5 w-5 items-center justify-center rounded-full border border-[var(--border)] bg-white text-[10px] font-bold text-[var(--teal)] transition hover:border-[var(--teal)] hover:bg-[var(--teal-dim)]"
                                     aria-label={`查看 ${rank.title || '岗位'} 的合成置信度计算过程`}
                                     title="查看计算过程和 AI 理由"
                                   >
                                     ?
                                   </button>
                                 </div>
-                                <div className="text-xl font-black text-blue-500">{formatScore(getPreConfidenceScore(rank))}</div>
+                                <div className="text-xl font-semibold text-[var(--teal)]">{formatScore(getPreConfidenceScore(rank))}</div>
                               </div>
                               <div className="col-span-2 md:col-span-1 bg-slate-50/50 rounded-2xl p-4 border border-slate-100/50">
                                 <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">系数 Calibration</div>
@@ -719,57 +719,63 @@ const HarvestView = () => {
                 </div>
 
                 {/* AI Insight Section */}
-                <div className="orchard-card !p-0 overflow-hidden border-teal-500/20">
-                  <div className="bg-teal-500/10 px-6 py-4 flex items-center justify-between border-b border-teal-500/20">
+                <div className="orchard-card !p-0 overflow-hidden">
+                  <div className="bg-[var(--teal-dim)] px-6 py-4 flex items-center justify-between border-b border-[var(--border)]">
                     <div className="flex items-center gap-2">
-                      <Bot size={20} className="text-teal-400" />
-                      <span className="text-sm font-black tracking-tight text-teal-400 uppercase">AI 深度背景收割报告 (摘要)</span>
+                      <Bot size={20} className="text-[var(--teal)]" />
+                      <span className="text-sm font-semibold tracking-tight text-[var(--teal)] uppercase">AI 深度背景收割报告 (摘要)</span>
                     </div>
-                    <Sparkles size={16} className="text-teal-400/50" />
+                    <Sparkles size={16} className="text-[var(--teal)]" />
                   </div>
                   <div className="p-8 space-y-6">
-                    <div className="flex gap-6 items-start">
-                      <div className="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center shrink-0">
-                        <Brain size={24} className="text-teal-400" />
-                      </div>
-                      <div className="space-y-4">
-                        <p className="text-sm text-[var(--tx-2)] leading-relaxed">
-                          基于岗位库中 <span className="text-[var(--tx-1)] font-bold">1200+</span> 历史面试沉淀与当前画像 (<span className="text-[var(--tx-1)]">工程能力 {matchWorkspace.generatedAt ? 'v2' : 'v1'}</span>)，
-                          AI 认为您在 <span className="text-teal-400 font-bold">{selectedHarvest.bestJobTitle}</span> 上具备显著的差异化竞争力。
-                        </p>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                          <div className="space-y-3">
-                            <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
-                              <span className="w-1 h-3 bg-teal-500 rounded-full" />
-                              面试核心切入点
-                            </h4>
-                            <ul className="space-y-2">
-                              {['展示在嵌入式系统中的并发处理能力', '强调对通信协议栈的深度理解', '利用项目经验证明解决复杂 Bug 的闭环思维'].map((item, i) => (
-                                <li key={i} className="text-xs text-tx-2 flex items-start gap-2">
-                                  <span className="text-teal-500 mt-0.5">•</span>
-                                  {item}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div className="space-y-3">
-                            <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
-                              <span className="w-1 h-3 bg-red-500 rounded-full" />
-                              近期需规避短板
-                            </h4>
-                            <ul className="space-y-2">
-                              {['缺乏在 10w+ QPS 环境下的真实压测经验', '对分布式协议细节的掌握尚停留在理论层面'].map((item, i) => (
-                                <li key={i} className="text-xs text-tx-2 flex items-start gap-2">
-                                  <span className="text-red-400 mt-0.5">•</span>
-                                  {item}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                    {selectedHarvest.overview ? (
+                      <div className="flex gap-6 items-start">
+                        <div className="w-12 h-12 rounded-xl bg-[var(--teal-dim)] flex items-center justify-center shrink-0">
+                          <Brain size={24} className="text-[var(--teal)]" />
+                        </div>
+                        <div className="space-y-4">
+                          <p className="text-sm text-[var(--tx-2)] leading-relaxed">{selectedHarvest.overview}</p>
+                          {selectedHarvest.insights && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                              {selectedHarvest.insights.strengths?.length > 0 && (
+                                <div className="space-y-3">
+                                  <h4 className="text-xs font-bold text-[var(--tx-2)] uppercase tracking-widest flex items-center gap-2">
+                                    <span className="w-1 h-3 bg-[var(--teal)] rounded-full" />
+                                    面试核心切入点
+                                  </h4>
+                                  <ul className="space-y-2">
+                                    {selectedHarvest.insights.strengths.map((item, i) => (
+                                      <li key={i} className="text-xs text-[var(--tx-2)] flex items-start gap-2">
+                                        <span className="text-[var(--teal)] mt-0.5">•</span>
+                                        {item}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+                              {selectedHarvest.insights.gaps?.length > 0 && (
+                                <div className="space-y-3">
+                                  <h4 className="text-xs font-bold text-[var(--tx-2)] uppercase tracking-widest flex items-center gap-2">
+                                    <span className="w-1 h-3 bg-rose-400 rounded-full" />
+                                    近期需规避短板
+                                  </h4>
+                                  <ul className="space-y-2">
+                                    {selectedHarvest.insights.gaps.map((item, i) => (
+                                      <li key={i} className="text-xs text-[var(--tx-2)] flex items-start gap-2">
+                                        <span className="text-rose-400 mt-0.5">•</span>
+                                        {item}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
+                    ) : (
+                      <p className="text-sm text-[var(--tx-2)] italic">本次收割暂无 AI 深度摘要，将在下次收割时自动生成。</p>
+                    )}
                   </div>
                 </div>
 

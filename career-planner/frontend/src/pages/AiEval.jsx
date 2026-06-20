@@ -351,7 +351,7 @@ const AiEval = () => {
   const runCompleteness = useCallback(async () => {
     const previous = beginAiTask('completeness');
     try {
-      const res = await api.post('/api/ai/profile/completeness', { studentData: studentDataRef.current });
+      const res = await api.post('/api/ai/profile/completeness', { studentProfile: studentDataRef.current });
       const completed = { ...res, completedAt: new Date().toISOString() };
       const displayResult = buildCompletenessDisplayResult(completed, previous);
       const changeText = summarizeCompletenessChange(previous, displayResult);

@@ -145,3 +145,32 @@ def resolve_tag_center(
         }:
             return public
     return None
+
+
+def resolve_tag_reference(item: Dict[str, Any], tag_type: str) -> str:
+    if not isinstance(item, dict):
+        return ""
+    direct_normalized = clean_text(item.get("normalizedTag"))
+    if direct_normalized:
+        resolved = resolve_tag_center(value=direct_normalized, tag_type=tag_type)
+        if resolved:
+            return clean_text(resolved.get("normalizedTag"))
+        return direct_normalized
+
+    for value in (
+        clean_text(item.get("tagId")),
+        clean_text(item.get("name")),
+        clean_text(item.get("skill")),
+        clean_text(item.get("skillZh")),
+        clean_text(item.get("displayName")),
+    ):
+        if not value:
+            continue
+        resolved = resolve_tag_center(
+            tag_id=value if value.startswith(("TS_", "TC_", "DT_")) else "",
+            value="" if value.startswith(("TS_", "TC_", "DT_")) else value,
+            tag_type=tag_type,
+        )
+        if resolved:
+            return clean_text(resolved.get("normalizedTag"))
+    return ""

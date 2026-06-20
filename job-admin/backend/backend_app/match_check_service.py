@@ -754,7 +754,7 @@ async def call_match_check_llm(
 
 async def run_match_check(req: MatchCheckRequest) -> Dict[str, Any]:
     job = req.job or {}
-    student = req.student or {}
+    student = req.studentProfile or {}
     requirements = build_requirement_lists(job)
     education_check = build_education_check(student, job)
     graduation_check = build_graduation_check(student, job)
@@ -786,66 +786,125 @@ async def run_match_check(req: MatchCheckRequest) -> Dict[str, Any]:
     evidence_payload = build_student_evidence(student)
     education_context = evidence_payload.get("educationContext") or education_context
     llm_config = resolve_match_check_text_model_config(req.config)
-    llm_result = await call_match_check_llm(
-        job=job,
-        student=student,
-        evidence_payload=evidence_payload,
-        requirements=requirements,
-        llm_config=llm_config,
-    )
-
-    evidence_index = evidence_payload["index"]
-    major_check = None
-    if requirements["majors"]:
-        major_check = normalize_check_item(
-            llm_result.get("major_check"),
-            " / ".join(requirements["majors"]),
-            evidence_index,
-            default_reason="LLM 未返回可用的专业核查结果。",
-            source="llm",
+    try:
+        llm_result = await call_match_check_llm(
+            job=job,
+            student=student,
+            evidence_payload=evidence_payload,
+            requirements=requirements,
+            llm_config=llm_config,
         )
 
-    certificate_checks = []
-    raw_certificate_checks = as_list(llm_result.get("certificate_checks"))
-    for index, requirement_text in enumerate(requirements["certifications"]):
-        certificate_checks.append(
-            normalize_check_item(
-                raw_certificate_checks[index] if index < len(raw_certificate_checks) else {},
-                requirement_text,
+        evidence_index = evidence_payload["index"]
+        major_check = None
+        if requirements["majors"]:
+            major_check = normalize_check_item(
+                llm_result.get("major_check"),
+                " / ".join(requirements["majors"]),
                 evidence_index,
-                default_reason="LLM 未返回可用的证书核查结果。",
+                default_reason="LLM 未返回可用的专业核查结果。",
                 source="llm",
             )
-        )
 
-    experience_checks = []
-    raw_experience_checks = as_list(llm_result.get("experience_checks"))
-    for index, requirement_text in enumerate(requirements["experiences"]):
-        experience_checks.append(
-            normalize_check_item(
-                raw_experience_checks[index] if index < len(raw_experience_checks) else {},
-                requirement_text,
-                evidence_index,
-                default_reason="LLM 未返回可用的经历核查结果。",
-                source="llm",
+        certificate_checks = []
+        raw_certificate_checks = as_list(llm_result.get("certificate_checks"))
+        for index, requirement_text in enumerate(requirements["certifications"]):
+            certificate_checks.append(
+                normalize_check_item(
+                    raw_certificate_checks[index] if index < len(raw_certificate_checks) else {},
+                    requirement_text,
+                    evidence_index,
+                    default_reason="LLM 未返回可用的证书核查结果。",
+                    source="llm",
+                )
             )
-        )
 
-    return build_response_payload(
-        job=job,
-        source_meta={
-            "mode": "rule_plus_llm",
-            "model": llm_config.get("model", ""),
-            "baseUrl": llm_config.get("base_url", ""),
-            "major": "llm" if major_check else "not_applicable",
-            "certifications": "llm" if certificate_checks else "not_applicable",
-            "experiences": "llm" if experience_checks else "not_applicable",
-            "currentDate": education_context.get("currentDate"),
-            "derivedEducationStatus": education_context,
-        },
-        education_check=education_check,
-        graduation_check=graduation_check,
-        major_check=major_check,
-        certificate_checks=certificate_checks,
-        experience_checks=experience_checks,
-    )
+        experience_checks = []
+        raw_experience_checks = as_list(llm_result.get("experience_checks"))
+        for index, requirement_text in enumerate(requirements["experiences"]):
+            experience_checks.append(
+                normalize_check_item(
+                    raw_experience_checks[index] if index < len(raw_experience_checks) else {},
+                    requirement_text,
+                    evidence_index,
+                    default_reason="LLM 未返回可用的经历核查结果。",
+                    source="llm",
+                )
+            )
+
+        return build_response_payload(
+            job=job,
+            source_meta={
+                "mode": "rule_plus_llm",
+                "model": llm_config.get("model", ""),
+                "baseUrl": llm_config.get("base_url", ""),
+                "major": "llm" if major_check else "not_applicable",
+                "certifications": "llm" if certificate_checks else "not_applicable",
+                "experiences": "llm" if experience_checks else "not_applicable",
+                "currentDate": education_context.get("currentDate"),
+                "derivedEducationStatus": education_context,
+            },
+            education_check=education_check,
+            graduation_check=graduation_check,
+            major_check=major_check,
+            certificate_checks=certificate_checks,
+            experience_checks=experience_checks,
+        )
+    except Exception as exc:
+        logger.warning("[MatchCheck] LLM check failed, falling back to rule_only: %s", exc)
+        res = build_response_payload(
+            job=job,
+            source_meta={
+                "mode": "rule_only_fallback",
+                "model": "",
+                "baseUrl": "",
+                "major": "failed",
+                "certifications": "failed",
+                "experiences": "failed",
+                "currentDate": education_context.get("currentDate"),
+                "derivedEducationStatus": education_context,
+            },
+            education_check=education_check,
+            graduation_check=graduation_check,
+            major_check={
+                "passed": False,
+                "reason": f"由于大模型不可用，无法进行专业匹配。大模型错误：{str(exc)[:100]}",
+                "requirement_text": " / ".join(requirements["majors"]),
+                "matched_evidence_ids": [],
+                "matched_evidence_summary": "",
+                "status": "failed",
+                "source": "llm_fallback"
+            } if requirements["majors"] else None,
+            certificate_checks=[
+                {
+                    "passed": False,
+                    "reason": f"由于大模型不可用，无法匹配证书要求。大模型错误：{str(exc)[:100]}",
+                    "requirement_text": req_text,
+                    "matched_evidence_ids": [],
+                    "matched_evidence_summary": "",
+                    "status": "failed",
+                    "source": "llm_fallback"
+                } for req_text in requirements["certifications"]
+            ],
+            experience_checks=[
+                {
+                    "passed": False,
+                    "reason": f"由于大模型不可用，无法进行经历匹配。大模型错误：{str(exc)[:100]}",
+                    "requirement_text": req_text,
+                    "matched_evidence_ids": [],
+                    "matched_evidence_summary": "",
+                    "status": "failed",
+                    "source": "llm_fallback"
+                } for req_text in requirements["experiences"]
+            ],
+        )
+        res["meta"] = {
+            "degradation": [
+                {
+                    "component": "match_check_llm",
+                    "reason": str(exc),
+                    "impact": "无法进行专业、证书、经历等大模型匹配，仅基于学历与毕业年份规则核查"
+                }
+            ]
+        }
+        return res

@@ -41,3 +41,11 @@ def extract_item_name(item: Any, fallback_raw: bool = False) -> str:
         if fallback_raw:
             return clean_text(item.get("rawExtractedText"))
     return clean_text(item)
+
+
+def clamp(value: Any, lower: float = 0.0, upper: float = 100.0, fallback: float = 0.0) -> float:
+    try:
+        numeric = float(value)
+    except (TypeError, ValueError):
+        numeric = fallback
+    return max(lower, min(upper, numeric))

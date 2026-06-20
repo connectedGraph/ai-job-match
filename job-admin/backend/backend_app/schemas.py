@@ -1,12 +1,15 @@
 from typing import Any, Dict, List, Literal, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, AliasChoices
 
 from portrait_builder.api_models import BuilderConfig
 
 
 class MatchRequest(BaseModel):
-    student: Dict[str, Any]
+    studentProfile: Dict[str, Any] = Field(
+        validation_alias=AliasChoices("studentProfile", "studentData", "student", "student_profile", "profile"),
+        serialization_alias="studentProfile"
+    )
     top_k: int = 5
     config: Optional[BuilderConfig] = None
     # batch_offsets: 每个赛道的翻页偏移量，key 为 lane id（featured/interest/switch），value 为 offset
@@ -14,22 +17,33 @@ class MatchRequest(BaseModel):
 
 
 class MatchHarvestRequest(BaseModel):
-    student: Dict[str, Any]
+    studentProfile: Dict[str, Any] = Field(
+        validation_alias=AliasChoices("studentProfile", "studentData", "student", "student_profile", "profile"),
+        serialization_alias="studentProfile"
+    )
     jobs: List[Dict[str, Any]] = Field(default_factory=list)
     config: Optional[BuilderConfig] = None
 
 
 class InternshipRecommendationRequest(BaseModel):
-    student: Dict[str, Any] = Field(default_factory=dict)
+    studentProfile: Dict[str, Any] = Field(
+        default_factory=dict,
+        validation_alias=AliasChoices("studentProfile", "studentData", "student", "student_profile", "profile"),
+        serialization_alias="studentProfile"
+    )
     gaps: List[Dict[str, Any]] = Field(default_factory=list)
     top_k: int = 6
     config: Optional[BuilderConfig] = None
 
 
 class MatchCheckRequest(BaseModel):
-    student: Dict[str, Any]
+    studentProfile: Dict[str, Any] = Field(
+        validation_alias=AliasChoices("studentProfile", "studentData", "student", "student_profile", "profile"),
+        serialization_alias="studentProfile"
+    )
     job: Dict[str, Any]
     config: Optional[BuilderConfig] = None
+
 
 
 class ReportSection(BaseModel):
@@ -56,9 +70,13 @@ class JobMutationRequest(BaseModel):
 
 
 class DebugScoreRequest(BaseModel):
-    student: Dict[str, Any]
+    studentProfile: Dict[str, Any] = Field(
+        validation_alias=AliasChoices("studentProfile", "studentData", "student", "student_profile", "profile"),
+        serialization_alias="studentProfile"
+    )
     job_id: Optional[str] = None
     job_index: Optional[int] = None
+
 
 
 class TagExportRequest(BaseModel):
@@ -99,3 +117,8 @@ class TagCenterResolveRequest(BaseModel):
     tag_id: str = ""
     value: str = ""
     tag_type: str = ""
+
+
+class TagQueryRequest(BaseModel):
+    query: str
+    context: Optional[dict] = None

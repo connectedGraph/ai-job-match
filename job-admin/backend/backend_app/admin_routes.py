@@ -1,3 +1,6 @@
+import json
+
+import httpx
 from fastapi import APIRouter, HTTPException, Query
 
 from .job_data_service import (
@@ -9,9 +12,11 @@ from .job_data_service import (
     get_admin_tags_data,
     update_job_record,
 )
-from .schemas import JobExportRequest, JobMutationRequest, TagCenterResolveRequest, TagExportRequest
+from .model_config import load_flagship_llm_config
+from .schemas import JobExportRequest, JobMutationRequest, TagCenterResolveRequest, TagExportRequest, TagQueryRequest
 from .search_export_service import export_jobs_data, export_tags_data
 from .tag_center_service import resolve_tag_center, search_tag_center
+from .tag_trend_service import get_hot_tags, get_tag_trend_detail
 from tag_sync import normalize_existing_job_library_strict
 
 
@@ -40,14 +45,84 @@ async def get_admin_tags(
     )
 
 
+import asyncio
+import shutil
+from .config import logger
+from project_paths import resolve_job_library_file, TAG_DIR, DOMAIN_DIR
+
+_normalization_lock = asyncio.Lock()
+
+class NormalizationTransaction:
+    def __init__(self):
+        self.job_file = resolve_job_library_file()
+        self.tag_dir = TAG_DIR
+        self.domain_dir = DOMAIN_DIR
+        self.backup_dir = self.job_file.parent / "normalization_checkpoint"
+        
+    def create_checkpoint(self):
+        if self.backup_dir.exists():
+            shutil.rmtree(self.backup_dir)
+        self.backup_dir.mkdir(parents=True, exist_ok=True)
+        if self.job_file.exists():
+            shutil.copy2(self.job_file, self.backup_dir / self.job_file.name)
+        if self.tag_dir.exists():
+            shutil.copytree(self.tag_dir, self.backup_dir / self.tag_dir.name)
+        if self.domain_dir.exists():
+            shutil.copytree(self.domain_dir, self.backup_dir / self.domain_dir.name)
+            
+    def rollback(self):
+        if not self.backup_dir.exists():
+            return
+        backup_job = self.backup_dir / self.job_file.name
+        if backup_job.exists():
+            shutil.copy2(backup_job, self.job_file)
+        elif self.job_file.exists():
+            self.job_file.unlink()
+            
+        backup_tag = self.backup_dir / self.tag_dir.name
+        if backup_tag.exists():
+            if self.tag_dir.exists():
+                shutil.rmtree(self.tag_dir)
+            shutil.copytree(backup_tag, self.tag_dir)
+            
+        backup_domain = self.backup_dir / self.domain_dir.name
+        if backup_domain.exists():
+            if self.domain_dir.exists():
+                shutil.rmtree(self.domain_dir)
+            shutil.copytree(backup_domain, self.domain_dir)
+            
+    def cleanup(self):
+        if self.backup_dir.exists():
+            shutil.rmtree(self.backup_dir)
+
+
 @router.post("/api/admin/tags/normalize")
 async def normalize_admin_tags():
-    try:
-        result = await normalize_existing_job_library_strict()
-    except RuntimeError as exc:
-        raise HTTPException(status_code=409, detail=str(exc) or "Strict normalization failed") from exc
-    await ensure_jobs_fresh(embed_missing=False)
-    return result
+    if _normalization_lock.locked():
+        raise HTTPException(status_code=409, detail="标签标准化正在运行中，请勿重复提交")
+        
+    async with _normalization_lock:
+        tx = NormalizationTransaction()
+        try:
+            tx.create_checkpoint()
+        except Exception as exc:
+            raise HTTPException(status_code=500, detail=f"创建标准化备份失败: {str(exc)}")
+            
+        try:
+            result = await normalize_existing_job_library_strict()
+            await ensure_jobs_fresh(embed_missing=False)
+            tx.cleanup()
+            return result
+        except Exception as exc:
+            logger.error("Normalization failed, rolling back to checkpoint. Error: %s", str(exc))
+            try:
+                tx.rollback()
+            except Exception as rollback_err:
+                logger.critical("Failed to rollback normalization checkpoint: %s", str(rollback_err))
+            tx.cleanup()
+            if isinstance(exc, HTTPException):
+                raise exc
+            raise HTTPException(status_code=409, detail=str(exc) or "Strict normalization failed") from exc
 
 
 @router.get("/api/admin/frequencies")
@@ -152,3 +227,61 @@ async def update_job(job_id: str, req: JobMutationRequest):
 async def delete_job(job_id: str):
     await ensure_jobs_fresh(embed_missing=False)
     return await delete_job_record(job_id)
+
+
+# --- Tag Trend Endpoints ---
+
+async def _call_llm_text(messages: list, config) -> str:
+    body = {
+        "model": config.model,
+        "temperature": 0.5,
+        "max_tokens": 800,
+        "messages": messages,
+    }
+    async with httpx.AsyncClient(timeout=30) as client:
+        resp = await client.post(
+            f"{config.base_url}/chat/completions",
+            headers={"Authorization": f"Bearer {config.api_key}", "Content-Type": "application/json"},
+            json=body,
+        )
+    resp.raise_for_status()
+    return resp.json()["choices"][0]["message"]["content"].strip()
+
+
+@router.get("/api/tags/hot")
+async def hot_tags_endpoint(
+    limit: int = Query(default=20, ge=1, le=100),
+    time_range: int = Query(default=30),  # TODO(time-series): filter by date range when real data available
+):
+    data = get_hot_tags(limit)
+    return {"data": data, "total": len(data)}
+
+
+@router.get("/api/tags/trend/{tag_id}")
+async def tag_trend_endpoint(tag_id: str):
+    tag = get_tag_trend_detail(tag_id)
+    if not tag:
+        raise HTTPException(status_code=404, detail="Tag not found")
+    return tag
+
+
+@router.post("/api/agent/tag-query")
+async def tag_agent_endpoint(req: TagQueryRequest):
+    hot = get_hot_tags(20)
+    system_msg = (
+        "You are a career advisor for CS students. Answer in the same language as the question.\n"
+        f"Current top hot tags (JSON):\n{json.dumps(hot, ensure_ascii=False)}\n"
+        "Be concise (under 200 words)."
+    )
+    user_msg = req.query
+    if req.context:
+        user_msg = f"Student context: {req.context}\n{user_msg}"
+    cfg = load_flagship_llm_config()
+    try:
+        answer = await _call_llm_text(
+            [{"role": "system", "content": system_msg}, {"role": "user", "content": user_msg}],
+            cfg,
+        )
+    except Exception as exc:
+        raise HTTPException(status_code=502, detail=f"LLM error: {exc}") from exc
+    return {"answer": answer, "tags": hot[:5]}

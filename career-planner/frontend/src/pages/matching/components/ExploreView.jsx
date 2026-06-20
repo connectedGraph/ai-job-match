@@ -24,18 +24,18 @@ import {
   normalizeCheckResult,
 } from '../../../services/matchWorkspace';
 
-const tabTone = {
-  emerald: 'border-emerald-200 bg-emerald-50 text-emerald-700 hover:border-emerald-300',
-  violet: 'border-violet-200 bg-violet-50 text-violet-700 hover:border-violet-300',
-  amber: 'border-amber-200 bg-amber-50 text-amber-700 hover:border-amber-300',
-  sky: 'border-sky-200 bg-sky-50 text-sky-700 hover:border-sky-300',
+const TONE_IDLE = {
+  emerald: 'border-emerald-200 bg-emerald-50 text-emerald-700',
+  violet: 'border-violet-200 bg-violet-50 text-violet-700',
+  amber: 'border-amber-200 bg-amber-50 text-amber-700',
+  sky: 'border-sky-200 bg-sky-50 text-sky-700',
 };
 
-const activeTabTone = {
-  emerald: 'border-emerald-500 bg-emerald-500 text-white shadow-[0_12px_24px_rgba(16,185,129,0.25)]',
-  violet: 'border-violet-500 bg-violet-500 text-white shadow-[0_12px_24px_rgba(139,92,246,0.25)]',
-  amber: 'border-amber-500 bg-amber-500 text-white shadow-[0_12px_24px_rgba(245,158,11,0.25)]',
-  featured: 'border-blue-600 bg-blue-600 text-white shadow-[0_12px_24px_rgba(37,99,235,0.2)]',
+const TONE_ACTIVE = {
+  emerald: 'border-emerald-500 bg-emerald-500 text-white',
+  violet: 'border-violet-500 bg-violet-500 text-white',
+  amber: 'border-amber-500 bg-amber-500 text-white',
+  featured: 'border-[var(--teal)] bg-[var(--teal)] text-white',
 };
 
 const FEATURED_PAGE_SIZE = 3;
@@ -96,7 +96,7 @@ function FeaturedSection({
   const windowEnd = Math.min(cursor + pageSize, jobs.length);
 
   return (
-    <section className="rounded-[28px] border border-[var(--border)] bg-white shadow-[0_18px_40px_rgba(15,23,42,0.04)]">
+    <section className="rounded-2xl border border-[var(--border)] bg-white shadow-[0_18px_40px_rgba(15,23,42,0.04)]">
       <div className="flex flex-col gap-4 px-5 py-5 md:flex-row md:items-start md:justify-between">
         <button
           onClick={() => onToggle(section.id)}
@@ -104,7 +104,7 @@ function FeaturedSection({
         >
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <span className={cn('inline-flex h-8 items-center rounded-md border px-2.5 text-[11px] font-semibold', tabTone[section.accent] || tabTone.emerald)}>
+              <span className={cn('inline-flex h-8 items-center rounded-md border px-2.5 text-[11px] font-semibold', TONE_IDLE[section.accent] || TONE_IDLE.emerald)}>
                 {section.label}
               </span>
               <span className="text-[11px] uppercase tracking-[0.16em] text-slate-400">{section.english}</span>
@@ -220,7 +220,7 @@ export function CheckDrawer({ job, result, loading, onClose, onPick, onRetry, is
 
             <div className="flex-1 overflow-y-auto px-6 py-5">
               {loading && (
-                <div className="rounded-2xl border border-sky-200 bg-sky-50 px-4 py-4 text-sm text-sky-700">
+                <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-1)] px-4 py-4 text-sm text-[var(--tx-2)]">
                   正在核查岗位准入要求，请稍候。
                 </div>
               )}
@@ -556,7 +556,7 @@ const ExploreView = () => {
                   className={cn(
                     'rounded-xl border px-5 py-2.5 text-sm font-bold transition-all duration-300',
                     activeTab === tab.id
-                      ? activeTabTone[tab.id] || activeTabTone.emerald
+                    ? TONE_ACTIVE[tab.id] || TONE_ACTIVE.emerald
                       : 'border-slate-100 bg-white/60 text-slate-500 hover:border-slate-300 hover:bg-white',
                   )}
                 >
@@ -585,7 +585,7 @@ const ExploreView = () => {
         </div>
 
       {matching && (
-        <div className="rounded-2xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-700">
+        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-1)] px-4 py-3 text-sm text-[var(--tx-2)]">
           正在根据最新画像自动生成匹配结果，请稍候。
         </div>
       )}
@@ -617,11 +617,11 @@ const ExploreView = () => {
           ))}
         </div>
       ) : (
-        <section className="rounded-[28px] border border-[var(--border)] bg-white p-5 shadow-[0_18px_40px_rgba(15,23,42,0.04)]">
+    <section className="rounded-2xl border border-[var(--border)] bg-white p-5 shadow-[0_18px_40px_rgba(15,23,42,0.04)]">
           <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="flex items-center gap-2">
-                <span className={cn('inline-flex h-8 items-center rounded-md border px-2.5 text-[11px] font-semibold', tabTone[activeTabMeta.accent] || tabTone.emerald)}>
+                <span className={cn('inline-flex h-8 items-center rounded-md border px-2.5 text-[11px] font-semibold', TONE_IDLE[activeTabMeta.accent] || TONE_IDLE.emerald)}>
                   {activeTabMeta.label}
                 </span>
                 <span className="text-[11px] uppercase tracking-[0.16em] text-slate-400">{activeTabMeta.english}</span>

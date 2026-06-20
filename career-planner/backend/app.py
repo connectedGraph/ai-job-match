@@ -7,7 +7,7 @@ import httpx
 from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, AliasChoices
 
 from . import storage
 from .config import CAREER_PLANNER_DIR, load_ai_llm_config
@@ -20,6 +20,9 @@ from .prompts import (
     build_infer_system_prompt,
     build_profile_only_user_prompt,
     build_resume_parse_system_prompt,
+    build_resume_parse_basic_prompt,
+    build_resume_parse_experiences_prompt,
+    build_resume_parse_skills_prompt,
     build_skillcheck_system_prompt,
     build_skillcheck_user_prompt,
     build_soft_quality_prompt,
@@ -52,25 +55,43 @@ class PasswordUpdatePayload(BaseModel):
 
 
 class UserDataPayload(BaseModel):
-    studentData: Dict[str, Any] = Field(default_factory=dict)
+    studentProfile: Dict[str, Any] = Field(
+        default_factory=dict,
+        validation_alias=AliasChoices("studentProfile", "studentData", "student_profile", "profile"),
+        serialization_alias="studentProfile"
+    )
     aiResults: Dict[str, Any] = Field(default_factory=dict)
 
 
 class ProfileSubmitPayload(BaseModel):
-    studentProfile: Dict[str, Any] = Field(default_factory=dict)
+    studentProfile: Dict[str, Any] = Field(
+        default_factory=dict,
+        validation_alias=AliasChoices("studentProfile", "studentData", "student_profile", "profile"),
+        serialization_alias="studentProfile"
+    )
     meta: Dict[str, Any] = Field(default_factory=dict)
 
 
 class ResumeParsePayload(BaseModel):
-    dataUrl: str
+    dataUrl: Optional[str] = None
+    currentProfile: Optional[Dict[str, Any]] = None
+    feedback: Optional[str] = None
 
 
 class StudentDataPayload(BaseModel):
-    studentData: Dict[str, Any] = Field(default_factory=dict)
+    studentProfile: Dict[str, Any] = Field(
+        default_factory=dict,
+        validation_alias=AliasChoices("studentProfile", "studentData", "student_profile", "profile"),
+        serialization_alias="studentProfile"
+    )
 
 
 class SkillTaskPayload(BaseModel):
-    studentData: Dict[str, Any] = Field(default_factory=dict)
+    studentProfile: Dict[str, Any] = Field(
+        default_factory=dict,
+        validation_alias=AliasChoices("studentProfile", "studentData", "student_profile", "profile"),
+        serialization_alias="studentProfile"
+    )
     techNames: str = "无"
     capNames: str = "无"
     toolNames: str = "无"
@@ -82,34 +103,45 @@ class MatchWorkspacePayload(BaseModel):
 
 
 class MatchProxyPayload(BaseModel):
-    student: Dict[str, Any]
+    studentProfile: Dict[str, Any] = Field(
+        validation_alias=AliasChoices("studentProfile", "studentData", "student", "student_profile", "profile"),
+        serialization_alias="studentProfile"
+    )
     config: Optional[Dict[str, Any]] = None
     batch_offsets: Dict[str, int] = Field(default_factory=dict)
     top_k: int = 5
 
 
 class MatchCheckPayload(BaseModel):
-    student: Dict[str, Any]
+    studentProfile: Dict[str, Any] = Field(
+        validation_alias=AliasChoices("studentProfile", "studentData", "student", "student_profile", "profile"),
+        serialization_alias="studentProfile"
+    )
     job: Dict[str, Any]
     config: Optional[Dict[str, Any]] = None
 
-
-class ActiveBasketPayload(BaseModel):
-    basket: Dict[str, Any] = Field(default_factory=dict)
-    jobsById: Dict[str, Any] = Field(default_factory=dict)
 
 
 class BasketSubmitPayload(BaseModel):
     basket: Dict[str, Any] = Field(default_factory=dict)
     jobsById: Dict[str, Any] = Field(default_factory=dict)
-    student: Dict[str, Any] = Field(default_factory=dict)
+    studentProfile: Dict[str, Any] = Field(
+        default_factory=dict,
+        validation_alias=AliasChoices("studentProfile", "studentData", "student", "student_profile", "profile"),
+        serialization_alias="studentProfile"
+    )
     analysis: str = ""
 
 
 class InternshipRecommendationPayload(BaseModel):
-    student: Dict[str, Any] = Field(default_factory=dict)
+    studentProfile: Dict[str, Any] = Field(
+        default_factory=dict,
+        validation_alias=AliasChoices("studentProfile", "studentData", "student", "student_profile", "profile"),
+        serialization_alias="studentProfile"
+    )
     gaps: List[Dict[str, Any]] = Field(default_factory=list)
     top_k: int = 6
+
 
 
 class ActionPlanPayload(BaseModel):
@@ -117,10 +149,6 @@ class ActionPlanPayload(BaseModel):
     patch: Dict[str, Any] = Field(default_factory=dict)
     targetJobId: Optional[str] = None
     targetHarvestId: Optional[str] = None
-    payload: Dict[str, Any] = Field(default_factory=dict)
-
-
-class ReservedMatchPayload(BaseModel):
     payload: Dict[str, Any] = Field(default_factory=dict)
 
 
@@ -164,14 +192,15 @@ async def read_user_data_payload(request: Request) -> UserDataPayload:
         student_data = {}
     if not isinstance(ai_results, dict):
         ai_results = {}
-    return UserDataPayload(studentData=student_data, aiResults=ai_results)
+    return UserDataPayload(studentProfile=student_data, aiResults=ai_results)
 
 
 def sanitize_resume_parse_result(result: Any) -> Any:
     if not isinstance(result, dict):
         return result
     cleaned = dict(result)
-    cleaned["techDomains"] = []
+    if "techDomains" not in cleaned:
+        cleaned["techDomains"] = []
     basic_info = cleaned.get("basicInfo")
     if isinstance(basic_info, dict):
         next_basic_info = dict(basic_info)
@@ -195,7 +224,35 @@ def build_current_student_profile_response(user: Dict[str, Any]) -> Dict[str, An
     }
 
 
+import time
+
+class MatchEngineHealthTracker:
+    def __init__(self):
+        self.healthy = False
+        self.last_check = 0.0
+
+    async def ensure_healthy(self) -> None:
+        now = time.time()
+        if now - self.last_check > 30:
+            try:
+                async with httpx.AsyncClient(timeout=3.0) as client:
+                    resp = await client.get("http://127.0.0.1:8000/api/health")
+                    self.healthy = resp.status_code == 200
+            except Exception:
+                self.healthy = False
+            self.last_check = now
+        
+        if not self.healthy:
+            raise HTTPException(
+                status_code=503,
+                detail="匹配引擎暂时不可用，请稍后重试"
+            )
+
+_health_tracker = MatchEngineHealthTracker()
+
+
 async def proxy_match_engine(path: str, payload: Dict[str, Any], *, timeout: float, error_prefix: str) -> Any:
+    await _health_tracker.ensure_healthy()
     async with httpx.AsyncClient(timeout=timeout) as client:
         try:
             response = await client.post(
@@ -564,13 +621,54 @@ def _remove_harvest_from_workspace(workspace: Dict[str, Any], basket_id: str) ->
 def create_app() -> FastAPI:
     storage.init_db()
     app = FastAPI(title="职途星 Student Backend")
+    
+    # CORS tightening
+    allowed_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://localhost:5173,http://localhost:8001").split(",")
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
+        allow_origins=allowed_origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    # Standardized API error response handler
+    from fastapi.responses import JSONResponse
+    
+    @app.exception_handler(HTTPException)
+    async def api_http_exception_handler(request: Request, exc: HTTPException):
+        if request.url.path.startswith("/api/"):
+            code = "HTTP_ERROR"
+            if exc.status_code == 503:
+                code = "SERVICE_UNAVAILABLE"
+            elif exc.status_code == 502:
+                code = "BAD_GATEWAY"
+            elif exc.status_code == 504:
+                code = "GATEWAY_TIMEOUT"
+            elif exc.status_code == 409:
+                code = "CONFLICT"
+            elif exc.status_code == 404:
+                code = "NOT_FOUND"
+            elif exc.status_code == 401:
+                code = "UNAUTHORIZED"
+            elif exc.status_code == 400:
+                code = "BAD_REQUEST"
+                
+            message = exc.detail
+            if isinstance(exc.detail, dict):
+                message = exc.detail.get("message") or str(exc.detail)
+                
+            error_payload = {
+                "error": {
+                    "code": code,
+                    "message": str(message),
+                    "degraded": False,
+                    "retry_after": 30 if exc.status_code in {502, 503, 504} else None
+                }
+            }
+            return JSONResponse(status_code=exc.status_code, content=error_payload)
+            
+        return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
 
     # API Routes should be defined before static mounting
 
@@ -645,7 +743,7 @@ def create_app() -> FastAPI:
         user: Dict[str, Any] = Depends(current_user),
     ) -> Dict[str, Any]:
         payload = await read_user_data_payload(request)
-        result = storage.upsert_user_data(int(user["id"]), payload.studentData, payload.aiResults)
+        result = storage.upsert_user_data(int(user["id"]), payload.studentProfile, payload.aiResults)
         return {"ok": True, **result}
 
     @app.post("/api/user-data")
@@ -654,7 +752,7 @@ def create_app() -> FastAPI:
         user: Dict[str, Any] = Depends(current_user),
     ) -> Dict[str, Any]:
         payload = await read_user_data_payload(request)
-        result = storage.upsert_user_data(int(user["id"]), payload.studentData, payload.aiResults)
+        result = storage.upsert_user_data(int(user["id"]), payload.studentProfile, payload.aiResults)
         return {"ok": True, **result}
 
     @app.post("/api/user-data/reset")
@@ -674,8 +772,8 @@ def create_app() -> FastAPI:
         result = storage.upsert_match_workspace(int(user["id"]), payload.workspace)
         return {"ok": True, **result}
 
-    @app.post("/api/match")
-    async def match_proxy(
+    @app.post("/api/match/run")
+    async def match_run_proxy(
         payload: MatchProxyPayload,
         _user: Dict[str, Any] = Depends(current_user),
     ) -> Any:
@@ -685,13 +783,6 @@ def create_app() -> FastAPI:
             timeout=60.0,
             error_prefix="Matching engine unreachable",
         )
-
-    @app.post("/api/match/run")
-    async def match_run_proxy(
-        payload: MatchProxyPayload,
-        _user: Dict[str, Any] = Depends(current_user),
-    ) -> Any:
-        return await match_proxy(payload, _user)
 
     @app.post("/api/match/check")
     async def match_check_proxy(
@@ -704,23 +795,6 @@ def create_app() -> FastAPI:
             timeout=45.0,
             error_prefix="Match check engine unreachable",
         )
-
-    @app.put("/api/match/basket/active")
-    async def update_active_basket(
-        payload: ActiveBasketPayload,
-        user: Dict[str, Any] = Depends(current_user),
-    ) -> Dict[str, Any]:
-        current = storage.get_match_workspace(int(user["id"])).get("workspace") or {}
-        workspace = {
-            **current,
-            "currentBasket": payload.basket or current.get("currentBasket") or {},
-            "jobsById": {
-                **(current.get("jobsById") or {}),
-                **(payload.jobsById or {}),
-            },
-        }
-        result = storage.upsert_match_workspace(int(user["id"]), workspace)
-        return {"ok": True, "workspace": workspace, **result}
 
     @app.post("/api/match/basket/submit")
     async def basket_submit(
@@ -746,7 +820,7 @@ def create_app() -> FastAPI:
                 harvest_analysis = await proxy_match_engine(
                     "/api/match/harvest",
                     {
-                        "student": _safe_dict(payload.student),
+                        "student": _safe_dict(payload.studentProfile),
                         "jobs": basket_jobs,
                     },
                     timeout=180.0,
@@ -757,7 +831,7 @@ def create_app() -> FastAPI:
         submission = _build_basket_submission(
             basket=basket,
             jobs_by_id=jobs_by_id,
-            student=_safe_dict(payload.student),
+            student=_safe_dict(payload.studentProfile),
             analysis=payload.analysis,
             harvest_analysis=harvest_analysis,
         )
@@ -843,13 +917,6 @@ def create_app() -> FastAPI:
             timeout=90.0,
             error_prefix="Internship recommendation engine unreachable",
         )
-
-    @app.post("/api/match/profile/sync-event")
-    async def profile_sync_event_placeholder(
-        payload: ReservedMatchPayload,
-        _user: Dict[str, Any] = Depends(current_user),
-    ) -> Dict[str, Any]:
-        return {"reserved": True, "endpoint": "profile_sync_event", "payload": payload.payload}
 
     @app.post("/api/match/insight")
     async def match_insight_proxy(
@@ -1039,6 +1106,42 @@ def create_app() -> FastAPI:
         row = resolve_tag_center_catalog(tag_id=tag_id, value=value, tag_type=tag_type)
         return {"source": "tag-center", "matched": row is not None, "tag": row}
 
+    @app.get("/api/tags/hot")
+    async def proxy_tags_hot(limit: int = 20, time_range: int = 30) -> Any:
+        async with httpx.AsyncClient(timeout=30) as client:
+            try:
+                resp = await client.get(
+                    "http://127.0.0.1:8000/api/tags/hot",
+                    params={"limit": limit, "time_range": time_range},
+                )
+                resp.raise_for_status()
+                return resp.json()
+            except Exception as exc:
+                raise HTTPException(status_code=502, detail=f"Tag service error: {exc}") from exc
+
+    @app.get("/api/tags/trend/{tag_id}")
+    async def proxy_tag_trend(tag_id: str) -> Any:
+        async with httpx.AsyncClient(timeout=30) as client:
+            try:
+                resp = await client.get(f"http://127.0.0.1:8000/api/tags/trend/{tag_id}")
+                resp.raise_for_status()
+                return resp.json()
+            except Exception as exc:
+                raise HTTPException(status_code=502, detail=f"Tag service error: {exc}") from exc
+
+    @app.post("/api/agent/tag-query")
+    async def proxy_tag_agent(payload: Dict[str, Any]) -> Any:
+        async with httpx.AsyncClient(timeout=60) as client:
+            try:
+                resp = await client.post(
+                    "http://127.0.0.1:8000/api/agent/tag-query",
+                    json=payload,
+                )
+                resp.raise_for_status()
+                return resp.json()
+            except Exception as exc:
+                raise HTTPException(status_code=502, detail=f"Tag agent error: {exc}") from exc
+
     @app.post("/api/student-profile/submit-and-evaluate")
     async def submit_and_evaluate(
         payload: ProfileSubmitPayload,
@@ -1072,33 +1175,170 @@ def create_app() -> FastAPI:
         payload: ResumeParsePayload,
         _user: Dict[str, Any] = Depends(current_user),
     ) -> Any:
-        if not payload.dataUrl.strip():
-            raise HTTPException(status_code=400, detail="dataUrl is required")
-        result = await call_resume_chat_json(
-            [
-                {"role": "system", "content": build_resume_parse_system_prompt()},
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": "请根据图片中的简历内容提取结构化信息。"},
-                        {"type": "image_url", "image_url": {"url": payload.dataUrl}},
-                    ],
-                },
-            ],
-            max_tokens=4000,
-        )
-        return sanitize_resume_parse_result(result)
+        from .tag_aligner import align_profile_tags
+        
+        # Check if we are doing refinement (multi-round chat/feedback)
+        if payload.feedback and payload.currentProfile:
+            from .prompts import build_refinement_system_prompt
+            result = await call_resume_chat_json(
+                [
+                    {"role": "system", "content": build_refinement_system_prompt()},
+                    {
+                        "role": "user",
+                        "content": f"当前画像 JSON:\n{json.dumps(payload.currentProfile, ensure_ascii=False)}\n\n用户的修改反馈:\n{payload.feedback}",
+                    },
+                ],
+                max_tokens=4000,
+            )
+            sanitized = sanitize_resume_parse_result(result)
+            aligned = await align_profile_tags(sanitized)
+            return aligned
+            
+        if not payload.dataUrl or not payload.dataUrl.strip():
+            raise HTTPException(status_code=400, detail="dataUrl is required when feedback is omitted")
+            
+        import asyncio
+        import logging
+        import httpx
+        from .config import load_ocr_config
+        
+        logger = logging.getLogger("app.resume_parser")
+        ocr_config = load_ocr_config()
+        
+        basic_prompt = build_resume_parse_basic_prompt()
+        exp_prompt = build_resume_parse_experiences_prompt()
+        skills_prompt = build_resume_parse_skills_prompt()
+        
+        image_content = [
+            {"type": "text", "text": "请根据图片中的简历内容提取结构化信息。"},
+            {"type": "image_url", "image_url": {"url": payload.dataUrl}},
+        ]
+        
+        # 1. OCR Step helper
+        async def _do_ocr() -> Optional[str]:
+            headers = {
+                "Authorization": f"Bearer {ocr_config.api_key}",
+                "Content-Type": "application/json"
+            }
+            body = {
+                "model": ocr_config.model,
+                "temperature": 0.1,
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": "请对图片中的简历内容进行完整的OCR文字识别，保留排版。"},
+                            {"type": "image_url", "image_url": {"url": payload.dataUrl}}
+                        ]
+                    }
+                ]
+            }
+            url = f"{ocr_config.base_url}/chat/completions"
+            logger.info(f"[ResumeParser] Initiating OCR step using model={ocr_config.model} at {ocr_config.base_url}")
+            try:
+                async with httpx.AsyncClient(timeout=ocr_config.timeout_seconds) as client:
+                    resp = await client.post(url, headers=headers, json=body)
+                    if resp.status_code == 200:
+                        text = resp.json().get("choices", [{}])[0].get("message", {}).get("content", "")
+                        logger.info(f"[ResumeParser] OCR step succeeded, length={len(text)} chars")
+                        return text
+                    else:
+                        logger.error(f"[ResumeParser] OCR step returned non-200 status {resp.status_code}: {resp.text}")
+                        return None
+            except Exception as e:
+                logger.error(f"[ResumeParser] OCR step raised exception: {e}")
+                return None
+
+        ocr_text = await _do_ocr()
+        
+        if ocr_text:
+            from .prompts import build_resume_parse_common_system_prompt
+            common_prompt = build_resume_parse_common_system_prompt()
+            
+            async def _call_sub_task_text(prompt: str, label: str, max_tokens: int) -> Dict[str, Any]:
+                try:
+                    res = await call_resume_chat_json(
+                        [
+                            {"role": "system", "content": common_prompt},
+                            {"role": "user", "content": f"以下是简历的OCR识别文本：\n\n{ocr_text}"},
+                            {"role": "user", "content": prompt}
+                        ],
+                        max_tokens=max_tokens,
+                    )
+                    if isinstance(res, dict):
+                        return res
+                    logger.warning(f"[ResumeParser] Sub-task {label} (text) returned non-dict: {res}")
+                    return {}
+                except Exception as e:
+                    logger.error(f"[ResumeParser] Sub-task {label} (text) failed: {e}")
+                    return {}
+            
+            # Staggered launch to populate prompt cache: experiences first
+            logger.info("[ResumeParser] Launching sub-task experiences (text)...")
+            task_exp = asyncio.create_task(_call_sub_task_text(exp_prompt, "experiences", 2500))
+            
+            # Wait 1.0s for cloud caching to register
+            await asyncio.sleep(1.0)
+            
+            # Launch basicInfo and skills concurrently
+            logger.info("[ResumeParser] Launching sub-tasks basicInfo and skills (text)...")
+            task_basic = asyncio.create_task(_call_sub_task_text(basic_prompt, "basicInfo", 1500))
+            task_skills = asyncio.create_task(_call_sub_task_text(skills_prompt, "skills", 1500))
+            
+            res_exp, res_basic, res_skills = await asyncio.gather(task_exp, task_basic, task_skills)
+        else:
+            logger.warning("[ResumeParser] OCR failed or returned empty. Falling back to Direct Vision extraction...")
+            
+            async def _call_sub_task_vision(prompt: str, label: str, max_tokens: int) -> Dict[str, Any]:
+                try:
+                    res = await call_resume_chat_json(
+                        [
+                            {"role": "system", "content": prompt},
+                            {"role": "user", "content": image_content},
+                        ],
+                        max_tokens=max_tokens,
+                    )
+                    if isinstance(res, dict):
+                        return res
+                    logger.warning(f"[ResumeParser] Fallback sub-task {label} (vision) returned non-dict: {res}")
+                    return {}
+                except Exception as e:
+                    logger.error(f"[ResumeParser] Fallback sub-task {label} (vision) failed: {e}")
+                    return {}
+            
+            res_basic, res_exp, res_skills = await asyncio.gather(
+                _call_sub_task_vision(basic_prompt, "basicInfo", 1500),
+                _call_sub_task_vision(exp_prompt, "experiences", 2500),
+                _call_sub_task_vision(skills_prompt, "skills", 1500),
+            )
+        
+        # Merge all parsed parts into a single dictionary
+        result = {}
+        result.update(res_basic)
+        result.update(res_exp)
+        result.update(res_skills)
+        
+        if not result or not any(k in result for k in ["basicInfo", "experiences", "direction", "techStack"]):
+            raise HTTPException(
+                status_code=502,
+                detail="简历解析服务暂时不可用或返回了空结果，请稍后重试"
+            )
+            
+        sanitized = sanitize_resume_parse_result(result)
+        aligned = await align_profile_tags(sanitized)
+        return aligned
+
 
     @app.post("/api/ai/profile/completeness")
     async def profile_completeness(
         payload: StudentDataPayload,
         _user: Dict[str, Any] = Depends(current_user),
     ) -> Dict[str, Any]:
-        raw_scores = calc_raw_completeness_scores(payload.studentData)
+        raw_scores = calc_raw_completeness_scores(payload.studentProfile)
         model_result = await call_ai_chat_json(
             [
                 {"role": "system", "content": build_completeness_system_prompt()},
-                {"role": "user", "content": build_completeness_user_prompt(payload.studentData, raw_scores)},
+                {"role": "user", "content": build_completeness_user_prompt(payload.studentProfile, raw_scores)},
             ]
         )
         return build_completeness_result(model_result, raw_scores)
@@ -1116,10 +1356,10 @@ def create_app() -> FastAPI:
                         payload.techNames,
                         payload.capNames,
                         payload.toolNames,
-                        payload.studentData,
+                        payload.studentProfile,
                     ),
                 },
-                {"role": "user", "content": build_skillcheck_user_prompt(payload.studentData, payload.appliedNames)},
+                {"role": "user", "content": build_skillcheck_user_prompt(payload.studentProfile, payload.appliedNames)},
             ]
         )
 
@@ -1134,7 +1374,7 @@ def create_app() -> FastAPI:
                     "role": "system",
                     "content": build_infer_system_prompt(payload.techNames, payload.capNames, payload.toolNames),
                 },
-                {"role": "user", "content": build_profile_only_user_prompt(payload.studentData)},
+                {"role": "user", "content": build_profile_only_user_prompt(payload.studentProfile)},
             ]
         )
 
@@ -1146,7 +1386,7 @@ def create_app() -> FastAPI:
         return await call_ai_chat_json(
             [
                 {"role": "system", "content": build_soft_quality_prompt()},
-                {"role": "user", "content": build_profile_only_user_prompt(payload.studentData)},
+                {"role": "user", "content": build_profile_only_user_prompt(payload.studentProfile)},
             ]
         )
 
@@ -1158,9 +1398,10 @@ def create_app() -> FastAPI:
         return await call_ai_chat_json(
             [
                 {"role": "system", "content": build_growth_potential_prompt()},
-                {"role": "user", "content": build_profile_only_user_prompt(payload.studentData)},
+                {"role": "user", "content": build_profile_only_user_prompt(payload.studentProfile)},
             ]
         )
+
 
     @app.get("/backend/{_path:path}", include_in_schema=False)
     async def hide_backend_files(_path: str) -> None:
@@ -1195,7 +1436,14 @@ def create_app() -> FastAPI:
         @app.exception_handler(404)
         async def spa_exception_handler(request: Request, exc: HTTPException):
             if request.url.path.startswith("/api"):
-                return JSONResponse({"detail": exc.detail}, status_code=exc.status_code)
+                return JSONResponse({
+                    "error": {
+                        "code": "NOT_FOUND",
+                        "message": str(exc.detail),
+                        "degraded": False,
+                        "retry_after": None
+                    }
+                }, status_code=404)
             return await static_app.get_response("index.html", request.scope)
     else:
         @app.get("/")

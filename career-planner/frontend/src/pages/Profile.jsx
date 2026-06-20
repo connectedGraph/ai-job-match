@@ -108,7 +108,7 @@ const Profile = () => {
   const renderTabContent = () => {
     switch (activeTab) {
       case 'upload':
-        return <UploadSection />;
+        return <UploadSection onTabChange={handleTabChange} />;
       case 'intro':
         return <SummarySection />;
       case 'direction':
