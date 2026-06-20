@@ -151,6 +151,8 @@ JOB_SYSTEM_EMBEDDING_MODEL=embedding-3
 CAREER_PLANNER_JWT_SECRET=your-random-string
 ```
 
+以上为必填项。完整配置（端口、超时、并发、温度等）见 [`.env.example`](.env.example)。
+
 ### 一键启动
 
 ```bash

@@ -151,6 +151,8 @@ JOB_SYSTEM_EMBEDDING_MODEL=embedding-3
 CAREER_PLANNER_JWT_SECRET=your-random-string
 ```
 
+These are the required fields. For full configuration (ports, timeouts, concurrency, temperature, etc.), see [`.env.example`](.env.example).
+
 ### Start All Services
 
 ```bash
