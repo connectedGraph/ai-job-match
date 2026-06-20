@@ -179,6 +179,15 @@ A pre-configured student account with a populated profile is available:
 
 The bundled `dataset/career.json` contains ~100 job profile samples (covering 21 tech directions) for demonstration purposes only. These are synthetically generated and do not represent real job postings. To use real data, upload JDs through the Job Admin console to auto-generate structured profiles.
 
+For the full dataset (10,800+ job profiles + tag relations + vector cache) to reproduce tag normalization and matching results, download from the Release:
+
+> [Download dataset-full.zip (11.7 MB)](https://github.com/connectedGraph/ai-job-match/releases/download/v1.0.0/dataset-full.zip)
+
+Extract and overwrite into the project directory:
+```bash
+unzip dataset-full.zip -d .
+```
+
 ---
 
 ## Matching Algorithm

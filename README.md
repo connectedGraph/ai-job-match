@@ -179,6 +179,15 @@ python start_all.py
 
 仓库自带的 `dataset/career.json` 包含约 100 条岗位画像样本数据（覆盖 21 个技术方向），仅供演示和功能验证。这些数据由模拟生成，不代表真实岗位信息。如需接入实际岗位数据，通过管理后台上传 JD 即可自动生成结构化画像。
 
+如需完整数据集（10,800+ 岗位画像 + 标签关系 + 向量缓存）用于复现标签归一化和匹配效果，可从 Release 下载：
+
+> [下载 dataset-full.zip (11.7 MB)](https://github.com/connectedGraph/ai-job-match/releases/download/v1.0.0/dataset-full.zip)
+
+解压后将文件覆盖到项目对应目录即可：
+```bash
+unzip dataset-full.zip -d .
+```
+
 ---
 
 ## 匹配算法概述
